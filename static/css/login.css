@@ -16,7 +16,6 @@
     margin: auto;
     margin-top: 4.5vh;
     width: 37vw;
-    
 }
 
 .entrada label {
@@ -60,4 +59,22 @@
 
 #crearcuenta a {
     text-decoration: underline;
+}
+
+@media only screen and (max-width: 781px) {
+    .titulo-login {
+        font-size: 8vw;
+    }
+    .entrada {
+        width: 80vw;
+    }
+    .entrada label, .entrada input {
+        font-size: 5vw;
+    }
+    #enviar {
+        font-size: 5vw;
+    }
+    #crearcuenta, #error {
+        font-size: 4vw;
+    }
 }

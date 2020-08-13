@@ -59,6 +59,11 @@
     background-color: #447ab6;
     color: #FFF;
     border: 0;
+    transition: background 2s;
+}
+
+#boton_comprar:hover {
+    background-color: #1d3754;
 }
 
 #boton_carrito {
@@ -66,6 +71,12 @@
     background-color: #FFF;
     color: #447ab6;
     margin-left: 3vw;
+    transition: border 2s, color 2s;
+}
+
+#boton_carrito:hover {
+    color: #1d3754;
+    border-color: #1d3754;
 }
 
 .especificaciones {
