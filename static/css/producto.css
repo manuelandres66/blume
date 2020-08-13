@@ -1,0 +1,155 @@
+.imagen {
+    margin-left: 11vw;
+    margin-top: 5vh;
+    display: inline-block;
+}
+
+#imagen-imagen {
+    width: 39vw;
+    height: 57vh;
+    object-fit: contain;
+}
+
+.informacion {
+    display: inline-block;
+    width: 35.8vw;
+    margin-left: 3vw;
+    position: relative;
+    bottom: 8vh;
+}
+
+#titulo_informacion {
+    font-family: 'Sora', sans-serif;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.precio {
+    margin-top: 3.8vh;
+}
+
+#precio_precio {
+    font-family: 'Sora', sans-serif;
+    font-size: 50px;
+    text-align: right;
+    font-weight: normal;
+}
+
+#stock {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    text-align: right;
+}
+
+.botones {
+    margin-top: 5vh;
+    text-align: center;
+}
+
+.botones button {
+    width: 15.4vw;
+    height: 4.3vh;
+    border-radius: 47px;
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    outline: none;
+}
+
+#boton_comprar {
+    background-color: #447ab6;
+    color: #FFF;
+    border: 0;
+}
+
+#boton_carrito {
+    border: solid 4px #447ab6;
+    background-color: #FFF;
+    color: #447ab6;
+    margin-left: 3vw;
+}
+
+.especificaciones {
+    margin-top: 5vh;
+}
+
+.material {
+    display: inline-block;
+}
+
+.material h6 {
+    font-family: 'Sora', sans-serif;
+    font-size: 28px;
+    font-weight: 200;
+}
+
+.material h5 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+}
+
+#piedra {
+    margin-left: calc(50% - 126.95px);
+}
+
+.descripcion {
+    margin-left: 11vw;
+    margin-top: 2vh;
+    display: inline-block;
+    width: 80vw;
+}
+
+.descripcion h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    font-weight: 200;
+}
+
+.descripcion p {
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    padding-top: 1.2vh;
+    text-align: justify;
+    margin-bottom: 5vh;
+}
+
+@media only screen and (max-width: 1110px) {
+    .imagen {
+        margin-left: 5vw;
+        margin-right: 5vw;
+        position: absolute;
+        top: 25vh;
+    }
+    #imagen-imagen {
+        width: 90vw;
+        height: 41vh;
+    }
+    .informacion {
+        margin-left: 5vw;
+        width: 90vw;
+        margin-top: 12vh;
+    }
+    #titulo_informacion {
+        font-size: 6.6vw;
+    }
+    .precio {
+        margin-top: 48.5vh;
+    }
+    .botones {
+        margin-top: 2vh;
+    }
+    .botones button {
+        width: 35vw;
+        font-size: 15px;
+    }
+    .especificaciones {
+        margin-left: 0;
+        text-align: center;
+    }
+    .material h6 {
+        font-size: 20px;
+    }
+    .material h5 {
+        font-size: 25px;
+    }
+}

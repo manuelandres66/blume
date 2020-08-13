@@ -1,0 +1,22 @@
+{% load static %}
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="{% static 'css/barra.css' %}" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="barra-principal">
+        <img id="imagen-barra" src="{% static 'images/logo_blanco.png' %}">
+        <a><i id="cuenta-barra" class="fas fa-user-circle"></i></a>
+        <a><i id="carrito-barra" class="fas fa-shopping-cart"></i></a>
+    </div>
+    <div class="barra-abajo">
+        <div class="links">
+            <a>Inicio</a>
+            <a>Productos</a>
+            <a>Sobre Nosotros</a>
+        </div>
+    </div>
+</body>

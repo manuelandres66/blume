@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+    <head>
+        <title>Iniciar Sesión</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css">
+    </head>
+
+    <body>
+        <h1 class="titulo-login">Por Favor, Inicie Sesión</h1>
+        <p>{{error}}</p>
+        <form method="POST">{% csrf_token %}
+            <label>Usuario:</label>
+            {{form.usuario}}
+            <label>Contraseña:</label>
+            {{form.password}}
+
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{request.GET.next}}">
+            {% endif %}
+            <input type="submit">
+        </form>
+        <p>¿No tienes una cuenta? <a>Crea Una</a></p>
+    </body>
+
+</html>
