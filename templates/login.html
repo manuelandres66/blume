@@ -8,22 +8,27 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/login.css' %}" rel="stylesheet" type="text/css">
     </head>
-
+    {% include 'barra.html' %}
     <body>
         <h1 class="titulo-login">Por Favor, Inicie Sesión</h1>
-        <p>{{error}}</p>
+        <p id="error">{{error}}</p>
         <form method="POST">{% csrf_token %}
-            <label>Usuario:</label>
-            {{form.usuario}}
-            <label>Contraseña:</label>
-            {{form.password}}
-
+            <div class="entrada">
+                <label>Usuario:</label>
+                {{form.usuario}}
+            </div>
+            <div class="entrada">
+                <label>Contraseña:</label>
+                {{form.password}}
+            </div>
             {% if request.GET.next %}
                 <input type="hidden" name="next" value="{{request.GET.next}}">
             {% endif %}
-            <input type="submit">
+            <div class="entrada">
+                <input type="submit" value="Ingresar" id="enviar">
+            </div>
         </form>
-        <p>¿No tienes una cuenta? <a>Crea Una</a></p>
+        <p id="crearcuenta">¿No tienes una cuenta? <a>Crea Una</a></p>
     </body>
 
 </html>
