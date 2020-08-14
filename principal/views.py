@@ -41,7 +41,7 @@ def ingresar(request):
     ctx = {'form' : form, 'error' : error}
     return render(request, 'login.html', ctx)
 
-@login_required(login_url="../login/")
+@login_required(login_url="/login/")
 def salir(request):
     logout(request)
     return redirect('../../')
