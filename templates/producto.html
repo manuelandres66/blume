@@ -46,13 +46,13 @@
             <p>{{joya.descripcion}}</p>
         </div>
         {% if not user.is_authenticated %}
-        <div class="pop_inactivo pop_contenedor">
+        <div id="contenedor" class="pop_inactivo pop_contenedor">
             <div class="pop-up">
                 <h3>Para poder realizar esto primero debe iniciar sesión</h3><br>
                 <a href="../../login/?next=/{{joya.material}}/{{joya.tipo}}/{{joya.id}}"><button>Iniciar sesión</button></a>
             </div>
         </div>
-        <div class="pop_inactivo oscuro"></div>
+        <div id="oscuro" class="pop_inactivo oscuro"></div>
         <script src="{% static 'javascript/popup.js' %}"></script>
         {% endif %}
     </body>
