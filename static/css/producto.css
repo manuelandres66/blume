@@ -217,5 +217,19 @@
     .material h5 {
         font-size: 25px;
     }
+    .pop_contenedor {
+        width: 70%;
+    }
+    .pop-up h3 {
+        font-size: 20px;
+        margin: 2px;
+    }
+    .pop-up button {
+        width: 90%;
+        font-size: 20px;
+    }
+    .oscuro {
+        height: 250vh;
+    }
 }
 

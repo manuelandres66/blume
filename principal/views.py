@@ -32,7 +32,7 @@ def ingresar(request):
                 login(request, user)
                 if 'next' in request.POST:
                     return redirect(request.POST.get('next'))
-                return redirect('../../')
+                return redirect('/')
             else:
                 error = "Usuario y contraseña no coinciden"
         else:
