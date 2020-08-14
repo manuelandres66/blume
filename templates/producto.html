@@ -17,14 +17,6 @@
             <div class="precio">
                 <h3 id="precio_precio">${{precio}}</h3>
                 <h6 id="stock">{{stock}}</h6>
-                <script>
-                    var stock = document.getElementById('stock');
-                    if (stock.textContent == "Stock Disponible") {
-                        stock.style.color = '#208f46';
-                    } else {
-                        stock.style.color = '#F00';
-                    }
-               </script>
             </div>
             <div class="botones">
                 <button id="boton_comprar">Compar Ahora</button>
@@ -45,6 +37,8 @@
             <h3>Descripción</h3>
             <p>{{joya.descripcion}}</p>
         </div>
+        <script defer type="text/javascript" src="{% static 'javascript/producto.js' %}"></script>
+
         {% if not user.is_authenticated %}
         <div id="contenedor" class="pop_inactivo pop_contenedor">
             <div class="pop-up">
@@ -53,7 +47,8 @@
             </div>
         </div>
         <div id="oscuro" class="pop_inactivo oscuro"></div>
-        <script src="{% static 'javascript/popup.js' %}"></script>
+        <script defer type="text/javascript" src="{% static 'javascript/popup.js' %}"></script>
         {% endif %}
+        
     </body>
 </html>

@@ -60,6 +60,7 @@
     color: #FFF;
     border: 0;
     transition: background 2s;
+    cursor: pointer;
 }
 
 #boton_comprar:hover {
@@ -72,6 +73,7 @@
     color: #447ab6;
     margin-left: 3vw;
     transition: border 2s, color 2s;
+    cursor: pointer;
 }
 
 #boton_carrito:hover {
@@ -164,6 +166,7 @@
     width: 50%;
     border-radius: 50px;
     margin-bottom: 15px;
+    cursor: pointer;
 }
 
 .oscuro {
@@ -175,7 +178,7 @@
     z-index: 9;
 }
 
-@media only screen and (max-width: 1110px) {
+@media only screen and (max-width: 1100px) {
     .imagen {
         margin-left: 5vw;
         margin-right: 5vw;
@@ -215,3 +218,4 @@
         font-size: 25px;
     }
 }
+
