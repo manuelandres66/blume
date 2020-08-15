@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.titulo_carrito {
+    font-family: 'Sora', sans-serif;
+    font-size: 50px;
+    font-weight: 300;
+    margin-top: 4vh;
+    margin-left: 7vw;
+}
+
+.productos {
+    margin-top: 4vh;
+}
+
+.contenedor_producto {
+    background-color: #f9f9f9;
+    margin-left: 7vw;
+    width: 86vw;
+    height: 11.5vh;
+    border-radius: 14px;
+    border: solid 1px #afafaf;
+    margin-bottom: 4vh;
+}
+
+.imagen_producto {
+    width: 7vw;
+    height: 9vh;
+    object-fit: contain;
+    margin-left: 1.4vw;
+}
+
+.contenedor_titulo {
+    display: inline-block;
+    margin-left: 1.1vw;
+    margin-top: 1vh;
+}
+
+.contenedor_titulo h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.contenedor_titulo h6 {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+}

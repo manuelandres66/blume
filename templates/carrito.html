@@ -10,18 +10,21 @@
     </head>
     {% include 'barra.html' %}
     <body>
-        <h1>Carrito de Compras de {{request.user}}</h1>
+        <h1 class="titulo_carrito">Carrito de Compras de {{request.user}}</h1>
+        <div class="productos">
         {% for producto in productos %}
-            <div>
-                <img src="/{{producto.producto.imagen}}">
-                <div>
+            <div class="contenedor_producto">
+                <img class="imagen_producto" src="/{{producto.producto.imagen}}">
+                <div class="contenedor_titulo">
                     <h2>{{producto.producto.nombre}}</h2>
+
                     {% if producto.producto.stock == 0 %}
-                        <h6>No hay stock</h6>
+                        <h6 class="stock">No hay stock</h6>
                     {% else %}
-                        <h6>Stock disponible</h6>
+                        <h6 class="stock">Stock Disponible</h6>
                     {% endif %}
-                    <div>
+
+                    <div class="cantidad_producto">
                         <button>-</button>
                         <h6>1</h6>
                         <button>+</button>
@@ -33,6 +36,7 @@
                 </div>
             </div>
         {% endfor %}
+        </div>
         <div>
             <h3 id="items"></h3>
             <h3 id="total-precio"></h3>

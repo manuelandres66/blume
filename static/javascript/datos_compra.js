@@ -13,4 +13,15 @@ Array.from(productos).forEach(element => {
     precio_total += numero
 });
 
-precio.textContent = "$" + precio_total
+precio.textContent = "$" + precio_total;
+
+var stocks = document.getElementsByClassName('stock');
+
+Array.from(stocks).forEach(element => {
+    if (element.textContent == "Stock Disponible") {
+        element.style.color = '#208f46';
+    } else {
+        element.style.color = '#F00';
+    }
+});
+
