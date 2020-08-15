@@ -49,3 +49,85 @@
     font-size: 20px;
     font-weight: normal;
 }
+
+.cantidad_producto {
+    display: inline-block;
+    width: 50%;
+    margin-top: 0.3vh;
+}
+
+.cantidad_producto button {
+    display: inline-block;
+    width: 2vw;
+    height: 2.3vh;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    border: 0;
+    color: #fff;
+    border-radius: 6px;
+    background-color: #447ab6;
+    outline: none;
+}
+
+.cantidad_producto h6 {
+    display: inline-block;
+    margin-left: 0.6vw;
+    margin-right: 0.6vw;
+}
+
+.producto_precio_contenedor {
+    float: right;
+}
+
+.producto_precio {
+    font-family: 'Sora', sans-serif;
+    font-size: 35px;
+    font-weight: normal;
+    margin-top: 1.4vh;
+    margin-right: 1vw;
+}
+
+.producto_precio_contenedor a {
+    color: #f00;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    position: relative;
+    left: 5vw;
+    top: 1vh;
+}
+
+.comprar {
+    margin-top: 8vh;
+    margin-left: 7vw;
+    width: 86vw;
+}
+
+.comprar h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 45px;
+    font-weight: 300;
+    display: inline-block;
+}
+
+.total {
+    float: right;
+}
+
+.proceder {
+    border-radius: 55px;
+    background-color: #1d3754;
+    font-family: 'Sora', sans-serif;
+    font-size: 38px;
+    font-weight: 300;
+    color: #fff;
+    border: 0;
+    text-align: center;
+    width: 100%;
+    outline: none;
+    margin-top: 2.6vh;
+    transition: background 2s;
+}
+
+.proceder:hover {
+    background-color: #447ab6;
+}

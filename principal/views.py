@@ -53,6 +53,18 @@ def salir(request):
 def carro_compras(request):
     usuario = User.objects.get(username=request.user)
     carro = Carrito.objects.get(propietario=usuario)
+
+    if request.method == "GET":
+        if 'eliminar' in request.GET:
+            id_ = request.GET['eliminar']
+            joya_item = Joya.objects.get(id=id_)
+            Items.objects.filter(carrito=carro, producto=joya_item).delete()
+            return redirect('/carro/')
+        elif 'add' in request.GET:
+            id_ = request.GET["add"]
+            joya_item = Joya.objects.get(id=id_)
+            Items(carrito=carro, cantidad=1, producto=joya_item).save()
+            return redirect('/carro/')
     productos = Items.objects.filter(carrito=carro)
     ctx = {'productos' : productos}
     return render(request, 'carrito.html', ctx)

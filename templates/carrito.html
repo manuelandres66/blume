@@ -30,17 +30,19 @@
                         <button>+</button>
                     </div>
                 </div>
-                <div>
+                <div class="producto_precio_contenedor">
                     <h4 class="producto_precio">$ {{ producto.producto.precio }}</h4>
                     <a>Eliminar</a>
                 </div>
             </div>
         {% endfor %}
         </div>
-        <div>
+        <div class="comprar">
             <h3 id="items"></h3>
-            <h3 id="total-precio"></h3>
-            <button>Proceder a Comprar</button>
+            <h3 class="total" id="total-precio"></h3>
+            <div>
+                <button class="proceder">Proceder a Comprar</button>
+            </div>
             <script src="{% static 'javascript/datos_compra.js' %}"></script>
         </div>
     </body>
