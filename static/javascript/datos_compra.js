@@ -10,6 +10,9 @@ items.textContent = "Subtotal (" + productos.length + " items)";
 var precio_total = 0;
 for (var i = 0; i < productos.length; i++) {
     var cadena = productos[i].textContent.replace('$', '');
+
+    productos[i].textContent = productos[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ","); //Formateando no influye en la funcion
+
     var numero = parseInt(cadena);
     var cant = parseInt(cantidad[i].textContent);
     var stock_dispon = parseInt(stock_disponible[i].textContent); //Check si es es posible
@@ -20,7 +23,7 @@ for (var i = 0; i < productos.length; i++) {
     precio_total += numero * cant
 };
     
-precio.textContent = "$" + precio_total;
+precio.textContent = ("$" + precio_total).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
 
 var stocks = document.getElementsByClassName('stock');

@@ -76,13 +76,23 @@ def carro_compras(request):
             id_ = request.GET["remove"]
             joya_item = Joya.objects.get(id=id_)
             menos_una = Items.objects.get(carrito=carro, producto=joya_item)
-            menos_una.cantidad -= 1
-            menos_una.save()
+            if menos_una.cantidad > 0:
+                menos_una.cantidad -= 1
+                menos_una.save()
             return redirect('/carro/')
 
     productos = Items.objects.filter(carrito=carro)
     ctx = {'productos' : productos}
     return render(request, 'carrito.html', ctx)
 
+@login_required(login_url="/login/")
+def checkout(request):
+    usuario = User.objects.get(username=request.user)
+    carro = Carrito.objects.get(propietario=usuario)
+    productos = Items.objects.filter(carrito=carro)
 
+    valor_total = 0
+    for producto in productos:
+        valor_total += producto.producto.precio
 
+    return HttpResponse('$' + format(valor_total, ',d'))

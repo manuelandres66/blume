@@ -17,7 +17,9 @@
             <div class="contenedor_producto">
                 <img class="imagen_producto" src="/{{producto.producto.imagen}}">
                 <div class="contenedor_titulo">
-                    <h2>{{producto.producto.nombre}}</h2>
+                    <a id="referencia" href="/{{producto.producto.material}}/{{producto.producto.tipo}}/{{producto.producto.id}}/">
+                        <h2>{{producto.producto.nombre}}</h2>
+                    </a>
 
                     {% if producto.producto.stock == 0 %}
                         <h6 class="stock">No hay stock</h6>
@@ -42,7 +44,7 @@
             <h3 id="items"></h3>
             <h3 class="total" id="total-precio"></h3>
             <div>
-                <button class="proceder">Proceder a Comprar</button>
+                <a href="/checkout/"><button class="proceder">Proceder a Comprar</button></a>
             </div>
             <script src="{% static 'javascript/datos_compra.js' %}"></script>
         </div>

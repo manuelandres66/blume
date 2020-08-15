@@ -38,6 +38,11 @@
     margin-top: 1vh;
 }
 
+#referencia {
+    color: black;
+    text-decoration: none;
+}
+
 .contenedor_titulo h2 {
     font-family: 'Sora', sans-serif;
     font-size: 35px;
