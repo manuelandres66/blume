@@ -76,7 +76,7 @@ def carro_compras(request):
             id_ = request.GET["remove"]
             joya_item = Joya.objects.get(id=id_)
             menos_una = Items.objects.get(carrito=carro, producto=joya_item)
-            if menos_una.cantidad > 0:
+            if menos_una.cantidad > 1:
                 menos_una.cantidad -= 1
                 menos_una.save()
             return redirect('/carro/')
