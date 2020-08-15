@@ -72,6 +72,14 @@ def carro_compras(request):
                 Items(carrito=carro, cantidad=1, producto=joya_item).save()
             return redirect('/carro/')
 
+        elif 'remove' in request.GET:
+            id_ = request.GET["remove"]
+            joya_item = Joya.objects.get(id=id_)
+            menos_una = Items.objects.get(carrito=carro, producto=joya_item)
+            menos_una.cantidad -= 1
+            menos_una.save()
+            return redirect('/carro/')
+
     productos = Items.objects.filter(carrito=carro)
     ctx = {'productos' : productos}
     return render(request, 'carrito.html', ctx)

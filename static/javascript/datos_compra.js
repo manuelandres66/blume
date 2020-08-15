@@ -7,25 +7,20 @@ const stock_disponible = document.getElementsByClassName('stock_cantidad');
 
 items.textContent = "Subtotal (" + productos.length + " items)";
 
-function actualizar() {
-    var precio_total = 0;
-    for (var i = 0; i < productos.length; i++) {
-        var cadena = productos[i].textContent.replace('$', '');
-        var numero = parseInt(cadena);
-        var cant = parseInt(cantidad[i].textContent);
-        var stock_dispon = parseInt(stock_disponible[i].textContent); //Check si es es posible
+var precio_total = 0;
+for (var i = 0; i < productos.length; i++) {
+    var cadena = productos[i].textContent.replace('$', '');
+    var numero = parseInt(cadena);
+    var cant = parseInt(cantidad[i].textContent);
+    var stock_dispon = parseInt(stock_disponible[i].textContent); //Check si es es posible
 
-        if (cant > stock_dispon) {
-            cantidad[i].style.color = "#F00" //Si no lo es lo pone en rojo
-        }
-
-        precio_total += numero * cant
-    };
-    
-    precio.textContent = "$" + precio_total;
+    if (cant > stock_dispon) {
+        cantidad[i].style.color = "#F00" //Si no lo es lo pone en rojo
+    }
+    precio_total += numero * cant
 };
-
-actualizar();
+    
+precio.textContent = "$" + precio_total;
 
 
 var stocks = document.getElementsByClassName('stock');

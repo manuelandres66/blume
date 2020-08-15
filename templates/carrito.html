@@ -26,9 +26,9 @@
                     {% endif %}
 
                     <div class="cantidad_producto">
-                        <button class="menos">-</button>
+                        <a href="/carro/?remove={{producto.producto.id}}"><button>-</button></a>
                         <h6 class="producto_cantidad">{{producto.cantidad}}</h6>
-                        <button class="mas">+</button>
+                        <a href="/carro/?add={{producto.producto.id}}"><button>+</button></a>
                     </div>
                 </div>
                 <div class="producto_precio_contenedor">
