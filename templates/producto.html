@@ -37,6 +37,8 @@
             <h3>Descripción</h3>
             <p>{{joya.descripcion}}</p>
         </div>
+        <h6 id="id_joya" style="display: none;">{{joya.id}}</h6>
+        
         <script defer type="text/javascript" src="{% static 'javascript/producto.js' %}"></script>
 
         {% if not user.is_authenticated %}
