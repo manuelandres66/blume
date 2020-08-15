@@ -13,6 +13,7 @@
         <h1 class="titulo_carrito">Carrito de Compras de {{request.user}}</h1>
         <div class="productos">
         {% for producto in productos %}
+            <h6 class="stock_cantidad" style="display: none;">{{producto.producto.stock}}</h6>
             <div class="contenedor_producto">
                 <img class="imagen_producto" src="/{{producto.producto.imagen}}">
                 <div class="contenedor_titulo">
@@ -26,13 +27,13 @@
 
                     <div class="cantidad_producto">
                         <button>-</button>
-                        <h6>1</h6>
+                        <h6 class="producto_cantidad">{{producto.cantidad}}</h6>
                         <button>+</button>
                     </div>
                 </div>
                 <div class="producto_precio_contenedor">
                     <h4 class="producto_precio">$ {{ producto.producto.precio }}</h4>
-                    <a>Eliminar</a>
+                    <a href="/carro/?eliminar={{producto.producto.id}}"">Eliminar</a>
                 </div>
             </div>
         {% endfor %}
