@@ -40,17 +40,6 @@
         <h6 id="id_joya" style="display: none;">{{joya.id}}</h6>
         
         <script defer type="text/javascript" src="{% static 'javascript/producto.js' %}"></script>
-
-        {% if not user.is_authenticated %}
-        <div id="contenedor" class="pop_inactivo pop_contenedor">
-            <div class="pop-up">
-                <h3>Para poder realizar esto primero debe iniciar sesión</h3><br>
-                <a href="../../login/?next=/{{joya.material}}/{{joya.tipo}}/{{joya.id}}"><button>Iniciar sesión</button></a>
-            </div>
-        </div>
-        <div id="oscuro" class="pop_inactivo oscuro"></div>
-        <script defer type="text/javascript" src="{% static 'javascript/popup.js' %}"></script>
-        {% endif %}
         
     </body>
 </html>
