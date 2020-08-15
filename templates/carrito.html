@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    <head>
+        <title>Carrito de {{request.user}}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/carrito.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    {% include 'barra.html' %}
+    <body>
+        <h1>Carrito de Compras de {{request.user}}</h1>
+        {% for producto in productos %}
+            <div>
+                <img src="/{{producto.producto.imagen}}">
+                <div>
+                    <h2>{{producto.producto.nombre}}</h2>
+                    {% if producto.producto.stock == 0 %}
+                        <h6>No hay stock</h6>
+                    {% else %}
+                        <h6>Stock disponible</h6>
+                    {% endif %}
+                    <div>
+                        <button>-</button>
+                        <h6>1</h6>
+                        <button>+</button>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="producto_precio">$ {{ producto.producto.precio }}</h4>
+                    <a>Eliminar</a>
+                </div>
+            </div>
+        {% endfor %}
+        <div>
+            <h3 id="items"></h3>
+            <h3 id="total-precio"></h3>
+            <button>Proceder a Comprar</button>
+            <script src="{% static 'javascript/datos_compra.js' %}"></script>
+        </div>
+    </body>
+
+</html>

@@ -9,5 +9,5 @@ if (stock.textContent == "Stock Disponible") {
 var boton_uno = document.getElementById('boton_carrito');
 
 boton_uno.onclick = function() {
-    alert('Hooa');
+    alert('En proceso');
 }
