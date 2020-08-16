@@ -81,6 +81,12 @@
     border-color: #1d3754;
 }
 
+#existente {
+    font-family: 'Sora', sans-serif;
+    padding-left: 18.5vw;
+    font-size: 15px;
+}
+
 .especificaciones {
     margin-top: 5vh;
 }
@@ -206,6 +212,12 @@
     .botones button {
         width: 35vw;
         font-size: 15px;
+    }
+    #existente {
+        float: right;
+        font-size: 12px;
+        margin-right: 9vw;
+        margin-top: 1vh;
     }
     .especificaciones {
         margin-left: 0;

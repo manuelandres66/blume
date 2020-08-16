@@ -19,10 +19,10 @@ for (var i = 0; i < productos.length; i++) {
     var stock_dispon = parseInt(stock_disponible[i].textContent); //Check si es es posible
 
     if (cant > stock_dispon) {
-        stocks[i].textContent = "No hay stock suficiente."
+        stocks[i].textContent = "No hay stock suficiente"
         cantidad[i].style.color = "#F00" //Si no lo es lo pone en rojo
     }
-    precio_total += numero * cant
+    precio_total += numero * cant //Suma el precio
 };
     
 precio.textContent = ("$" + precio_total).replace(/\B(?=(\d{3})+(?!\d))/g, ",");

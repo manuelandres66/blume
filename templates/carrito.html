@@ -20,17 +20,18 @@
                     <a id="referencia" href="/{{producto.producto.material}}/{{producto.producto.tipo}}/{{producto.producto.id}}/">
                         <h2>{{producto.producto.nombre}}</h2>
                     </a>
+                    <div class="para_espacio">
+                        {% if producto.producto.stock == 0 %}
+                            <h6 class="stock">No hay stock</h6>
+                        {% else %}
+                            <h6 class="stock">Stock Disponible</h6>
+                        {% endif %}
 
-                    {% if producto.producto.stock == 0 %}
-                        <h6 class="stock">No hay stock</h6>
-                    {% else %}
-                        <h6 class="stock">Stock Disponible</h6>
-                    {% endif %}
-
-                    <div class="cantidad_producto">
-                        <a href="/carro/?remove={{producto.producto.id}}"><button>-</button></a>
-                        <h6 class="producto_cantidad">{{producto.cantidad}}</h6>
-                        <a href="/carro/?add={{producto.producto.id}}"><button>+</button></a>
+                        <div class="cantidad_producto">
+                            <a href="/carro/?remove={{producto.producto.id}}"><button>-</button></a>
+                            <h6 class="producto_cantidad">{{producto.cantidad}}</h6>
+                            <a href="/carro/?add={{producto.producto.id}}"><button>+</button></a>
+                        </div>
                     </div>
                 </div>
                 <div class="producto_precio_contenedor">

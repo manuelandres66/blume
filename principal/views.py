@@ -9,17 +9,27 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html') #En proceso
 
 def joya(request, material, tipo, id_joya):
-    joya_f = get_object_or_404(Joya, id=id_joya, material=material, tipo=tipo)
-    joya_f.vistas += 1
+    joya_f = get_object_or_404(Joya, id=id_joya, material=material, tipo=tipo) 
+    joya_f.vistas += 1 #Aumentamos una vista
     joya_f.save()
+
+    mensaje = ""
+    if request.user.is_authenticated: #Comprobamos si ya esta en el carrito
+        usuario = User.objects.get(username=request.user)
+        carro = Carrito.objects.get(propietario=usuario)
+        productos = Items.objects.filter(carrito=carro, producto=joya_f)
+        if productos.count() >= 1:
+            mensaje = "Este producto ya esta en tu carro"
+
     precio = format(int(joya_f.precio), ',d')
-    stock = "Stock Disponible"
+    stock = "Stock Disponible" #Comprobamos si hay stock
     if joya_f.stock == 0:
         stock = "No hay stock"
-    ctx = {'joya' : joya_f, 'precio' : precio, 'stock' : stock}
+
+    ctx = {'joya' : joya_f, 'precio' : precio, 'stock' : stock, 'mensaje' : mensaje}
     return render(request, 'producto.html', ctx)
 
 @usuario_sin_ingresar
@@ -32,7 +42,7 @@ def ingresar(request):
             password = request.POST['password']
             user = authenticate(username=usuario, password=password)
             if user is not None:
-                login(request, user)
+                login(request, user) #Logeamos
                 if 'next' in request.POST:
                     return redirect(request.POST.get('next'))
                 return redirect('/')
@@ -47,7 +57,7 @@ def ingresar(request):
 @login_required(login_url="/login/")
 def salir(request):
     logout(request)
-    return redirect('../../')
+    return redirect('../../') #A la pagina principal
 
 @login_required(login_url="/login/")
 def carro_compras(request):
@@ -55,28 +65,30 @@ def carro_compras(request):
     carro = Carrito.objects.get(propietario=usuario)
     if request.method == "GET":
 
-        if 'eliminar' in request.GET:
+        if 'eliminar' in request.GET: #Eliminar del carrito
             id_ = request.GET['eliminar']
             joya_item = Joya.objects.get(id=id_)
             Items.objects.filter(carrito=carro, producto=joya_item).delete()
             return redirect('/carro/')
 
-        elif 'add' in request.GET:
+        elif 'add' in request.GET: #Añadir al carrito
             id_ = request.GET["add"]
             joya_item = Joya.objects.get(id=id_)
-            if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1:
+            if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1: #Si ya existe aumenta uno
                 existente = Items.objects.get(carrito=carro, producto=joya_item)
-                existente.cantidad += 1
-                existente.save()
+                print(existente.cantidad, joya_item.stock)
+                if existente.cantidad < joya_item.stock: #Si es posible
+                    existente.cantidad += 1
+                    existente.save()
             else:  
                 Items(carrito=carro, cantidad=1, producto=joya_item).save()
             return redirect('/carro/')
 
-        elif 'remove' in request.GET:
+        elif 'remove' in request.GET: #Quita uno del carrito
             id_ = request.GET["remove"]
             joya_item = Joya.objects.get(id=id_)
             menos_una = Items.objects.get(carrito=carro, producto=joya_item)
-            if menos_una.cantidad > 1:
+            if menos_una.cantidad > 1: # lo minimo es uno
                 menos_una.cantidad -= 1
                 menos_una.save()
             return redirect('/carro/')
@@ -93,6 +105,7 @@ def checkout(request):
 
     valor_total = 0
     for producto in productos:
-        valor_total += producto.producto.precio
+        if producto.posible():
+            valor_total += producto.total()
 
     return HttpResponse('$' + format(valor_total, ',d'))
