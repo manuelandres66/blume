@@ -16,13 +16,12 @@
 }
 
 .contenedor_producto {
-    background-color: #f9f9f9;
     margin-left: 7vw;
     width: 86vw;
     height: 11.5vh;
-    border-radius: 14px;
-    border: solid 1px #afafaf;
     margin-bottom: 4vh;
+    border-bottom: 1px solid rgba(0, 0, 0, .2);
+    padding-bottom: 4vh;
 }
 
 .imagen_producto {
@@ -154,12 +153,7 @@
         width: 10vw;
         height: 5vh;
         object-fit: contain;
-        margin: 0;
-        position: relative;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-        margin-left: 2.6vw;
+        margin-top: 1.2vh;
     }
 
     .contenedor_titulo {
