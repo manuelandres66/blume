@@ -107,5 +107,8 @@ def checkout(request):
     for producto in productos:
         if producto.posible():
             valor_total += producto.total()
+    
+    con_envio = valor_total + 16000
 
-    return HttpResponse('$' + format(valor_total, ',d'))
+    ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos}
+    return render(request, 'checkout.html', ctx)

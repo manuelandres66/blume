@@ -1,6 +1,49 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title></title>
+        <title>Checkout</title>
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
     </head>
+    {% include 'barra.html' %}
+    <body>
+        <form>
+            <div>
+                <h1>Información de envio</h1>
+            </div>
+            <div>
+
+            </div>
+        </form>
+        <div>
+            <div>
+                <i class="fas fa-arrow-left"></i>
+                <h6>Volver al carrito</h6>
+            </div>
+            <div>
+                <h3>Productos a Comprar</h3>
+                {% for producto in productos %}
+                    <div>
+                        <img src="/{{producto.producto.imagen}}">
+                        <h4>{{producto.producto.nombre}}</h4>
+                        <h5>{{producto.producto.precio}}</h5>
+                        <h3>x{{producto.cantidad}}</h3>
+                    </div>
+                {% endfor %}
+                <div>
+                    <div>
+                        <h4>Subtotal</h4>
+                        <h4>{{subtotal}}</h4>
+                    </div>
+                    <div>
+                        <h5>Envio</h5>
+                        <h5>$ 16,000</h5>
+                    </div>
+                    <div>
+                        <h3>Total</h3>
+                        <h3>{{total}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

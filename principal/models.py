@@ -10,7 +10,7 @@ class Joya(models.Model):
         ('plata', 'Plata'),
         ('otros', 'Otros')
     ]
-    material = models.CharField(max_length=7, choices=MATERIAL, default='ORO')
+    material = models.CharField(max_length=7, choices=MATERIAL, default='Oro')
     TIPO = [
         ('aretes', 'Arete'),
         ('pulseras', 'Pulsera'),
