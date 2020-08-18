@@ -1,17 +1,27 @@
 <!DOCTYPE html>
+
+{% load static %}
 <html>
     <head>
         <title>Checkout</title>
         <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/checkout.css' %}" rel="stylesheet" type="text/css">
     </head>
     {% include 'barra.html' %}
     <body>
-        <form>
-            <div>
+        <form method="POST">{% csrf_token %}
+            <div class="info">
                 <h1>Información de envio</h1>
+                <input type="text" placeholder="Departamento" name="departamento" required>
+                <input type="text" placeholder="Ciudad" name="ciudad" required>
+                <input type="text" placeholder="Dirección" name="dir" required>
+                <input type="text" placeholder="Datos Adicionales" name="datos">
+                <input type="number" placeholder="Telefono" name="telefono" required>
             </div>
             <div>
-
+                <input type="submit" value="Pagar">
             </div>
         </form>
         <div>
