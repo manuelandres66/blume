@@ -123,8 +123,14 @@ def checkout(request):
                 llega = datetime.datetime.now() + datetime.timedelta(days=5)
             )
             crear_envio.save()
-            print(crear_envio.id)
+            for producto in productos:
+                producto.producto.stock -= 1
+                producto.producto.save()
 
+            carro.delete()
+            
+            carro_vacio = 
+    
     con_envio = valor_total + 16000
     form = Envio()
     ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos, 'style' : style, 'form' : form}
