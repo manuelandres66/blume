@@ -1,5 +1,6 @@
 from django.db import models
-
+from principal.models import Joya
+import datetime
 # Create your models here.
 
 class Envios(models.Model):
@@ -38,8 +39,13 @@ class Envios(models.Model):
         ('Vaupés', 'Vaupés'),
         ('Vichada', 'Vichada')
     ]
-    departamento = models.CharField(max_length=50, choices=DEPARTAMENTO, default='Nariño')
-    ciudad = models.CharField(max_length=1000, default='')
-    direccion = models.CharField(max_length=10000, default='')
-    datos_adicionales = models.CharField(max_length=10000, default='')
-    celular = models.IntegerField(default=0)
+    departamento = models.CharField(max_length=50, choices=DEPARTAMENTO)
+    ciudad = models.CharField(max_length=1000)
+    direccion = models.CharField(max_length=10000)
+    datos_adicionales = models.CharField(max_length=10000)
+    celular = models.IntegerField()
+    llega = models.DateTimeField(default=datetime.datetime.now())
+
+class Item_enviado(models.Model):
+    envio = models.ForeignKey(Envios, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Joya, on_delete=models.RESTRICT)

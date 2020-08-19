@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Joya, Carrito, Items
 from .decorators import usuario_sin_ingresar
-from .forms import Entrar
+from .forms import Entrar, Envio
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -99,16 +99,20 @@ def carro_compras(request):
 
 @login_required(login_url="/login/")
 def checkout(request):
+    style = True
     usuario = User.objects.get(username=request.user)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
-
+    if request.method == "POST":
+        form = Envio(request.POST)
+        if form.is_valid():
+            return HttpResponse("Hola")
     valor_total = 0
     for producto in productos:
         if producto.posible():
             valor_total += producto.total()
     
     con_envio = valor_total + 16000
-
-    ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos}
+    form = Envio()
+    ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos, 'style' : style, 'form' : form}
     return render(request, 'checkout.html', ctx)

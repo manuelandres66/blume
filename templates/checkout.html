@@ -13,18 +13,32 @@
     <body>
         <form method="POST">{% csrf_token %}
             <div class="info">
-                <h1>Información de envio</h1>
-                <input type="text" placeholder="Departamento" name="departamento" required>
-                <input type="text" placeholder="Ciudad" name="ciudad" required>
-                <input type="text" placeholder="Dirección" name="dir" required>
-                <input type="text" placeholder="Datos Adicionales" name="datos">
-                <input type="number" placeholder="Telefono" name="telefono" required>
+                <h1>Información de envio.</h1>
+                <div>
+                    {{form.departamento}}
+                    {{form.ciudad}}
+                </div>
+                <div>
+                    {{form.direccion}}
+                </div>
+                <div>
+                    {{form.datos_adicionales}}
+                </div>
+                {{form.telefono}}
             </div>
-            <div>
-                <input type="submit" value="Pagar">
+
+            <div class="pagar">
+                {% if style %}
+                    <div id="submit">
+                        <input type="submit" value="Continuar">
+                    </div>
+                {% else %}
+                    <div id="paypal-button-container"></div>
+                {% endif %}
             </div>
+
         </form>
-        <div>
+        <div class="Articulos">
             <div>
                 <i class="fas fa-arrow-left"></i>
                 <h6>Volver al carrito</h6>

@@ -15,3 +15,73 @@ body {
     width: 43vw;
     height: 36vh;
 }
+
+.info h1 {
+    margin-left: 2vw;
+    padding-top: 2vh;
+    margin-right: 2vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 40px;
+    border-bottom: 2px solid #b1b1b1;
+}
+
+.info input {
+    height: 3vh;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    outline: none;
+    border-radius: 2px;
+    border: solid 1px #8e8d8d;
+    padding-left: 5px;
+}
+
+.info input::placeholder {
+    color: rgba(0, 0, 0, 0.35);
+}
+
+#id_departamento, #id_ciudad {
+    margin-left: 2vw;
+    margin-top: 4vh;
+    width: 12vw;
+}
+
+#id_direccion, #id_datos_adicionales{
+    margin-left: 2vw;
+    margin-top: 2vh;
+    width: 26.5vw;
+}
+
+#id_telefono {
+    margin-left: 2vw;
+    margin-top: 2vh;
+    width: 12vw;
+}
+
+.pagar {
+    margin-left: 6vw;
+    margin-top: 6.5vh;
+    width: 43vw;
+    height: 25vh;
+    box-shadow: 6px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: #ffffff;
+}
+
+#submit {
+    margin: auto;
+}
+
+.pagar input {
+    width: 33vw;
+    height: 4vh;
+    border-radius: 50px;
+    background-color: #447ab6;
+    border: 0;
+    color: #FFF;
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    margin-left: 5vw;
+    margin-top: 10.5vh;
+    outline: none;
+    cursor: pointer;
+}
