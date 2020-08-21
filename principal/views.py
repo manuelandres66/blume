@@ -150,11 +150,13 @@ def checkout(request):
                         }
                     ]
                 }
-                
+
                 mp = mercadopago.MP("TEST-2491172127206962-082115-73f07ae6a3250046a24679600ffd8bba-18920383")
                 preferenceResult = mp.create_preference(preference)
                 url = preferenceResult["response"]["init_point"]
-                print(url)
+
+                carro.check_out = True
+                carro.save()
                 # productos = Item_enviado.objects.filter(envio=crear_envio)
         
 
@@ -163,3 +165,7 @@ def checkout(request):
 
     else:
         return redirect('/carro')
+
+@login_required(login_url="/login/")
+def aproved(request):
+    pass
