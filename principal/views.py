@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import datetime
 
-import mercadopago
 import json
 # Create your views here.
 
@@ -109,6 +108,7 @@ def checkout(request):
     productos = Items.objects.filter(carrito=carro)
 
     if len(productos) > 0:
+
         style = True
         valor_total = 0
         form = Envio()
@@ -122,50 +122,37 @@ def checkout(request):
         if request.method == "POST":
             form = Envio(request.POST)
             if form.is_valid():
-                # crear_envio = Envios(
-                #     departamento= form.cleaned_data['departamento'],
-                #     ciudad = form.cleaned_data['ciudad'],
-                #     direccion = form.cleaned_data['direccion'],
-                #     datos_adicionales= form.cleaned_data['datos_adicionales'],
-                #     celular = form.cleaned_data['telefono'],
-                #     llega = datetime.datetime.now() + datetime.timedelta(days=5)
-                # )
-                # crear_envio.save()
-                # for producto in productos:
-                #     producto.producto.stock -= producto.cantidad
-                #     producto.producto.save()
-                #     Item_enviado(envio=crear_envio, producto=producto.producto).save()
+                crear_envio = Envios(
+                    propietario= usuario,
+                    departamento= form.cleaned_data['departamento'],
+                    ciudad = form.cleaned_data['ciudad'],
+                    direccion = form.cleaned_data['direccion'],
+                    datos_adicionales= form.cleaned_data['datos_adicionales'],
+                    celular = form.cleaned_data['telefono'],
+                    llega = datetime.datetime.now() + datetime.timedelta(days=5)
+                )
+                crear_envio.save()
 
-                # carro.delete()
-                # Carrito(check_out=False, propietario=usuario).save() #Creando un carrito vacio
+                for producto in productos:
+                    producto.producto.stock -= producto.cantidad
+                    producto.producto.save()
+                    Item_enviado(envio=crear_envio, producto=producto.producto).save()
 
-                style = False
-                preference = {
-                    "items": [
-                        {
-                            'title' : "Total Blume",
-                            'quantity' : 1,
-                            "currency_id": "COP",
-                            "unit_price" : con_envio
-                        }
-                    ]
-                }
-
-                mp = mercadopago.MP("TEST-2491172127206962-082115-73f07ae6a3250046a24679600ffd8bba-18920383")
-                preferenceResult = mp.create_preference(preference)
-                url = preferenceResult["response"]["init_point"]
-
-                carro.check_out = True
-                carro.save()
-                # productos = Item_enviado.objects.filter(envio=crear_envio)
+                carro.delete()
+                Carrito(check_out=False, propietario=usuario).save() #Creando un carrito vacio
+                return redirect('/checkout/tarjeta')
         
 
-        ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos, 'style' : style, 'form' : form, 'url' : url}
+        ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos, 'form' : form}
         return render(request, 'checkout.html', ctx)
 
     else:
         return redirect('/carro')
 
 @login_required(login_url="/login/")
-def aproved(request):
-    pass
+def 
+
+@login_required(login_url="/login/")
+def procesar_pago(request, form):
+    
+    return HttpResponse("Hola")

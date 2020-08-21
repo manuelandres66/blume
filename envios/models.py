@@ -2,10 +2,11 @@ from django.db import models
 from principal.models import Joya
 import datetime
 from django.contrib.auth.models import User
+import django.utils as utils
 # Create your models here.
 
 class Envios(models.Model):
-    propietario = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    propietario = models.ForeignKey(User, on_delete=models.CASCADE)
     DEPARTAMENTO = [
         ('Amazonas', 'Amazonas'),
         ('Antioquia', 'Antioquia'),
@@ -46,7 +47,8 @@ class Envios(models.Model):
     direccion = models.CharField(max_length=10000)
     datos_adicionales = models.CharField(max_length=10000)
     celular = models.IntegerField()
-    llega = models.DateTimeField(default=datetime.datetime.now())
+    llega = models.DateTimeField(default=utils.timezone.now)
+    token = models.CharField(max_length=10000000, default='')
 
 class Item_enviado(models.Model):
     envio = models.ForeignKey(Envios, on_delete=models.CASCADE)

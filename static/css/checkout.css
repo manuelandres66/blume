@@ -85,3 +85,15 @@ body {
     outline: none;
     cursor: pointer;
 }
+
+.pagar_mercado {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    margin: auto;
+
+}
+
+.pagar_mercado a {
+    color: #000;
+    text-decoration: none;
+}
