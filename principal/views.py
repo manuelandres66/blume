@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import datetime
-
+import requests as res
 import json
 # Create your views here.
 
@@ -129,8 +129,10 @@ def checkout(request):
                     direccion = form.cleaned_data['direccion'],
                     datos_adicionales= form.cleaned_data['datos_adicionales'],
                     celular = form.cleaned_data['telefono'],
-                    llega = datetime.datetime.now() + datetime.timedelta(days=5)
+                    llega = datetime.datetime.now() + datetime.timedelta(days=5),
+                    valor_total = con_envio
                 )
+
                 crear_envio.save()
 
                 for producto in productos:
@@ -140,6 +142,7 @@ def checkout(request):
 
                 carro.delete()
                 Carrito(check_out=False, propietario=usuario).save() #Creando un carrito vacio
+
                 return redirect('/checkout/tarjeta')
         
 
@@ -150,7 +153,35 @@ def checkout(request):
         return redirect('/carro')
 
 @login_required(login_url="/login/")
-def 
+def tarjeta(request):
+    usuario = User.objects.get(username=request.user)
+    envio = Envios.objects.get(propietario=usuario)
+    productos = Item_enviado.objects.filter(envio=envio)
+
+    if request.method == "POST":
+        URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-4952967251009416-082123-f0935d914be879bc427d4f9f75e5d2fa-629550327"
+        headers = {
+            'content-type' : 'application/json',
+            'accept' : 'application/json',
+        }
+
+        conten = {
+            'transaction_amount' : envio.valor_total,
+            'token' : request.POST['token'],
+            'description' : "Pago total blume",
+            'installments' : 1,
+            'payment_method_id' : request.POST['payment_method_id'],
+            'payer' : {
+                "email" : usuario.email
+            }
+        }
+
+        conten = json.dumps(conten)
+        resp = res.post(URL, data=conten, headers=headers)
+        print(json.dumps(resp.text, indent=4))
+
+    ctx = {'total' : envio.valor_total}
+    return render(request, 'tarjeta.html', ctx)
 
 @login_required(login_url="/login/")
 def procesar_pago(request, form):
