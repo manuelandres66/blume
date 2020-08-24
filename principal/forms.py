@@ -1,5 +1,8 @@
 from django import forms
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
+
 
 class Entrar(forms.Form):
     usuario = forms.CharField(max_length=1000)
@@ -47,3 +50,8 @@ class Envio(forms.Form):
     direccion = forms.CharField(max_length=10000, widget=forms.TextInput(attrs={'placeholder': 'Dirrección'}))
     datos_adicionales = forms.CharField(max_length=1000, widget=forms.TextInput(attrs={'placeholder': 'Datos Adicionales'}))
     telefono = forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Telefóno'}))
+
+class CrearUsuario(UserCreationForm):
+    class Meta:
+        fields = ('username','email','password1','password2')
+        model = get_user_model()

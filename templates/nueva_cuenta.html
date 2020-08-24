@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crear Nueva Cuenta</title>
+    </head>
+    {% include 'barra.html' %}
+    <body>
+        <form method="POST"> {% csrf_token %}
+            {{form.username.errors}}
+            <label>Nombre de usuario:</label>
+            {{form.username}}
+            {{form.email.errors}}
+            <label>Correo electronico:</label>
+            {{form.email}}
+            {{form.password1.errors}}
+            <label>Contraseña:</label>
+            {{form.password1}}
+            {{form.password2.errors}}
+            <label>Repetir contraseña:</label>
+            {{form.password2}}
+            <input type="submit">
+        </form>
+    </body>
+</html>

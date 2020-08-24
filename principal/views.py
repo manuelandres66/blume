@@ -1,15 +1,19 @@
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from envios.models import Envios, Item_enviado
 from .models import Joya, Carrito, Items
 from .decorators import usuario_sin_ingresar
-from .forms import Entrar, Envio
+from .forms import Entrar, Envio, CrearUsuario
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+
+#librerias externas
 import datetime
 import requests as res
 import json
+
 # Create your views here.
 
 def home(request):
@@ -62,6 +66,21 @@ def ingresar(request):
 def salir(request):
     logout(request)
     return redirect('../../') #A la pagina principal
+
+@usuario_sin_ingresar
+def nueva_cuenta(request):
+    form = CrearUsuario()
+
+    if request.method == 'POST':
+        form = CrearUsuario(request.POST)
+        if form.is_valid():
+            usuario = User.objects.create_user(username=form.cleaned_data['username'], email=form.cleaned_data['email'], password=form.cleaned_data['password1'])
+            usuario.save()
+            Carrito(propietario=usuario).save()
+            return redirect('/login/')
+        
+    ctx = {'form' : form}
+    return render(request, 'nueva_cuenta.html', ctx)
 
 @login_required(login_url="/login/")
 def carro_compras(request):
@@ -145,7 +164,7 @@ def checkout(request):
                 carro.delete()
                 Carrito(check_out=False, propietario=usuario).save() #Creando un carrito vacio
 
-                return redirect('/checkout/tarjeta')
+                return redirect('/checkout/tarjeta') # El boton del HTML solo es submit para el formulario este redirreciona
         
 
         ctx = {'subtotal' : valor_total, 'total' : con_envio, 'productos' : productos, 'form' : form}
@@ -187,5 +206,5 @@ def tarjeta(request):
 
 @login_required(login_url="/login/")
 def procesar_pago(request, form):
-    
+
     return HttpResponse("Hola")
