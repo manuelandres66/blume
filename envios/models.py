@@ -48,8 +48,8 @@ class Envios(models.Model):
     datos_adicionales = models.CharField(max_length=10000)
     celular = models.IntegerField()
     llega = models.DateTimeField(default=utils.timezone.now)
-    token = models.CharField(max_length=10000000, default='')
     valor_total = models.IntegerField(default=16000)
+    completado = models.BooleanField(default=False)
 
 class Item_enviado(models.Model):
     envio = models.ForeignKey(Envios, on_delete=models.CASCADE)

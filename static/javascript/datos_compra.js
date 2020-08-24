@@ -12,7 +12,7 @@ var precio_total = 0;
 for (var i = 0; i < productos.length; i++) {
     var cadena = productos[i].textContent.replace('$', '');
 
-    productos[i].textContent = productos[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ","); //Formateando no influye en la funcion
+    productos[i].textContent = productos[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, "."); //Formateando no influye en la funcion
 
     var numero = parseInt(cadena);
     var cant = parseInt(cantidad[i].textContent);
@@ -25,7 +25,7 @@ for (var i = 0; i < productos.length; i++) {
     precio_total += numero * cant //Suma el precio
 };
     
-precio.textContent = ("$" + precio_total).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+precio.textContent = ("$" + precio_total).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 Array.from(stocks).forEach(element => {
     if (element.textContent == "Stock Disponible") {
