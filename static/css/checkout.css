@@ -65,6 +65,7 @@ body {
     height: 25vh;
     box-shadow: 6px 4px 4px 0 rgba(0, 0, 0, 0.25);
     background-color: #ffffff;
+    display: inline-block;
 }
 
 #submit {
@@ -96,4 +97,143 @@ body {
 .pagar_mercado a {
     color: #000;
     text-decoration: none;
+}
+
+.articulos {
+    width: 33vw;
+    background-color: #fff;
+    display: inline-block;
+    margin-top: 6vh;
+    position: absolute;
+    top: 10.5vh;
+    left: 55vw;
+    box-shadow: 6px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    min-height: 67.2vh;
+}
+
+.volver {
+    margin-top: 2vh;
+    margin-left: 1vw;
+    display: inline-block;
+    width: 31vw;
+    height: 4vh;
+    border-bottom: 2px solid rgb(59, 59, 59);
+}
+
+.volver i {
+    font-size: 25px;
+    color: #000000;
+}
+
+.volver h6{
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    font-weight: 200;
+    color: black;
+    display: inline-block;
+    margin-left: 0.5vw;
+}
+
+#productos_titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 35px;
+    padding-left: 2vw;
+    padding-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.producto {
+    margin-left: 2vw;
+    display: inline-block;
+    width: 29vw;
+    height: 9vh;
+    border-top: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+.producto img {
+    width: 5vw;
+    height: 7vh;
+    object-fit: contain;
+    margin-top: 1vh;
+}
+
+.producto h4 {
+    display: inline-block;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    position: relative;
+    bottom: 5vh;
+    right: 0.5vw;
+    width: 16vw;
+}
+
+.producto h5 {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    float: right;
+    margin-top: 1vh;
+}
+
+.producto h3 {
+    display: inline-block;
+    width: 2vw;
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    position: relative;
+    left: 5.5vw;
+    bottom: 1vh;
+}
+
+.costos {
+    padding-top: 7vh;
+    margin-left: 2vw;
+    display: inline-block;
+    width: 29vw;
+    border-top: 2px solid rgba(0, 0, 0, 0.25);
+    font-family: 'Sora', sans-serif;
+}
+
+.subtotal {
+    font-size: 30px;
+}
+
+#subtotal_titulo {
+    font-weight: 200;
+    display: inline;
+}
+
+#subtotal_precio {
+    float: right;
+    font-weight: 400;
+}
+
+.envio {
+    margin-top: 0.6vh;
+}
+
+#envio_titulo {
+    display: inline-block;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+#envio_precio {
+    float: right;
+    font-size: 18px;
+}
+
+.total {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+
+#total_titulo {
+    font-size: 40px;
+    display: inline-block;
+}
+
+#total_precio {
+    float: right;
+    font-size: 40px;
 }

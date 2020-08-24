@@ -36,33 +36,35 @@
             </div>
             
         </form>
-        <div class="Articulos">
-            <div>
-                <i class="fas fa-arrow-left"></i>
-                <h6>Volver al carrito</h6>
-            </div>
-            <div>
-                <h3>Productos a Comprar</h3>
+        <div class="articulos">
+            <a href="/carro/">
+                <div class="volver">
+                    <i class="fas fa-arrow-left"></i>
+                    <h6>Volver al carrito</h6>
+                </div>
+            </a>
+            <div class="productos">
+                <h3 id="productos_titulo">Productos a Comprar</h3>
                 {% for producto in productos %}
-                    <div>
+                    <div class="producto">
                         <img src="/{{producto.producto.imagen}}">
                         <h4>{{producto.producto.nombre}}</h4>
                         <h5>{{producto.producto.precio}}</h5>
                         <h3>x{{producto.cantidad}}</h3>
                     </div>
                 {% endfor %}
-                <div>
-                    <div>
-                        <h4>Subtotal</h4>
-                        <h4>{{subtotal}}</h4>
+                <div class="costos">
+                    <div class="subtotal">
+                        <h4 id="subtotal_titulo">Subtotal</h4>
+                        <h4 id="subtotal_precio">{{subtotal}}</h4>
                     </div>
-                    <div>
-                        <h5>Envio</h5>
-                        <h5>$ 16,000</h5>
+                    <div class="envio">
+                        <h5 id="envio_titulo">Envio</h5>
+                        <h5 id="envio_precio">$ 16,000</h5>
                     </div>
-                    <div>
-                        <h3>Total</h3>
-                        <h3>{{total}}</h3>
+                    <div class="total">
+                        <h3 id="total_titulo">Total</h3>
+                        <h3 id="total_precio">{{total}}</h3>
                     </div>
                 </div>
             </div>

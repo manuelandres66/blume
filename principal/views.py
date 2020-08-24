@@ -115,6 +115,8 @@ def checkout(request):
         for producto in productos:
             if producto.posible():
                 valor_total += producto.total()
+            else:
+                producto.delete()
 
         con_envio = valor_total + 16000
         url = ""
