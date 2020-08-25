@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+os.environ['DATABASE_URL'] = "postgres://bofiiloeixmkxb:5c80a4fca2abd44efc074225ac0560551a2c812d5c156d2ce040b8b4c0b358bf@ec2-52-86-116-94.compute-1.amazonaws.com:5432/df81sr6uihfg3l"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
