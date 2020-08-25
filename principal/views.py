@@ -198,7 +198,7 @@ def tarjeta(request):
         }
 
         conten = json.dumps(conten)
-        resp = res.post(URL, data=conten, headers=headers)
+        resp = res.post(URL, data=conten, headers=headers, auth=False)
         return HttpResponse(json.dumps(resp.text, indent=4))
 
     ctx = {'total' : envio.valor_total}
