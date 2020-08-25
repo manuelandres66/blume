@@ -180,7 +180,7 @@ def tarjeta(request):
     productos = Item_enviado.objects.filter(envio=envio)
 
     if request.method == "POST":
-        URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-4952967251009416-082123-f0935d914be879bc427d4f9f75e5d2fa-629550327"
+        URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-6991544569678843-082519-f613821787b70449a7f8e945ddd78a11-631545752"
         headers = {
             'content-type' : 'application/json',
             'accept' : 'application/json',
@@ -199,7 +199,7 @@ def tarjeta(request):
 
         conten = json.dumps(conten)
         resp = res.post(URL, data=conten, headers=headers)
-        print(json.dumps(resp.text, indent=4))
+        return HttpResponse(json.dumps(resp.text, indent=4))
 
     ctx = {'total' : envio.valor_total}
     return render(request, 'tarjeta.html', ctx)
