@@ -193,7 +193,7 @@ def tarjeta(request):
             'installments' : 1,
             'payment_method_id' : request.POST['payment_method_id'],
             'payer' : {
-                "email" : usuario.email
+                "email" : request.POST["email"]
             }
         }
 
