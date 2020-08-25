@@ -180,7 +180,7 @@ def tarjeta(request):
     productos = Item_enviado.objects.filter(envio=envio)
 
     if request.method == "POST":
-        URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-6991544569678843-082519-f613821787b70449a7f8e945ddd78a11-631545752"
+        URL = "https://api.mercadopago.com/v1/payments?access_token=TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
         headers = {
             'content-type' : 'application/json',
             'accept' : 'application/json',
