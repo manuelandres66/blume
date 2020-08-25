@@ -199,7 +199,8 @@ def tarjeta(request):
 
         conten = json.dumps(conten)
         resp = res.post(URL, data=conten, headers=headers, auth=False)
-        if res["status"] == "approved":
+        resp = json.loads(resp.text)
+        if resp["status"] == "approved":
             return HttpResponse("Aprovado")
         else:
             return HttpResponse("Denegado")
