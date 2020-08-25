@@ -199,7 +199,10 @@ def tarjeta(request):
 
         conten = json.dumps(conten)
         resp = res.post(URL, data=conten, headers=headers, auth=False)
-        return HttpResponse(json.dumps(resp.text, indent=4))
+        if res["status"] == "approved":
+            return HttpResponse("Aprovado")
+        else:
+            return HttpResponse("Denegado")
 
     ctx = {'total' : envio.valor_total}
     return render(request, 'tarjeta.html', ctx)
