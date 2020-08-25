@@ -1,1 +1,1 @@
-web: gunicorn Campamento.wsgi --log-file -
+web: gunicorn blume.wsgi --log-file -
