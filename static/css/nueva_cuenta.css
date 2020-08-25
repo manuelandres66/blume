@@ -1,0 +1,57 @@
+h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 55px;
+    text-align: center;
+    margin-top: 14vh;
+}
+
+input {
+    width: 26.5vw;
+    height: 2.5vh;
+    border-radius: 50px;
+    border: solid 3px #447ab6;
+    background-color: #ffffff;
+    outline: none;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+
+label {
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+    display: block;
+}
+
+li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    color: #F00;
+    padding-left: 1vw;
+    list-style: none;
+}
+
+.derecha {
+    margin-left: 22vw;
+    margin-top: 7vh;
+    display: inline-block;
+}
+
+.izquierda {
+    display: inline-block;
+    margin-left: 2.6vw;
+}
+
+#crear_cuenta {
+    border: 0;
+    margin-top: 9vh;
+    margin-left: 22vw;
+    background-color: #1d3754;
+    color: #ffffff;
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    width: 58vw;
+    height: 4vh;
+    cursor: pointer;
+}
