@@ -1,0 +1,1 @@
+web: gunicorn Campamento.wsgi --log-file -
