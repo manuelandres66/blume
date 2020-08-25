@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('envio', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='envios.envios')),
-                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.RESTRICT, to='principal.joya')),
+                ('producto', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='principal.joya')),
             ],
         ),
     ]
