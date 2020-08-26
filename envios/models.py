@@ -46,7 +46,7 @@ class Envios(models.Model):
     ciudad = models.CharField(max_length=10000)
     direccion = models.CharField(max_length=100000)
     datos_adicionales = models.CharField(max_length=100000)
-    celular = models.IntegerField(max_length=100000000000)
+    celular = models.BigIntegerField()
     llega = models.DateTimeField(default=utils.timezone.now)
     valor_total = models.IntegerField(default=16000000)
     completado = models.BooleanField(default=False)
