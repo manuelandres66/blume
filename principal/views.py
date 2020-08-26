@@ -219,7 +219,7 @@ def tarjeta(request):
 
     if request.method == "POST":
 
-        resp = hacer_post(envio.total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
+        resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
 
         if resp["status"] == "approved":
             for producto in productos:
