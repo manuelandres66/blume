@@ -194,7 +194,7 @@ def hacer_post(total, token, payment_method_id, email):  # Pedir información de
             "value": 500,
             "type": "IVA"
         }],
-        'token': 'token',
+        'token': token,
         'description': "Pago total blume",
         'installments': 1,
         'payment_method_id': payment_method_id,
