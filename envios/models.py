@@ -42,13 +42,13 @@ class Envios(models.Model):
         ('Vaupés', 'Vaupés'),
         ('Vichada', 'Vichada')
     ]
-    departamento = models.CharField(max_length=50, choices=DEPARTAMENTO)
-    ciudad = models.CharField(max_length=1000)
-    direccion = models.CharField(max_length=10000)
-    datos_adicionales = models.CharField(max_length=10000)
-    celular = models.IntegerField()
+    departamento = models.CharField(max_length=500, choices=DEPARTAMENTO)
+    ciudad = models.CharField(max_length=10000)
+    direccion = models.CharField(max_length=100000)
+    datos_adicionales = models.CharField(max_length=100000)
+    celular = models.IntegerField(max_length=100000000000)
     llega = models.DateTimeField(default=utils.timezone.now)
-    valor_total = models.IntegerField(default=16000)
+    valor_total = models.IntegerField(default=16000000)
     completado = models.BooleanField(default=False)
 
 class Item_enviado(models.Model):
