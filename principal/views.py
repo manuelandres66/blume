@@ -167,28 +167,19 @@ def checkout(request):
 
                 crear_envio.save()
 
-                for producto in productos:
-                    producto.producto.stock -= producto.cantidad
-                    producto.producto.save()
-                    Item_enviado(envio=crear_envio,
-                                 producto=producto.producto).save()
-
-                carro.delete()
-                # Creando un carrito vacio
-                Carrito(check_out=False, propietario=usuario).save()
-
                 # El boton del HTML solo es submit para el formulario este redirreciona
                 return redirect('/checkout/tarjeta')
 
         ctx = {'subtotal': valor_total, 'total': con_envio,
                'productos': productos, 'form': form}
+
         return render(request, 'checkout.html', ctx)
 
     else:
         return redirect('/carro')
 
 
-def hacer_post(total, token, payment_method_id, email):  # pedir información del envio
+def hacer_post(total, token, payment_method_id, email):  # Pedir información del envio
 
     URL = "https://api.mercadopago.com/v1/payments?access_token=TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
     headers = {
@@ -221,15 +212,30 @@ def hacer_post(total, token, payment_method_id, email):  # pedir información de
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.get(propietario=usuario)
-    productos = Item_enviado.objects.filter(envio=envio)
+    envio = Envios.objects.filter(propietario=usuario, completado=False).order_by('id')
+    envio = envio[0]
+    carro = Carrito.objects.get(propietario=usuario)
+    productos = Items.objects.filter(carrito=carro)
 
     if request.method == "POST":
 
         resp = hacer_post(envio.total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
 
         if resp["status"] == "approved":
+            for producto in productos:
+                producto.producto.stock -= producto.cantidad
+                producto.producto.save()
+                Item_enviado(envio=envio, producto=producto.producto).save()
+
+            #Completando el envio
+            envio.completado = True
+            envio.save()
+            
+            # Creando un carrito vacio
+            carro.delete()
+            Carrito(check_out=False, propietario=usuario).save()
             return render(request, 'aprovado.html')
+
         elif resp["status"] == "in_process":
             return HttpResponse("Verificando transacción")
         else:
