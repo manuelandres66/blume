@@ -149,7 +149,6 @@ def checkout(request):
                 producto.delete()
 
         con_envio = valor_total + 16000
-        url = ""
 
         if request.method == "POST":
             form = Envio(request.POST)
