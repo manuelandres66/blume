@@ -235,7 +235,7 @@ def tarjeta(request):
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
 
-            ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : resp["payment_method_id"],  'banco' : resp["financial_institution"], 'termina_en' : resp["card"]['last_four_digits']}
+            ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'banco' : resp["financial_institution"], 'termina_en' : resp["card"]['last_four_digits']}
             return render(request, 'aprobado.html', ctx)
 
         elif resp["status"] == "in_process":
