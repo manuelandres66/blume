@@ -220,7 +220,6 @@ def tarjeta(request):
     if request.method == "POST":
 
         resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
-        return HttpResponse(resp["status"])
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
