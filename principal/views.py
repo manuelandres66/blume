@@ -205,6 +205,7 @@ def hacer_post(total, token, payment_method_id, email):  # Pedir información de
 
     conten = json.dumps(conten)
     resp = res.post(URL, data=conten, headers=headers, auth=False)
+    print(json.dumps(resp.text, indent=4))
     resp = json.loads(resp.text)
     return resp
 
@@ -212,7 +213,7 @@ def hacer_post(total, token, payment_method_id, email):  # Pedir información de
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.filter(propietario=usuario, completado=False).order_by('id')
+    envio = Envios.objects.filter(propietario=usuario, completado=False).order_by('-id')
     envio = envio[0]
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
@@ -220,7 +221,7 @@ def tarjeta(request):
     if request.method == "POST":
 
         resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
-
+        return HttpResponse(resp.text)
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
@@ -234,7 +235,9 @@ def tarjeta(request):
             # Creando un carrito vacio
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
-            return render(request, 'aprovado.html')
+
+            ctx = {'envio' : envio, 'numero_compra' : 45, 'tarjeta' : 'visa',  'banco' : 'Itaú'}
+            return render(request, 'aprobado.html', ctx)
 
         elif resp["status"] == "in_process":
             return HttpResponse("Verificando transacción")

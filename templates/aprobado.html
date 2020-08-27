@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Estado del pago</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/aprobado.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+    </head>
+    {% include 'barra.html' %}
+    <body>
+
+        <div class="aprobado">
+            <i class="fas fa-check-circle aprobado_icono"></i>
+            <h3 id="aprobado_titulo">Tu transacción a sido aprobada con exito</h3>
+            <h5 id="aprobado_subtitulo">Pronto llegará tu producto</h5>
+        </div>
+        
+        <div class="compra">
+            <h2 id="compra_titulo">Resumen de compra:</h2>
+            <div class="valor">
+                <h4 id="valor_compra">Compra #{{numero_compra}} - {{envio.fecha_pedido|date:"D d M Y" }}</h4>
+                <h4 id="valor_valor">{{envio.valor_total}}</h4>
+            </div>
+            <div class="credito">
+                <i class="fas fa-credit-card icono"></i>
+                <span id="credito_tarjeta">Tarjeta {{tarjeta}} de {{banco}}</span>
+                <h6 id="credito_compra">Compra #{{numero_compra}} - {{envio.fecha_pedido|date:"D d M Y" }}</h6>
+            </div>
+            <div class="credito" id="envio">
+                <i class="fas fa-compass icono"></i>
+                <span id="envio_direccion">{{envio.direccion}}</span>
+                <h6 class="envio_secundario">{{envio.datos_adicionales}}</h6>
+                <h6 class="envio_secundario">{{envio.ciudad}}, {{envio.departamento}}</h6>
+            </div>
+        </div>
+        <div class="opciones">
+            <a>Volver al inicio</a>
+            <a>Ver mis envios</a>
+        </div>
+    </body>
+    <script>
+        var total = document.getElementById("valor_valor");
+        total.textContent = '$' + total.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    </script>
+</html>

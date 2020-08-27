@@ -1,0 +1,130 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.aprobado {
+    background-color: #0FCC0B;
+    width: 100%;
+    height: 16vh;
+}
+
+.aprobado_icono {
+    margin: 2.5vh;
+    font-size: 100px;
+    color: #0f5909;
+}
+
+#aprobado_titulo {
+    display: inline-block;
+    font-family: 'Sora', sans-serif;
+    font-size: 45px;
+    font-weight: 800;
+    color: #0f5909;
+    position: relative;
+    bottom: 4vh;
+}
+
+#aprobado_subtitulo {
+    display: inline-block;
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    color: #0f5909;
+    position: relative;
+    right: 49.7vw;
+}
+
+.compra {
+    margin-top: 7vh;
+    margin-left: 8vw;
+    width: 84vw;
+}
+
+#compra_titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.valor {
+    margin-top: 4vh;
+}
+
+#valor_compra {
+    display: inline-block;
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+}
+
+#valor_valor {
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    font-weight: normal;
+    float: right;
+}
+
+.credito {
+    border-radius: 10px;
+    background-color: #e7e7e7;
+    display: inline-block;
+    width: 34vw;
+    height: 17vh;
+    margin-top: 6vh;
+}
+
+.icono{
+    font-size: 80px;
+    margin-top: 3vh;
+    color: #447ab6;
+    margin-left: 1vw;
+}
+
+#credito_tarjeta {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    margin-left: 1vw;
+    position: relative;
+    bottom: 3.5vh;
+}
+
+#credito_compra {
+    display: inline-block;
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    position: relative;
+    bottom: 3.5vh;
+    left: 7vw;
+}
+
+#envio {
+    float: right;
+}
+
+#envio_direccion {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    margin-left: 1vw;
+    position: relative;
+    bottom: 3.5vh;
+}
+
+.envio_secundario {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    position: relative;
+    bottom: 3.5vh;
+    left: 6vw;
+}
+
+.opciones {
+    margin-top: 5vh;
+    text-align: center;
+    font-family:  'Sora', sans-serif;
+}
+
+.opciones a:first-child {
+    margin-right: 4vh;
+}
