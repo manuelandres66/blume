@@ -234,13 +234,17 @@ def tarjeta(request):
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
 
-            ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : request.POST['payment_method_id'], 'termina_en' : resp["card"]['last_four_digits']}
-            return render(request, 'aprobado.html', ctx)
+            estilo = 1
 
         elif resp["status"] == "in_process":
-            return HttpResponse("Verificando transacción")
+            estilo = 2
+
         else:
-            return HttpResponse("Denegado")
+            estilo = 3
+
+        ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : request.POST['payment_method_id'], 'termina_en' : resp["card"]['last_four_digits'], 'estilo' : estilo}
+    # ctx = {'envio' : envio, 'numero_compra' : 45, 'tarjeta' : 'visa', 'termina_en' : '0605', 'estilo' : 2}
+        return render(request, 'aprobado.html', ctx)
 
     ctx = {'total': envio.valor_total}
     return render(request, 'tarjeta.html', ctx)

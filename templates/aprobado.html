@@ -11,11 +11,25 @@
     {% include 'barra.html' %}
     <body>
 
+        {% if estilo == 1 %}
         <div class="aprobado">
             <i class="fas fa-check-circle aprobado_icono"></i>
             <h3 id="aprobado_titulo">Tu transacción a sido aprobada con exito</h3>
             <h5 id="aprobado_subtitulo">Pronto llegará tu producto</h5>
         </div>
+        {% elif estilo == 2 %}
+        <div class="pendiende">
+            <i class="fas fa-clock" id="pendiende_icono"></i>
+            <h3 id="pendiende_titulo">Tu transacción esta pendiente</h3>
+            <h5 id="pendiende_subtitulo">Por favor, no cierres esta página y refrescala cada cierto tiempo</h5>
+        </div>
+        {% else %}
+        <div class="denegado">
+            <i class="fas fa-times-circle" id="denegado_icono"></i>
+            <h3 id="denegado_titulo">Tu transacción fue rechazada</h3>
+            <h5 id="denegado_subtitulo">Te pedimos que intentes de nuevo, tu carro de compras sigue intacto.</h5>
+        </div>
+        {% endif %}
         
         <div class="compra">
             <h2 id="compra_titulo">Resumen de compra:</h2>

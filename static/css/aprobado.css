@@ -9,13 +9,13 @@
     height: 16vh;
 }
 
-.aprobado_icono {
+.aprobado_icono, #denegado_icono, #pendiende_icono {
     margin: 2.5vh;
     font-size: 100px;
     color: #0f5909;
 }
 
-#aprobado_titulo {
+#aprobado_titulo, #denegado_titulo, #pendiende_titulo {
     display: inline-block;
     font-family: 'Sora', sans-serif;
     font-size: 45px;
@@ -25,13 +25,41 @@
     bottom: 4vh;
 }
 
-#aprobado_subtitulo {
+#aprobado_subtitulo, #denegado_subtitulo, #pendiende_subtitulo {
     display: inline-block;
     font-family: 'Sora', sans-serif;
     font-size: 25px;
     color: #0f5909;
     position: relative;
     right: 49.7vw;
+}
+
+.denegado {
+    background-color: rgb(255, 57, 57);
+    width: 100%;
+    height: 16vh;
+}
+
+#denegado_icono, #denegado_titulo, #denegado_subtitulo {
+    color: rgb(133, 0, 0);
+}
+
+#denegado_subtitulo {
+    right: 35.1vw;
+}
+
+.pendiende {
+    background-color: rgb(255, 246, 124);
+    width: 100%;
+    height: 16vh;
+}
+
+#pendiende_icono, #pendiende_titulo, #pendiende_subtitulo {
+    color: #c7b304;
+}
+
+#pendiende_subtitulo {
+    right: 36.7vw;
 }
 
 .compra {
