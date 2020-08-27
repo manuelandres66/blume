@@ -205,7 +205,6 @@ def hacer_post(total, token, payment_method_id, email):  # Pedir información de
 
     conten = json.dumps(conten)
     resp = res.post(URL, data=conten, headers=headers, auth=False)
-    print(json.dumps(resp.text, indent=4))
     resp = json.loads(resp.text)
     return resp
 
@@ -221,7 +220,7 @@ def tarjeta(request):
     if request.method == "POST":
 
         resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
-        return HttpResponse(resp.text)
+        return HttpResponse(json.dumps(resp, indent=4))
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
