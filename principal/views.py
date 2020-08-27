@@ -220,7 +220,7 @@ def tarjeta(request):
     if request.method == "POST":
 
         resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
-        return HttpResponse(json.dumps(resp, indent=4))
+        
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
@@ -235,7 +235,7 @@ def tarjeta(request):
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
 
-            ctx = {'envio' : envio, 'numero_compra' : 45, 'tarjeta' : 'visa',  'banco' : 'Itaú'}
+            ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : resp["payment_method_id"],  'banco' : resp["financial_institution"], 'termina_en' : resp["card"]['last_four_digits']}
             return render(request, 'aprobado.html', ctx)
 
         elif resp["status"] == "in_process":
