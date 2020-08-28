@@ -238,3 +238,78 @@ body {
     float: right;
     font-size: 40px;
 }
+
+@media only screen and (max-width: 1242px) {
+    .info, .pagar, .articulos {
+        margin-left: 5vw;
+        width: 90vw;
+    }
+    .articulos {
+        position: static;
+    }
+
+    .info h1 {
+        font-size: 6.6vw ;
+    }
+
+    .info input {
+        min-width: 80vw;
+    }
+
+    #id_departamento, #id_ciudad {
+        min-width: 40vw;
+        font-size: 12px;
+    }
+
+    .pagar input {
+        min-width: 80vw;
+        font-size: 20px;
+    }
+
+    .volver, .producto, .costos {
+        width: 95%;
+    }
+
+    .volver i {
+        font-size: 15px;
+    }
+
+    .volver h6 {
+        font-size: 15px;
+        width: 50vw;   
+    }
+
+    #productos_titulo {
+        font-size: 25px;
+    }
+
+    .producto img {
+        width: 13vw;
+    }
+
+    .producto h4 {
+        font-size: 15px;
+        width: auto;
+    }
+
+    .producto h5 {
+        font-size: 12px;
+    }
+
+    .producto h3 {
+        display: none;
+    }
+
+    #subtotal_titulo, #subtotal_precio {
+        font-size: 20px;
+    }
+
+    #subtotal_titulo {
+        position: relative;
+        bottom: 2vh;
+    }
+
+    #total_titulo, #total_precio{
+        font-size: 30px;
+    }
+}

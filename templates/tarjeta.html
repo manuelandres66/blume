@@ -1,12 +1,18 @@
 <!DOCTYPE html>
+
+{% load static %}
 <html>
 <head>
     <title>Ingresa tu tarjeta de credito</title>
     <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="{% static 'css/tarjeta.css' %}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div>
+        <h6 id="error"></h6>
         <form method="POST" id="pay" name="pay" >{% csrf_token %}
             <fieldset>       
                 <input type="hidden" name="description" id="description" value="Ítem seleccionado"/>                      
@@ -85,7 +91,8 @@ function setPaymentMethod(status, response) {
         element.value = paymentMethodId;
         getInstallments();
     } else {
-        alert(`payment method info error: ${response}`);
+        var error = document.getElementById('error');
+        error.textContent = `payment method info error: ${response}`;
     }
 }
 
@@ -104,7 +111,8 @@ function getInstallments(){
                 document.getElementById('installments').appendChild(opt);
             });
         } else {
-            alert(`installments method info error: ${response}`);
+            var error = document.getElementById('error');
+            error.textContent = `installments method info error: ${response}`;
         }
     });
 }    
@@ -125,9 +133,9 @@ function doPay(event){
 
 function sdkResponseHandler(status, response) {
     if (status != 200 && status != 201) {
-        alert("verify filled data");
+        var error = document.getElementById('error');
+        error.textContent = "verifica los datos ingresados";
     } else{
-        console.log("PASA POR AQUI??")
         var form = document.querySelector('#pay');
         var card = document.createElement('input');
         card.setAttribute('name', 'token');
