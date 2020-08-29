@@ -12,11 +12,11 @@
 
 <body>
     <div>
-        <h6 id="error"></h6>
         <form method="POST" id="pay" name="pay" >{% csrf_token %}
             <fieldset>       
                 <input type="hidden" name="description" id="description" value="Ítem seleccionado"/>                      
                 <input type="hidden" "transaction_amount" id="transaction_amount" value="{{total}}"/>
+                <h6 id="error"></h6>
                 <p>
                     <label for="cardNumber">Número de la tarjeta</label>
                     <input type="text" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />

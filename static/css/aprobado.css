@@ -156,3 +156,79 @@
 .opciones a:first-child {
     margin-right: 4vh;
 }
+
+@media only screen and (max-width: 1672px) {
+    .aprobado, .denegado, .pendiende {
+        height: 13vh;
+        width: 100vw;
+        position: absolute;
+        top: 20vh;
+    }
+
+    .aprobado_icono, #denegado_icono, #pendiende_icono {
+        font-size: 8vh;
+    }
+
+    #aprobado_titulo, #denegado_titulo, #pendiende_titulo {
+        font-size: 18px;
+        position: absolute;
+        top: 1vh;
+    }
+
+    #aprobado_subtitulo, #denegado_subtitulo, #pendiende_subtitulo {
+        font-size: 12px;
+        width: 60vw;
+        right: 0;
+        margin-top: 1vh;
+        position: absolute;
+        top: 7vh;
+        left: 13vh;
+    }
+
+    .compra {
+        width: 86vw;
+        margin-left: 7vw;
+    }
+
+    #compra_titulo {
+        display: block;
+        text-align: center;
+        margin-top: 25vh;
+        font-size: 28px;
+    }
+
+    #valor_compra {
+        display: block;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    #valor_valor {
+        display: block;
+        float: none;
+        text-align: center;
+        margin-top: 2vh;
+    }
+
+    .credito, .opciones {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    #credito_tarjeta, #envio_direccion {
+        font-size: 12px;
+        bottom: 7vh;
+        width: 50vw;
+    }
+
+    #credito_compra, .envio_secundario {
+        font-size: 12px;
+        margin-left: 20vw;
+    }
+
+    .opciones {
+        padding-top: 20vh;
+        font-size: 10px;
+    }
+}

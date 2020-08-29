@@ -178,36 +178,6 @@ def checkout(request):
         return redirect('/carro')
 
 
-def hacer_post(total, token, payment_method_id, email):  # Pedir información del envio
-
-    URL = "https://api.mercadopago.com/v1/payments?access_token=TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
-    headers = {
-        'content-type': 'application/json',
-        'accept': 'application/json',
-    }
-
-    conten = {
-        'transaction_amount': total,
-        "net_amount": total - 500,
-        "taxes": [{
-            "value": 500,
-            "type": "IVA"
-        }],
-        'token': token,
-        'description': "Pago total blume",
-        'installments': 1,
-        'payment_method_id': payment_method_id,
-        'payer': {
-            "email": email
-        }
-    }
-
-    conten = json.dumps(conten)
-    resp = res.post(URL, data=conten, headers=headers, auth=False)
-    resp = json.loads(resp.text)
-    return resp
-
-
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
@@ -218,7 +188,32 @@ def tarjeta(request):
 
     if request.method == "POST":
 
-        resp = hacer_post(envio.valor_total, request.POST['token'], request.POST['payment_method_id'], request.POST["email"])
+        URL = "https://api.mercadopago.com/v1/payments?access_token=TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
+        headers = {
+            'content-type': 'application/json',
+            'accept': 'application/json',
+        }
+
+        conten = {
+            'transaction_amount': envio.valor_total,
+            "net_amount": envio.valor_total - 500,
+            "taxes": [{
+                "value": 500,
+                "type": "IVA"
+            }],
+            'token': request.POST['token'],
+            'description': "Pago total blume",
+            'installments': 1,
+            'payment_method_id': request.POST['payment_method_id'],
+            'payer': {
+                "email": request.POST["email"]
+            }
+        }
+
+        conten = json.dumps(conten)
+        resp = res.post(URL, data=conten, headers=headers, auth=False)
+        resp = json.loads(resp.text)
+
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
@@ -242,7 +237,6 @@ def tarjeta(request):
             estilo = 3
 
         ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : request.POST['payment_method_id'], 'termina_en' : resp["card"]['last_four_digits'], 'estilo' : estilo}
-    # ctx = {'envio' : envio, 'numero_compra' : 45, 'tarjeta' : 'visa', 'termina_en' : '0605', 'estilo' : 2}
         return render(request, 'aprobado.html', ctx)
 
     ctx = {'total': envio.valor_total}
