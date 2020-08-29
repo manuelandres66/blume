@@ -137,16 +137,17 @@ def checkout(request):
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
+    #Comprando que el carro no este vacio
     if len(productos) > 0:
-
         style = True
-        valor_total = 0
         form = Envio()
+
+        valor_total = 0
         for producto in productos:
             if producto.posible():
-                valor_total += producto.total()
+                valor_total += producto.total() #Calculando el total
             else:
-                producto.delete()
+                producto.delete() #Eliminamos del carro si no hay stock
 
         con_envio = valor_total + 16000
 
