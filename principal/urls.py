@@ -12,4 +12,5 @@ urlpatterns  = [
     path('carro/', views.carro_compras),
     path('checkout/', views.checkout),
     path('checkout/tarjeta/', views.tarjeta),
+    path('checkout/pse/', views.pse)
 ]

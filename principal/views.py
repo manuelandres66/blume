@@ -137,7 +137,7 @@ def checkout(request):
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
-    #Comprando que el carro no este vacio
+    # Comprando que el carro no este vacio
     if len(productos) > 0:
         style = True
         form = Envio()
@@ -145,15 +145,18 @@ def checkout(request):
         valor_total = 0
         for producto in productos:
             if producto.posible():
-                valor_total += producto.total() #Calculando el total
+                valor_total += producto.total()  # Calculando el total
             else:
-                producto.delete() #Eliminamos del carro si no hay stock
+                producto.delete()  # Eliminamos del carro si no hay stock
 
         con_envio = valor_total + 16000
+        id_ = 0
 
         if request.method == "POST":
             form = Envio(request.POST)
+
             if form.is_valid():
+                style = False
                 crear_envio = Envios(
                     propietario=usuario,
                     departamento=form.cleaned_data['departamento'],
@@ -164,14 +167,11 @@ def checkout(request):
                     llega=datetime.datetime.now() + datetime.timedelta(days=5),
                     valor_total=con_envio
                 )
-
                 crear_envio.save()
-
-                # El boton del HTML solo es submit para el formulario este redirreciona
-                return redirect('/checkout/tarjeta')
+                id_ = crear_envio.id
 
         ctx = {'subtotal': valor_total, 'total': con_envio,
-               'productos': productos, 'form': form}
+               'productos': productos, 'form': form, 'style': style, 'id': id_}
 
         return render(request, 'checkout.html', ctx)
 
@@ -179,17 +179,19 @@ def checkout(request):
         return redirect('/carro')
 
 
+ACCESS_TOKEN = "TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
+
+
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.filter(propietario=usuario, completado=False).order_by('-id')
-    envio = envio[0]
+    envio = Envios.objects.get(id=request.GET["envio"], completado=False)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
     if request.method == "POST":
 
-        URL = "https://api.mercadopago.com/v1/payments?access_token=TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
+        URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
         headers = {
             'content-type': 'application/json',
             'accept': 'application/json',
@@ -221,10 +223,10 @@ def tarjeta(request):
                 producto.producto.save()
                 Item_enviado(envio=envio, producto=producto.producto).save()
 
-            #Completando el envio
+            # Completando el envio
             envio.completado = True
             envio.save()
-            
+
             # Creando un carrito vacio
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
@@ -237,8 +239,39 @@ def tarjeta(request):
         else:
             estilo = 3
 
-        ctx = {'envio' : envio, 'numero_compra' : resp["collector_id"], 'tarjeta' : request.POST['payment_method_id'], 'termina_en' : resp["card"]['last_four_digits'], 'estilo' : estilo}
+        ctx = {'envio': envio, 'numero_compra': resp["collector_id"], 'tarjeta': request.POST[
+            'payment_method_id'], 'termina_en': resp["card"]['last_four_digits'], 'estilo': estilo}
         return render(request, 'aprobado.html', ctx)
 
     ctx = {'total': envio.valor_total}
     return render(request, 'tarjeta.html', ctx)
+
+
+@login_required(login_url="/login/")
+def pse(request):
+    usuario = User.objects.get(username=request.user)
+    envio = Envios.objects.get(id=request.GET["envio"], completado=False)
+    carro = Carrito.objects.get(propietario=usuario)
+    productos = Items.objects.filter(carrito=carro)
+
+    URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
+    headers = {
+        'Content-Type' : 'application/json'
+    }
+
+    conten = {
+        'transaction_amount' : 50000,
+        'description' : 'Total blume',
+        'payment_method_id' : 'pse',
+        'payer' : {
+            'email' : usuario.email,
+            'entity_type' : 'individual'
+        },
+        'callback_url' : 'https://www.mercadopago.com.co/developers/es/guides/payments/api/other-payment-ways/#editor_1598683337',
+    }
+
+    conten = json.dumps(conten)
+    resp = res.post(URL, data=conten, headers=headers, auth=False)
+    # resp = json.loads(resp.text)
+
+    return HttpResponse(resp.text)

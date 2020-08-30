@@ -5,7 +5,7 @@
     <head>
         <title>Checkout</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -17,69 +17,83 @@
             <div class="info">
                 <h1>Información de envio.</h1>
                 <div>
-                    {{form.departamento}}
-                    {{form.ciudad}}
+                    {{ form.departamento }}
+                    {{ form.ciudad }}
                 </div>
                 <div>
-                    {{form.direccion}}
+                    {{ form.direccion }}
                 </div>
                 <div>
-                    {{form.datos_adicionales}}
+                    {{ form.datos_adicionales }}
                 </div>
-                {{form.telefono}}
+                {{ form.telefono }}
             </div>
 
             <div class="pagar">
-                <div id="submit">
-                    <input type="submit" value="Continuar">
+                {% if style %}
+                    <div id="submit">
+                        <input type="submit" value="Continuar">
+                    </div>
+                {% else %}
+                    <div>
+                        <a href="/checkout/tarjeta/?envio={{ id }}">
+                            <div>Pagar con Tarjeta</div>
+                        </a>
+                        <a href="/checkout/pse/?envio={{ id }}">
+                            <div>Pagar con PSE</div>
+                        </a>
+                        <a>
+                            <div>Pagar con Nequi</div>
+                        </a>
+                    {% endif %}
+                </div>
+            </form>
+
+            <div class="articulos">
+                <a href="/carro/">
+                    <div class="volver">
+                        <i class="fas fa-arrow-left"></i>
+                        <h6>Volver al carrito</h6>
+                    </div>
+                </a>
+                <div class="productos">
+                    <h3 id="productos_titulo">Productos a Comprar</h3>
+                    {% for producto in productos %}
+                        <div class="producto">
+                            <img src="/{{ producto.producto.imagen }}">
+                            <h4>{{ producto.producto.nombre }}</h4>
+                            <h5 class="precioss">{{ producto.producto.precio }}</h5>
+                            <h3>x{{ producto.cantidad }}</h3>
+                        </div>
+                    {% endfor %}
+                    <div class="costos">
+                        <div class="subtotal">
+                            <h4 id="subtotal_titulo">Subtotal</h4>
+                            <h4 id="subtotal_precio">{{ subtotal }}</h4>
+                        </div>
+                        <div class="envio">
+                            <h5 id="envio_titulo">Envio</h5>
+                            <h5 id="envio_precio">$ 16.000</h5>
+                        </div>
+                        <div class="total">
+                            <h3 id="total_titulo">Total</h3>
+                            <h3 id="total_precio">{{ total }}</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-        </form>
-        <div class="articulos">
-            <a href="/carro/">
-                <div class="volver">
-                    <i class="fas fa-arrow-left"></i>
-                    <h6>Volver al carrito</h6>
-                </div>
-            </a>
-            <div class="productos">
-                <h3 id="productos_titulo">Productos a Comprar</h3>
-                {% for producto in productos %}
-                    <div class="producto">
-                        <img src="/{{producto.producto.imagen}}">
-                        <h4>{{producto.producto.nombre}}</h4>
-                        <h5 class="precioss">{{producto.producto.precio}}</h5>
-                        <h3>x{{producto.cantidad}}</h3>
-                    </div>
-                {% endfor %}
-                <div class="costos">
-                    <div class="subtotal">
-                        <h4 id="subtotal_titulo">Subtotal</h4>
-                        <h4 id="subtotal_precio">{{subtotal}}</h4>
-                    </div>
-                    <div class="envio">
-                        <h5 id="envio_titulo">Envio</h5>
-                        <h5 id="envio_precio">$ 16.000</h5>
-                    </div>
-                    <div class="total">
-                        <h3 id="total_titulo">Total</h3>
-                        <h3 id="total_precio">{{total}}</h3>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </body>
+        <script>
+            var precios = document.getElementsByClassName('precioss');
+            for (var i = 0; i < precios.length; i++) {
+                precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            }
+
+            var subtotal = document.getElementById("subtotal_precio");
+            subtotal.textContent = '$' + subtotal.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+            var total = document.getElementById("total_precio");
+            total.textContent = '$' + total.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        </script>
     </body>
-    <script>
-        var precios = document.getElementsByClassName('precioss');
-        for (var i = 0; i < precios.length; i++) {
-            precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-
-        var subtotal = document.getElementById("subtotal_precio");
-        subtotal.textContent = '$' + subtotal.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-        var total = document.getElementById("total_precio");
-        total.textContent = '$' + total.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    </script>
-</html>
+</html></body></html>
