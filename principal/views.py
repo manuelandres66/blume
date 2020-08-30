@@ -267,7 +267,7 @@ def pse(request):
             'email' : usuario.email,
             'entity_type' : 'individual'
         },
-        'callback_url' : 'https://www.mercadopago.com.co/developers/es/guides/payments/api/other-payment-ways/#editor_1598683337',
+        'callback_url' : 'https://blumejoyas.herokuapp.com/',
     }
 
     conten = json.dumps(conten)
