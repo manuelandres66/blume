@@ -256,11 +256,11 @@ def pse(request):
 
     URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
     headers = {
-        'Content-Type' : 'application/json'
+        'content-type' : 'application/json'
     }
 
     conten = {
-        'transaction_amount' : 50000,
+        'transaction_amount' : envio.valor_total,
         'description' : 'Total blume',
         'payment_method_id' : 'pse',
         'payer' : {
