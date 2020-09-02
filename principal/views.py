@@ -179,7 +179,7 @@ def checkout(request):
         return redirect('/carro')
 
 
-ACCESS_TOKEN = "TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
+ACCESS_TOKEN = "APP_USR-7015827786312976-082121-13d3a7bad88750f769dabfd63184f275-629488757"
 
 
 @login_required(login_url="/login/")
@@ -254,24 +254,27 @@ def pse(request):
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
-    URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
+    URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-7015827786312976-082121-13d3a7bad88750f769dabfd63184f275-629488757"
     headers = {
-        'content-type' : 'application/json'
+        'content-type' : 'application/json',
+        'accept': 'application/json'
     }
 
     conten = {
         'transaction_amount' : envio.valor_total,
-        'description' : 'Total blume',
+        'description' : "Pago total blume",
+        'installments': 1,
         'payment_method_id' : 'pse',
         'payer' : {
-            'email' : usuario.email,
+            'email' : "test@test.com",
             'entity_type' : 'individual'
         },
         'callback_url' : 'https://blumejoyas.herokuapp.com/',
+        'transaction_details': { 'financial_institution': 1234 }
     }
 
     conten = json.dumps(conten)
-    resp = res.post(URL, data=conten, headers=headers, auth=False)
+    resp = res.post(URL, data=conten)
     # resp = json.loads(resp.text)
 
     return HttpResponse(resp.text)
