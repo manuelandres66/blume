@@ -83,4 +83,13 @@ div {
     width: 100%;
     height: auto;
     margin-top: 5vh;
+    cursor: pointer;
+    outline: none;
+}
+
+#error {
+    color: #F00;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    text-align: center;
 }
