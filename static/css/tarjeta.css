@@ -1,0 +1,86 @@
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+}
+
+.titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 50px;
+    text-align: center;
+    margin-top: 8vh;
+    color: #1d3754;
+}
+
+input, select {
+    border-radius: 5px;
+    border: solid 1.5px #000000;
+    height: 3.5vh;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 5px;
+}
+
+fieldset {
+    border: 0;
+}
+
+label {
+    font-family: 'Sora', sans-serif;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+div {
+    margin-top: 3vh;
+}
+
+.informacion {
+    margin-left: 19vw;
+    width: 62vw;
+    margin-top: 4vh;
+}
+
+#cardNumber, #cardholderName, #docNumber, #email {
+    width: 100%;
+}
+
+#cardExpirationMonth, #cardExpirationYear {
+    width: 17.5vh;
+    margin-right: 1vw;
+}
+
+.fecha_vencimiento {
+    display: inline-block;
+    width: 49%;
+}
+
+.fecha_vencimiento div {
+    margin-top: 1vh;
+    display: inline-block;
+    width: 100%;
+}
+
+#icono_seguridad {
+    font-size: 25px;
+    margin-left: 1vw;
+}
+
+.fecha_vencimiento select {
+    display: block;
+    margin-top: 1vh;
+}
+
+#pagar {
+    border-radius: 51px;
+    background-color: #1d3754;
+    font-family: 'Sora', sans-serif;
+    color: #FFF;
+    font-size: 30px;
+    padding: 5px;
+    width: 100%;
+    height: auto;
+    margin-top: 5vh;
+}
