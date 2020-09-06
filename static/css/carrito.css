@@ -131,6 +131,7 @@
     outline: none;
     margin-top: 2.6vh;
     transition: background 2s;
+    cursor: pointer;
 }
 
 .proceder:hover {
