@@ -49,7 +49,8 @@ class Envios(models.Model):
     celular = models.BigIntegerField()
     fecha_pedido = models.DateTimeField(default=utils.timezone.now)
     llega = models.DateTimeField(default=utils.timezone.now)
-    valor_total = models.IntegerField(default=16000000)
+    valor_total = models.IntegerField()
+    token = models.IntegerField(blank=True, null=True)
     completado = models.BooleanField(default=False)
 
 class Item_enviado(models.Model):

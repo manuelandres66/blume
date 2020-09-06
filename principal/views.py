@@ -179,13 +179,13 @@ def checkout(request):
         return redirect('/carro')
 
 
-ACCESS_TOKEN = "APP_USR-7015827786312976-082121-13d3a7bad88750f769dabfd63184f275-629488757"
+ACCESS_TOKEN = "TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
 
 
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.get(id=request.GET["envio"], completado=False)
+    envio = Envios.objects.get(id=request.GET["envio"], completado=False, propietario=usuario)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
@@ -217,6 +217,10 @@ def tarjeta(request):
         resp = res.post(URL, data=conten, headers=headers, auth=False)
         resp = json.loads(resp.text)
 
+        #agregando token
+        envio.token = resp['id']
+        envio.save()
+
         if resp["status"] == "approved":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
@@ -225,56 +229,97 @@ def tarjeta(request):
 
             # Completando el envio
             envio.completado = True
+            envio.token = resp['id']
             envio.save()
 
             # Creando un carrito vacio
             carro.delete()
             Carrito(check_out=False, propietario=usuario).save()
 
-            estilo = 1
-
-        elif resp["status"] == "in_process":
-            estilo = 2
-
-        else:
-            estilo = 3
-
-        ctx = {'envio': envio, 'numero_compra': resp["collector_id"], 'tarjeta': request.POST[
-            'payment_method_id'], 'termina_en': resp["card"]['last_four_digits'], 'estilo': estilo}
-        return render(request, 'aprobado.html', ctx)
+        return redirect('/checkout/check/?envio={}'.format(envio.id))
 
     ctx = {'total': envio.valor_total}
     return render(request, 'tarjeta.html', ctx)
 
 
 @login_required(login_url="/login/")
-def pse(request):
+def efecty(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.get(id=request.GET["envio"], completado=False)
+    envio = Envios.objects.get(id=request.GET["envio"], completado=False, propietario=usuario)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
-    URL = "https://api.mercadopago.com/v1/payments?access_token=APP_USR-7015827786312976-082121-13d3a7bad88750f769dabfd63184f275-629488757"
+    URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
     headers = {
-        'content-type' : 'application/json',
-        'accept': 'application/json'
+        'Content-Type': 'application/json'
     }
 
     conten = {
-        'transaction_amount' : envio.valor_total,
-        'description' : "Pago total blume",
-        'installments': 1,
-        'payment_method_id' : 'pse',
-        'payer' : {
-            'email' : "test@test.com",
-            'entity_type' : 'individual'
-        },
-        'callback_url' : 'https://blumejoyas.herokuapp.com/',
-        'transaction_details': { 'financial_institution': 1234 }
+        'transaction_amount': envio.valor_total,
+        'description': "Pago blume",
+        'payment_method_id': "efecty",
+        'payer': { 'email': "test@test.com"}
     }
 
     conten = json.dumps(conten)
-    resp = res.post(URL, data=conten)
-    # resp = json.loads(resp.text)
+    resp = res.post(URL, data=conten, headers=headers)
+    resp = json.loads(resp.text)
 
-    return HttpResponse(resp.text)
+    #Agregando token
+    envio.token = resp['id']
+    envio.save()
+
+    if resp['status'] == 'pending':
+        for producto in productos:
+            producto.producto.stock -= producto.cantidad
+            producto.producto.save()
+            Item_enviado(envio=envio, producto=producto.producto).save()
+
+        # Creando un carrito vacio
+        carro.delete()
+        Carrito(check_out=False, propietario=usuario).save()
+        
+        return redirect(resp['transaction_details']['external_resource_url'])
+    else:
+        return redirect('/checkout/check/?envio={}'.format(envio.id))
+
+@login_required(login_url="/login/")
+def check(request):
+    usuario = User.objects.get(username=request.user)
+    envio = Envios.objects.get(id=request.GET["envio"], propietario=usuario)
+    URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)
+    resp = res.get(URL)
+    resp = json.loads(resp.text)
+
+    if resp['results'][0]['status'] == 'approved':
+        estilo = 1
+        envio.completado = True
+        envio.save()
+
+    elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
+        fecha = envio.fecha_pedido + datetime.timedelta(days=5)
+        if fecha.day == datetime.datetime.now().day:
+            URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
+            headers = {
+                'Content-Type': 'application/json'
+            }
+            conten = {"status": "cancelled"}
+            conten = json.dumps(conten)
+            res.put(URL, headers=headers, data=conten)
+
+        estilo = 2
+        envio.completado = False
+        envio.save()
+        
+    else:
+        estilo = 3
+        envio.completado = False
+        envio.save()
+
+    termina_en = '0000'
+    if bool(resp['results'][0]['card']):
+        termina_en = resp['results'][0]['card']['last_four_digits']
+
+    ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'], 
+    'termina_en': termina_en, 'estilo': estilo}
+    return render(request, 'aprobado.html', ctx)
