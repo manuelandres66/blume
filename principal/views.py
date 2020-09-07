@@ -109,7 +109,6 @@ def carro_compras(request):
             if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1:
                 existente = Items.objects.get(
                     carrito=carro, producto=joya_item)
-                print(existente.cantidad, joya_item.stock)
                 if existente.cantidad < joya_item.stock:  # Si es posible
                     existente.cantidad += 1
                     existente.save()
@@ -130,6 +129,14 @@ def carro_compras(request):
     ctx = {'productos': productos}
     return render(request, 'carrito.html', ctx)
 
+@login_required(login_url="/login/")
+def comprar_ahora(request):
+    usuario = User.objects.get(username=request.user)
+    carro = Carrito.objects.get(propietario=usuario)
+    id_ = request.GET['joya']
+    joya = Joya.objects.get(id=id_)
+    Items(carrito=carro, cantidad=1, producto=joya).save()
+    return redirect('/checkout')
 
 @login_required(login_url="/login/")
 def checkout(request):
@@ -243,7 +250,7 @@ def tarjeta(request):
 
 
 @login_required(login_url="/login/")
-def efecty(request):
+def ticket(request, tipo):
     usuario = User.objects.get(username=request.user)
     envio = Envios.objects.get(id=request.GET["envio"], completado=False, propietario=usuario)
     carro = Carrito.objects.get(propietario=usuario)
@@ -257,8 +264,8 @@ def efecty(request):
     conten = {
         'transaction_amount': envio.valor_total,
         'description': "Pago blume",
-        'payment_method_id': "efecty",
-        'payer': { 'email': "test@test.com"}
+        'payment_method_id': tipo,
+        'payer': { 'email': "test@test.com" }
     }
 
     conten = json.dumps(conten)

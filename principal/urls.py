@@ -10,8 +10,9 @@ urlpatterns  = [
     path('login/cuenta_nueva/', views.nueva_cuenta),
     path('logout/', views.salir),
     path('carro/', views.carro_compras),
+    path('carro/ahora/', views.comprar_ahora),
     path('checkout/', views.checkout),
     path('checkout/tarjeta/', views.tarjeta),
-    path('checkout/efecty/', views.efecty),
+    path('checkout/ticket/<str:tipo>/', views.ticket),
     path('checkout/check/', views.check)
 ]
