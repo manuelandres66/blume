@@ -134,8 +134,15 @@ def comprar_ahora(request):
     usuario = User.objects.get(username=request.user)
     carro = Carrito.objects.get(propietario=usuario)
     id_ = request.GET['joya']
-    joya = Joya.objects.get(id=id_)
-    Items(carrito=carro, cantidad=1, producto=joya).save()
+    joya_item = Joya.objects.get(id=id_)
+     if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1:
+        existente = Items.objects.get(
+            carrito=carro, producto=joya_item)
+        if existente.cantidad < joya_item.stock:  # Si es posible
+            existente.cantidad += 1
+            existente.save()
+    else:
+        Items(carrito=carro, cantidad=1, producto=joya_item).save()
     return redirect('/checkout')
 
 @login_required(login_url="/login/")
