@@ -135,7 +135,7 @@ def comprar_ahora(request):
     carro = Carrito.objects.get(propietario=usuario)
     id_ = request.GET['joya']
     joya_item = Joya.objects.get(id=id_)
-     if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1:
+    if Items.objects.filter(carrito=carro, producto=joya_item).count() == 1:
         existente = Items.objects.get(
             carrito=carro, producto=joya_item)
         if existente.cantidad < joya_item.stock:  # Si es posible
