@@ -55,3 +55,39 @@ li {
     height: 4vh;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1090px) {
+    h1 {
+        font-size: 35px;
+    }
+    form {
+        width: 80%;
+        margin-left: 10%;
+    }
+    label {
+        font-size: 20px;
+    }
+    input {
+        width: 70vw;
+    }
+    form div {
+        display: block;
+        margin-top: 2vh;
+    }
+
+    #contrasena {
+        margin-top: 2vh;
+    }
+
+    .derecha, .izquierda  {
+        margin-left: 0;
+    }
+
+    #crear_cuenta {
+        display: block;
+        font-size: 20px;
+        margin-left: 0;
+        width: 75vw;
+    }
+
+}
