@@ -93,3 +93,30 @@ div {
     font-size: 20px;
     text-align: center;
 }
+
+@media only screen and (max-width: 1265px) {
+
+    .titulo {
+        font-size: 35px;
+    }
+
+    .fecha_vencimiento {
+        display: block;
+    }
+
+    input, select {
+        font-size: 25px;
+        height: 3vh;
+    }
+    #icono_seguridad {
+        display: none;
+    }
+
+    #cardExpirationYear {
+        margin-top: 1vh;
+    }
+
+    #pagar {
+        margin-bottom: 5vh;
+    }
+}

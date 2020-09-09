@@ -275,7 +275,7 @@ def ticket(request, tipo):
         'transaction_amount': envio.valor_total,
         'description': "Pago blume",
         'payment_method_id': tipo,
-        'payer': { 'email': "test@test.com" }
+        'payer': { 'email': usuario.email}
     }
 
     conten = json.dumps(conten)
