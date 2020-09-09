@@ -18,7 +18,10 @@ import json
 
 
 def home(request):
-    return render(request, 'home.html')  # En proceso
+    joyas = Joya.objects.all().order_by('vistas')
+
+    ctx = {'joyas' : joyas}
+    return render(request, 'home.html', ctx)  # En proceso
 
 
 def joya(request, material, tipo, id_joya):
@@ -301,6 +304,8 @@ def ticket(request, tipo):
 def check(request):
     usuario = User.objects.get(username=request.user)
     envio = Envios.objects.get(id=request.GET["envio"], propietario=usuario)
+
+    #Solicitamos estado de un pago por id
     URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)
     resp = res.get(URL)
     resp = json.loads(resp.text)
@@ -312,7 +317,7 @@ def check(request):
 
     elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
         fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-        if fecha.day == datetime.datetime.now().day:
+        if fecha.day == datetime.datetime.now().day: #Si despues de 5 dias no se ha aprobado, cancelamos el envio
             URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
             headers = {
                 'Content-Type': 'application/json'
