@@ -19,7 +19,7 @@ import json
 def home(request):
     joyas = Joya.objects.all().order_by('vistas')
 
-    ctx = {'joyas' : joyas}
+    ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
 
 
@@ -131,6 +131,7 @@ def carro_compras(request):
     ctx = {'productos': productos}
     return render(request, 'carrito.html', ctx)
 
+
 @login_required(login_url="/login/")
 def comprar_ahora(request):
     usuario = User.objects.get(username=request.user)
@@ -146,6 +147,7 @@ def comprar_ahora(request):
     else:
         Items(carrito=carro, cantidad=1, producto=joya_item).save()
     return redirect('/checkout')
+
 
 @login_required(login_url="/login/")
 def checkout(request):
@@ -201,7 +203,8 @@ ACCESS_TOKEN = "TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-62
 @login_required(login_url="/login/")
 def tarjeta(request):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.get(id=request.GET["envio"], completado=False, propietario=usuario)
+    envio = Envios.objects.get(
+        id=request.GET["envio"], completado=False, propietario=usuario)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
@@ -233,7 +236,7 @@ def tarjeta(request):
         resp = res.post(URL, data=conten, headers=headers, auth=False)
         resp = json.loads(resp.text)
 
-        #agregando token
+        # agregando token
         envio.token = resp['id']
         envio.save()
 
@@ -261,7 +264,8 @@ def tarjeta(request):
 @login_required(login_url="/login/")
 def ticket(request, tipo):
     usuario = User.objects.get(username=request.user)
-    envio = Envios.objects.get(id=request.GET["envio"], completado=False, propietario=usuario)
+    envio = Envios.objects.get(
+        id=request.GET["envio"], completado=False, propietario=usuario)
     carro = Carrito.objects.get(propietario=usuario)
     productos = Items.objects.filter(carrito=carro)
 
@@ -274,14 +278,14 @@ def ticket(request, tipo):
         'transaction_amount': envio.valor_total,
         'description': "Pago blume",
         'payment_method_id': tipo,
-        'payer': { 'email': usuario.email}
+        'payer': {'email': usuario.email}
     }
 
     conten = json.dumps(conten)
     resp = res.post(URL, data=conten, headers=headers)
     resp = json.loads(resp.text)
 
-    #Agregando token
+    # Agregando token
     envio.token = resp['id']
     envio.save()
 
@@ -294,17 +298,18 @@ def ticket(request, tipo):
         # Creando un carrito vacio
         carro.delete()
         Carrito(check_out=False, propietario=usuario).save()
-        
+
         return redirect(resp['transaction_details']['external_resource_url'])
     else:
         return redirect('/checkout/check/?envio={}'.format(envio.id))
+
 
 @login_required(login_url="/login/")
 def check(request):
     usuario = User.objects.get(username=request.user)
     envio = Envios.objects.get(id=request.GET["envio"], propietario=usuario)
 
-    #Solicitamos estado de un pago por id
+    # Solicitamos estado de un pago por id
     URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)
     resp = res.get(URL)
     resp = json.loads(resp.text)
@@ -316,7 +321,7 @@ def check(request):
 
     elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
         fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-        if fecha.day == datetime.datetime.now().day: #Si despues de 5 dias no se ha aprobado, cancelamos el envio
+        if fecha.day == datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
             URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
             headers = {
                 'Content-Type': 'application/json'
@@ -328,7 +333,7 @@ def check(request):
         estilo = 2
         envio.completado = False
         envio.save()
-        
+
     else:
         estilo = 3
         envio.completado = False
@@ -338,6 +343,6 @@ def check(request):
     if bool(resp['results'][0]['card']):
         termina_en = resp['results'][0]['card']['last_four_digits']
 
-    ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'], 
-    'termina_en': termina_en, 'estilo': estilo}
+    ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'],
+           'termina_en': termina_en, 'estilo': estilo}
     return render(request, 'aprobado.html', ctx)
