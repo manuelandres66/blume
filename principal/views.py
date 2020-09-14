@@ -16,13 +16,27 @@ import json
 # Create your views here.
 
 
+#Diseño, No mucha Logica.
 def home(request):
     joyas = Joya.objects.all().order_by('vistas')
 
     ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
 
+def oro(request):
+    joyas = Joya.objects.get(material='oro').order_by('vistas')
+    ctx = {'joyas': joyas}
+    return render(request, 'home.html', ctx)
 
+def plata(request):
+    joyas = Joya.objects.get(material='plata').order_by('vistas')
+    ctx = {'joyas': joyas}
+    return render(request, 'home.html', ctx)
+
+
+
+
+#Logica
 def joya(request, material, tipo, id_joya):
     joya_f = get_object_or_404(Joya, id=id_joya, material=material, tipo=tipo)
     joya_f.vistas += 1  # Aumentamos una vista
