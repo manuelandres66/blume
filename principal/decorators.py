@@ -6,7 +6,7 @@ def usuario_sin_ingresar(view_func):
         if request.user.is_authenticated:
             if 'next' in request.GET:
                 return redirect(request.GET.get('next'))
-            return redirect('/')
+            return redirect('../../')
         else:
             return view_func(request, *args, **kargs)
     return comprobador

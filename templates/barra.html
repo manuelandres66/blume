@@ -10,7 +10,7 @@
 <body>
     <div class="barra-principal">
         <img id="imagen-barra" src="{% static 'images/logo_blanco.png' %}">
-        <a href="/login/"><i id="cuenta-barra" class="fas fa-user-circle"></i></a>
+        <a id="cuenta_link" href="/login/"><i id="cuenta-barra" class="fas fa-user-circle"></i></a>
         <a href="/carro/"><i id="carrito-barra" class="fas fa-shopping-cart"></i></a>
     </div>
     <div class="barra-abajo">
@@ -20,4 +20,29 @@
             <a>Sobre Nosotros</a>
         </div>
     </div>
+    <div class="cuenta_pop" id="cuenta_pop">
+        <i id="arrow" class="fas fa-sort-up"></i>
+        <div class="cuenta_container">
+            <a href="/logout/">Logout</a>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+    <script>
+        var icono_cuenta = document.getElementById('cuenta-barra');
+        var cuenta_pop = document.getElementById('cuenta_pop');
+
+        document.getElementById('cuenta_link').removeAttribute('href');
+        var checker = 2;
+
+        icono_cuenta.onclick = function(){
+            console.log(checker)
+            if (checker%2 == 0) {
+                cuenta_pop.style.display = "inline";
+            } else {
+                cuenta_pop.style.display = "none";
+            };
+            checker++;
+        };
+    </script>
+    {% endif %}
 </body>

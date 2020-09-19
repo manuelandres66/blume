@@ -19,7 +19,6 @@ import json
 #Diseño, No mucha Logica.
 def home(request):
     joyas = Joya.objects.all().order_by('vistas')
-
     ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
 

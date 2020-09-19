@@ -24,6 +24,7 @@
     position: relative;
     top: 1.8vh;
     right: 10vw;
+    cursor: pointer;
 }
 
 #cuenta-barra {
@@ -33,6 +34,7 @@
     position: relative;
     top: 1.8vh;
     right: 8vw;
+    cursor: pointer;
 }
 
 .barra-abajo {
@@ -56,6 +58,39 @@
     font-weight: 200;
     padding-right: 0.8vw;
 
+}
+
+.cuenta_pop {
+    display: none;
+    position: absolute;
+    top: 6vh;
+    left: 84.1vw;
+}
+
+#arrow {
+    font-size: 40px;
+    color: #fff;
+    margin-left: 120px;
+    z-index: 1;
+}
+
+.cuenta_container {
+    background-color: #fff;
+    position: relative;
+    bottom: 25px;
+    width: 150px;
+    height: 150px;
+    border-color: rgb(231, 231, 231);
+    border-width: 0.1px 2px 2px 2px;
+    border-style: solid;
+    border-radius: 10px;
+    z-index: 5;
+}
+
+.cuenta_container a {
+    font-family: 'Sora', sans-serif;
+    display: block;
+    text-align: center;
 }
 
 @media only screen and (max-width: 781px) {
