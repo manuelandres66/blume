@@ -23,16 +23,16 @@ def home(request):
     ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
 
-def oro(request):
-    joyas = Joya.objects.get(material='oro').order_by('vistas')
-    ctx = {'joyas': joyas}
+def material(request, material):
+    joyas_mas_vendidas = Joya.objects.filter(material=material).order_by('vistas')[:5]
+    aretes = Joya.objects.filter(material=material, tipo='aretes').order_by('vistas')[:5]
+    pulseras = Joya.objects.filter(material=material, tipo='pulseras').order_by('vistas')[:5]
+    collares = Joya.objects.filter(material=material, tipo='collares').order_by('vistas')[:5]
+    anillos = Joya.objects.filter(material=material, tipo='anillos').order_by('vistas')[:5]
+    otros = Joya.objects.filter(material=material, tipo='otros').order_by('vistas')[:5]
+    
+    ctx = {'mas_vendidos': joyas_mas_vendidas}
     return render(request, 'home.html', ctx)
-
-def plata(request):
-    joyas = Joya.objects.get(material='plata').order_by('vistas')
-    ctx = {'joyas': joyas}
-    return render(request, 'home.html', ctx)
-
 
 
 
