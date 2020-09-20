@@ -23,7 +23,11 @@
     <div class="cuenta_pop" id="cuenta_pop">
         <i id="arrow" class="fas fa-sort-up"></i>
         <div class="cuenta_container">
-            <a href="/logout/">Logout</a>
+            <a>¡Hola, {{request.user}}!</a>
+            <a>Mis envios</a>
+            <a>Info Cuenta</a>
+            <a href="/carro/">Carrito</a>
+            <a href="/logout/">Cerrar Sesión</a>
         </div>
     </div>
     {% if user.is_authenticated %}
@@ -35,7 +39,6 @@
         var checker = 2;
 
         icono_cuenta.onclick = function(){
-            console.log(checker)
             if (checker%2 == 0) {
                 cuenta_pop.style.display = "inline";
             } else {
