@@ -56,7 +56,6 @@
 
 .cantidad_producto {
     display: inline-block;
-    width: 50%;
     margin-top: 0.3vh;
 }
 
@@ -76,8 +75,8 @@
 
 .cantidad_producto h6 {
     display: inline-block;
-    margin-left: 0.6vw;
-    margin-right: 0.6vw;
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
 }
 
 .producto_precio_contenedor {
@@ -89,22 +88,20 @@
     font-size: 35px;
     font-weight: normal;
     margin-top: 1.4vh;
-    margin-right: 1vw;
 }
 
 .producto_precio_contenedor a {
     color: #f00;
     font-family: 'Sora', sans-serif;
     font-size: 20px;
-    position: relative;
-    left: 5vw;
-    top: 1vh;
+    float: right;
 }
 
 .comprar {
     margin-top: 8vh;
     margin-left: 7vw;
     width: 86vw;
+    margin-bottom: 10vh;
 }
 
 .comprar h3 {
