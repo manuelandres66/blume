@@ -13,14 +13,15 @@ import datetime
 import requests as res
 import json
 
-# Create your views here.
-
 
 #Diseño, No mucha Logica.
 def home(request):
     joyas = Joya.objects.all().order_by('vistas')
     ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
+
+def oro(request, material):
+    return render(request, 'oro.html')
 
 #Logica
 def joya(request, material, tipo, id_joya):
