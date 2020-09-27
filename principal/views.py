@@ -22,19 +22,6 @@ def home(request):
     ctx = {'joyas': joyas}
     return render(request, 'home.html', ctx)  # En proceso
 
-def material(request, material):
-    joyas_mas_vendidas = Joya.objects.filter(material=material).order_by('vistas')[:5]
-    aretes = Joya.objects.filter(material=material, tipo='aretes').order_by('vistas')[:5]
-    pulseras = Joya.objects.filter(material=material, tipo='pulseras').order_by('vistas')[:5]
-    collares = Joya.objects.filter(material=material, tipo='collares').order_by('vistas')[:5]
-    anillos = Joya.objects.filter(material=material, tipo='anillos').order_by('vistas')[:5]
-    otros = Joya.objects.filter(material=material, tipo='otros').order_by('vistas')[:5]
-    
-    ctx = {'mas_vendidos': joyas_mas_vendidas}
-    return render(request, 'home.html', ctx)
-
-
-
 #Logica
 def joya(request, material, tipo, id_joya):
     joya_f = get_object_or_404(Joya, id=id_joya, material=material, tipo=tipo)
@@ -353,7 +340,7 @@ def check(request):
         envio.save()
 
     termina_en = '0000'
-    if bool(resp['results'][0]['card']):
+    if bool(resp['results'][0]['card']): #Comprobamos que si es tarjeta de credito mostramos los 4 ultimos digitos
         termina_en = resp['results'][0]['card']['last_four_digits']
 
     ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'],
