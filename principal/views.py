@@ -21,7 +21,9 @@ def home(request):
     return render(request, 'home.html', ctx)  # En proceso
 
 def oro(request, material):
-    return render(request, 'oro.html')
+    mas_vendidos = Joya.objects.filter(material=material).order_by('-vistas')[:5]
+    ctx = {'material' : material, 'mas_vendidos' : mas_vendidos}
+    return render(request, 'material.html', ctx)
 
 #Logica
 def joya(request, material, tipo, id_joya):

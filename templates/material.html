@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+{% load static %}
+<html>
+    {% include 'barra.html' %}
+    <head>
+        <title>Productos de Oro</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div class="titulo">
+            <h1>Productos de {{material}}</h1>
+        </div>
+        <div class="mas_vendidos">
+            <h3>Más Vendidos</h3>
+            <div id="mas_vendidos">
+            {% for vendido in mas_vendidos %}
+                <a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}"><div class="vendido">
+                    <img class="vendido_imagen" src="/{{vendido.imagen}}">
+                    <h4 class="vendido_precio">{{vendido.precio}}</h4>
+                    <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
+                </div></a>
+            {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>
