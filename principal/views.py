@@ -307,6 +307,32 @@ def ticket(request, tipo):
         return redirect('/checkout/check/?envio={}'.format(envio.id))
 
 
+@login_required
+def pse(request):
+    URL = "https://api.mercadopago.com/v1/payments"
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization' : 'Bearer {}'.format(ACCESS_TOKEN)
+    }
+
+    conten = {
+        'transaction_amount': 50000,
+        'description': "Total Blume",
+        'payment_method_id' : "pse",
+        'payer' : {
+            'entity_type' : 'individual',
+            'email' : 'test@test.com',
+        },
+    }
+
+    conten = json.dumps(conten)
+    resp = res.post(URL, data=conten, headers=headers)
+    # resp = json.loads(resp.text)
+
+    return HttpResponse(resp.text)
+
+
+
 @login_required(login_url="/login/")
 def check(request):
     usuario = User.objects.get(username=request.user)

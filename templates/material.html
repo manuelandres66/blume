@@ -10,8 +10,8 @@
         <link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <div class="titulo">
-            <h1>Productos de {{material}}</h1>
+        <div id="titulo_div" class="titulo">
+            <h1 id="titulo_general">Productos de {{material}}</h1>
         </div>
         <div class="mas_vendidos">
             <h3>Más Vendidos</h3>
@@ -19,11 +19,25 @@
             {% for vendido in mas_vendidos %}
                 <a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}"><div class="vendido">
                     <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                    <h4 class="vendido_precio">{{vendido.precio}}</h4>
+                    <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
                     <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
                 </div></a>
             {% endfor %}
             </div>
         </div>
     </body>
+    <script>
+        var precios = document.getElementsByClassName('precios');
+        for (let i = 0; i < precios.length; i++) {
+            precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        };
+
+        var titulo = document.getElementById('titulo_general');
+        var divimg = document.getElementById('titulo_div');
+        if (titulo.textContent == "Productos de oro") {
+            divimg.style.backgroundImage = "url('/static/images/o.jpeg')";
+            divimg.style.backgroundPosition = "center";
+            titulo.style.color = "#fff";
+        }
+    </script>
 </html>
