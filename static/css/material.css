@@ -20,6 +20,10 @@ body {
     padding-top: 5vh;
 }
 
+.mas_vendidos {
+    margin-bottom: 5vh;
+}
+
 .mas_vendidos h3 {
     font-family: 'Sora', sans-serif;
     font-size: 35px;
@@ -29,7 +33,7 @@ body {
     color: #1d3754;
 }
 
-#mas_vendidos {
+.mas_vendidos_div {
     margin-left: 10vw;
     margin-top: 2vh;
 }

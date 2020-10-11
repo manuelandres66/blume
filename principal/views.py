@@ -22,7 +22,12 @@ def home(request):
 
 def oro(request, material):
     mas_vendidos = Joya.objects.filter(material=material).order_by('-vistas')[:5]
-    ctx = {'material' : material, 'mas_vendidos' : mas_vendidos}
+    aretes = Joya.objects.filter(material=material, tipo='aretes').order_by('-vistas')[:5]
+    collares = Joya.objects.filter(material=material, tipo='collares').order_by('-vistas')[:5]
+    pulseras = Joya.objects.filter(material=material, tipo='pulseras').order_by('-vistas')[:5]
+    anillos = Joya.objects.filter(material=material, tipo='anillos').order_by('-vistas')[:5]
+    otros = Joya.objects.filter(material=material, tipo='otros').order_by('-vistas')[:5]
+    ctx = {'material' : material, 'mas_vendidos' : mas_vendidos, 'aretes' : aretes, 'collares' : collares,  'pulseras' : pulseras, 'anillos' : anillos, 'otros' : otros}
     return render(request, 'material.html', ctx)
 
 #Logica
