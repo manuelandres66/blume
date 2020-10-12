@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tus Envios</title>
+    </head>
+    <body>
+        {% for envio in envios %}
+            <h2>{{envio.celular}}</h2>
+            {% for item in items %}
+                {% for subitem in item %}
+                    {% if subitem.envio == envio %}
+                    <h2>{{subitem.cantidad}}</h2>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </body>
+</html>

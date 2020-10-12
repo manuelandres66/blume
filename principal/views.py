@@ -30,7 +30,24 @@ def oro(request, material):
     ctx = {'material' : material, 'mas_vendidos' : mas_vendidos, 'aretes' : aretes, 'collares' : collares,  'pulseras' : pulseras, 'anillos' : anillos, 'otros' : otros}
     return render(request, 'material.html', ctx)
 
+def productos(request):
+    return render(request, 'productos.html')
+
+
 #Logica
+
+def pagina_envios(request):
+    usuario = User.objects.get(username=request.user)
+    tus_envios = Envios.objects.filter(propietario=usuario, completado=True).order_by('fecha_pedido')
+    todos_items = []
+    for envio in tus_envios:
+        items = Item_enviado.objects.filter(envio=envio)
+        todos_items.append(items)
+    
+    ctx = {'envios' : tus_envios, 'items' : todos_items}
+    return render(request, 'pagina_envios.html', ctx)
+
+
 def joya(request, material, tipo, id_joya):
     joya_f = get_object_or_404(Joya, id=id_joya, material=material, tipo=tipo)
     joya_f.vistas += 1  # Aumentamos una vista
@@ -205,6 +222,7 @@ def checkout(request):
         return redirect('/carro')
 
 
+#Cambiar a Variable de entorno
 ACCESS_TOKEN = "TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757"
 
 
@@ -252,7 +270,7 @@ def tarjeta(request):
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
                 producto.producto.save()
-                Item_enviado(envio=envio, producto=producto.producto).save()
+                Item_enviado(envio=envio, producto=producto.producto, cantidad=producto.cantidad).save()
 
             # Completando el envio
             envio.completado = True

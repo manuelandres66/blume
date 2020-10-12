@@ -240,12 +240,15 @@ body {
 }
 
 @media only screen and (max-width: 1242px) {
-    .info, .pagar, .articulos {
+    .info, .pagar {
         margin-left: 5vw;
         width: 90vw;
     }
     .articulos {
-        position: static;
+        width: 90vw;
+        margin-top: 10vh;
+        position: relative;
+        left: 0;
     }
 
     .info h1 {
