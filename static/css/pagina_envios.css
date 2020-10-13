@@ -1,0 +1,121 @@
+.all {
+    margin-left: 11vw;
+    width: 78vw;
+}
+
+#titulo_envios {
+    font-size: 45px;
+    font-family: 'Sora', sans-serif;
+    color: #1d3754;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
+.envio {
+    width: 100%;
+    border-radius: 17px;
+    box-shadow: inset -2px 2px 4px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border: solid 1px #bebebe;
+    background-color: #ffffff;
+    margin-bottom: 8vh;
+}
+
+.info_envio {
+    font-family: 'Sora', sans-serif;
+    font-weight: 300;
+    border: solid 1px #8f8f8f;
+    background-color: #447ab6;
+    border-top-left-radius: 17px;
+    border-top-right-radius: 17px;
+    height: 11vh;
+}
+
+.pedidos {
+    display: inline-block;
+    margin-top: 2vh;
+    margin-left: 2vw;
+}
+
+.total {
+    display: inline-block;
+    margin-top: 2vh;
+    margin-left: 6vw;
+}
+
+.entregar {
+    display: inline-block;
+    margin-top: 2vh;
+    margin-left: 6vw;
+}
+
+.numero_pedido {
+    display: inline-block;
+    margin-top: 2vh;
+    float: right;
+    margin-right: 2vw;
+}
+
+.numero_pedido a, .numero_pedido h5 {
+    text-align: right;
+}
+
+.numero_pedido a {
+    color: #1d3754;
+}
+
+.pedidos h4, .total h4, .entregar h4, .numero_pedido a {
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.pedidos h5, .total h5, .entregar h5, .numero_pedido h5 {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.productos {
+    margin-left: 5vw;
+    font-family: 'Sora', sans-serif;
+    width: 68vw;
+}
+
+.llega_productos {
+    font-size: 25px;
+    font-weight: 300;
+    color: #447ab6;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+.producto {
+    margin-bottom: 4vh;
+}
+
+.producto img {
+    height: 9vh;
+    width: 5vw;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.producto_nombre {
+    font-size: 25px;
+    font-weight: normal;
+    display: inline-block;
+    position: relative;
+    bottom: 6.5vh;
+}
+
+.producto_precio {
+    font-size: 25px;
+    font-weight: normal;
+    float: right;
+}
+
+.producto h2 {
+    font-size: 35px;
+    font-weight: normal;
+    float: right;
+    position: relative;
+    top: 4vh;
+}

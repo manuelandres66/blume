@@ -35,17 +35,19 @@ def productos(request):
 
 
 #Logica
-
 def pagina_envios(request):
     usuario = User.objects.get(username=request.user)
-    tus_envios = Envios.objects.filter(propietario=usuario, completado=True).order_by('fecha_pedido')
-    todos_items = []
-    for envio in tus_envios:
-        items = Item_enviado.objects.filter(envio=envio)
-        todos_items.append(items)
-    
-    ctx = {'envios' : tus_envios, 'items' : todos_items}
-    return render(request, 'pagina_envios.html', ctx)
+    tus_envios = Envios.objects.filter(propietario=usuario).order_by('-fecha_pedido')
+    if len(tus_envios) > 0:
+        todos_items = []
+        for envio in tus_envios:
+            items = Item_enviado.objects.filter(envio=envio)
+            todos_items.append(items)
+        
+        ctx = {'envios' : tus_envios, 'items' : todos_items}
+        return render(request, 'pagina_envios.html', ctx)
+    else:
+        return redirect('/')
 
 
 def joya(request, material, tipo, id_joya):

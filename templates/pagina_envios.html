@@ -1,18 +1,80 @@
 <!DOCTYPE html>
+
+{% load static %}
 <html>
     <head>
         <title>Tus Envios</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/pagina_envios.css' %}" rel="stylesheet" type="text/css">
     </head>
+    {% include 'barra.html' %}
     <body>
-        {% for envio in envios %}
-            <h2>{{envio.celular}}</h2>
-            {% for item in items %}
-                {% for subitem in item %}
-                    {% if subitem.envio == envio %}
-                    <h2>{{subitem.cantidad}}</h2>
+        <div class="all">
+            <h1 id="titulo_envios">Tus Envios</h1>
+            {% for envio in envios %}
+            <div class="envio">
+                <div class="info_envio">
+                    <div class="pedidos">
+                        <h5>Pedido Realizado</h5>
+                        <h4>{{envio.fecha_pedido|date:"d M Y"}}</h4>
+                    </div>
+                    <div class="total">
+                        <h5>Valor Total</h5>
+                        <h4 class="total_total">{{envio.valor_total}}</h4>
+                    </div>
+                    <div class="entregar">
+                        <h5>Entregar a</h5>
+                        <h4>{{envio.direccion}}</h4>
+                    </div>
+                    <div class="numero_pedido">
+                        <h5>Pedido N°{{envio.token}}</h5>
+                        <a href="/checkout/check/?envio={{envio.id}}">Ver estado del pedido</a>
+                    </div>
+                </div>
+                <div class="productos">
+                    {% if envio.completado == True %}
+                    <h3 class="llega_productos">Llega el {{envio.llega.day}} de {{envio.llega|date:"M"}}</h3>
+                    {% else %}
+                    <h3 class="llega_productos" style="color: #f00;">El envio no se ha aprobado</h3>
                     {% endif %}
-                {% endfor %}
+
+                    {% for item in items %}
+                        {% for subitem in item %}
+                            {% if subitem.envio == envio %}
+                            <div class="producto">
+                                <img src="/{{subitem.producto.imagen}}">
+                                <h3 class="producto_nombre">{{subitem.producto.nombre}}</h3>
+                                <h3 class="producto_precio">{{subitem.producto.precio}}</h3>
+                                <h2 class="producto_cantidad">x{{subitem.cantidad}}</h2>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                </div>
+            </div>
             {% endfor %}
-        {% endfor %}
+        </div>
     </body>
+    <script>
+        var valores = document.getElementsByClassName("total_total");
+        var valores_producto = document.getElementsByClassName("producto_precio");
+        for (var i = 0; i < valores.length; i++) {
+            valores[i].textContent = '$' + valores[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        };
+        for (var i = 0; i < valores_producto.length; i++) {
+            valores_producto[i].textContent = '$' + valores_producto[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        };
+
+        var pn = document.getElementsByClassName('producto_precio')
+        var pc = document.getElementsByClassName('producto_cantidad')
+        
+        for (var i = 0; i < pc.length; i++) {
+            let width = pn[i].offsetWidth;
+            console.log(width);
+            let producto = pc[i];
+            producto.style.left = (width + 22) + "px";
+        }
+    </script>
 </html>
