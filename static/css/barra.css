@@ -110,6 +110,7 @@
     .barra-abajo {
         width: 16vw;
         height: 11vh;
+        z-index: 10;
     }
     .links {
         margin-left: 1vw;

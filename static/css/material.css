@@ -85,3 +85,103 @@ body {
     padding-right: 1.5vw;
     padding-left: 1.5vw;
 }
+
+@media only screen and (max-width: 1083px) {
+    .titulo {
+        position: relative;
+        bottom: 11vh;
+        width: 84vw;
+        height: 11vh;
+        float: right;
+    }
+
+    .titulo h1 {
+        font-size: 30px;
+        position: relative;
+        bottom: 2vh;
+    }
+
+    #all_products {
+        margin-left: 3vw;
+        width: 94vw;
+    }
+
+    .mas_vendidos h3{
+        font-size: 20px;
+        margin-left: 0;
+        text-align: left;
+    }
+
+    .mas_vendidos_div {
+        margin-left: 0;
+        display: grid;
+        grid-template-columns: 38vw 55vw;
+        grid-template-rows: repeat(4, 6vh);
+    }
+
+    .mas_vendidos a {
+        margin: 0;
+    }
+
+    .vendido {
+        width: 57vw;
+        height: 5vh;
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: .5vh;
+        grid-column: 2;
+    }
+
+    .vendido_precio {
+        font-size: 10px;
+        float: right;
+        margin-top: .5vh;
+    }
+
+    .vendido_nombre {
+        font-size: 9px;
+        width: 50%;
+        position: relative;
+        text-align: left;
+        margin-left: 9vw;
+        bottom: 5.5vh;
+    }
+
+    .vendido_imagen {
+        width: 7vw;
+        height: 4vh;
+        margin-top: 0.5vh;
+    }
+
+    .mas_vendidos_div div:first-of-type{
+        width: 34vw;
+        height: 23vh;
+        float: left;
+        margin-left: 0;
+        grid-column: 1;
+        grid-row: 1 / 4;
+    }
+
+    .mas_vendidos_div div:first-of-type .vendido_imagen {
+        width: 20vw;
+        height: 11vh;
+        display: block;
+        margin: auto;
+        margin-top: 1vh;
+    }
+    
+    .mas_vendidos_div div:first-of-type .vendido_precio {
+        position: static;
+        font-size: 18px;
+        margin-top: 1.5vh;
+    }
+
+    .mas_vendidos_div div:first-of-type .vendido_nombre {
+        position: static;
+        font-size: 12px;
+        margin: 0;
+        width: 90%;
+        margin-top: 1vh;
+        margin-left: 1vw;
+    }
+}
