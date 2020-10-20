@@ -246,9 +246,9 @@ body {
     }
     .articulos {
         width: 90vw;
-        margin-top: 10vh;
+        margin-top: 5vh;
         position: relative;
-        left: 0;
+        left: 5.3vw;
     }
 
     .info h1 {
@@ -270,7 +270,7 @@ body {
     }
 
     .volver, .producto, .costos {
-        width: 95%;
+        width: 95%; 
     }
 
     .volver i {

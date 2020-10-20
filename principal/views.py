@@ -375,7 +375,7 @@ def check(request):
 
     elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
         fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-        if fecha.day == datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
+        if fecha.day < datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
             URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
             headers = {
                 'Content-Type': 'application/json'

@@ -42,12 +42,12 @@
                     {% for item in items %}
                         {% for subitem in item %}
                             {% if subitem.envio == envio %}
-                            <div class="producto">
+                            <a href="/joya/{{subitem.producto.material}}/{{subitem.producto.tipo}}/{{subitem.producto.id}}"><div class="producto">
                                 <img src="/{{subitem.producto.imagen}}">
                                 <h3 class="producto_nombre">{{subitem.producto.nombre}}</h3>
                                 <h3 class="producto_precio">{{subitem.producto.precio}}</h3>
                                 <h2 class="producto_cantidad">x{{subitem.cantidad}}</h2>
-                            </div>
+                            </div></a>
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
