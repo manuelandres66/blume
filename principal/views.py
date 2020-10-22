@@ -33,6 +33,9 @@ def oro(request, material):
 def productos(request):
     return render(request, 'productos.html')
 
+def condiciones(request):
+    return render(request, 'terminos_condiciones.html')
+
 
 #Logica
 def pagina_envios(request):

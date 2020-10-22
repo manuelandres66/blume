@@ -22,5 +22,6 @@ urlpatterns  = [
     path('checkout/ticket/<str:tipo>/', views.ticket),
     path('checkout/check/', views.check),
 
-    path('tusenvios/', views.pagina_envios)
+    path('tusenvios/', views.pagina_envios),
+    path('terminos_condiciones/', views.condiciones)
 ]
