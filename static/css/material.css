@@ -86,7 +86,7 @@ body {
     padding-left: 1.5vw;
 }
 
-@media only screen and (max-width: 1083px) {
+@media screen and (max-width: 1083px) {
     .titulo {
         position: relative;
         bottom: 11vh;
@@ -183,5 +183,16 @@ body {
         width: 90%;
         margin-top: 1vh;
         margin-left: 1vw;
+    }
+}
+
+@media screen and (min-width: 780px) and (max-width: 1083px) {
+    .titulo {
+        width: 100%;
+        position: static;
+    }
+
+    #all_products {
+        margin-top: 15vh;
     }
 }
