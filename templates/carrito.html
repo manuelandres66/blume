@@ -3,51 +3,60 @@
 {% load static %}
 <html>
     <head>
-        <title>Carrito de {{request.user}}</title>
+        <title>Carrito de
+            {{ request.user }}</title>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/carrito.css' %}" rel="stylesheet" type="text/css">
     </head>
     {% include 'barra.html' %}
     <body>
-        <h1 class="titulo_carrito">Carrito de Compras de {{request.user}}</h1>
+        <h1 class="titulo_carrito">Carrito de Compras de
+            {{ request.user }}</h1>
         <div class="productos">
-        {% for producto in productos %}
-            <h6 class="stock_cantidad" style="display: none;">{{producto.producto.stock}}</h6>
-            <div class="contenedor_producto">
-                <div>
-                    <img class="imagen_producto" src="/{{producto.producto.imagen}}">
-                    <div class="contenedor_titulo">
-                        <a id="referencia" href="/joya/{{producto.producto.material}}/{{producto.producto.tipo}}/{{producto.producto.id}}/">
-                            <h2>{{producto.producto.nombre}}</h2>
-                        </a>
-                        <div class="para_espacio">
-                            {% if producto.producto.stock == 0 %}
-                                <h6 class="stock">No hay stock</h6>
-                            {% else %}
-                                <h6 class="stock">Stock Disponible</h6>
-                            {% endif %}
+            {% for producto in productos %}
+                <h6 class="stock_cantidad" style="display: none;">{{ producto.producto.stock }}</h6>
+                <div class="contenedor_producto">
+                    <div>
+                        <img class="imagen_producto" src="/{{ producto.producto.imagen }}">
+                        <div class="contenedor_titulo">
+                            <a id="referencia" href="/joya/{{ producto.producto.material }}/{{ producto.producto.tipo }}/{{ producto.producto.id }}/">
+                                <h2>{{ producto.producto.nombre }}</h2>
+                            </a>
+                            <div class="para_espacio">
+                                {% if producto.producto.stock == 0 %}
+                                    <h6 class="stock">No hay stock</h6>
+                                {% else %}
+                                    <h6 class="stock">Stock Disponible</h6>
+                                {% endif %}
 
-                            <div class="cantidad_producto">
-                                <a href="/carro/?remove={{producto.producto.id}}"><button>-</button></a>
-                                <h6 class="producto_cantidad">{{producto.cantidad}}</h6>
-                                <a href="/carro/?add={{producto.producto.id}}"><button>+</button></a>
+                                <div class="cantidad_producto">
+                                    <a href="/carro/?remove={{ producto.producto.id }}">
+                                        <button>-</button>
+                                    </a>
+                                    <h6 class="producto_cantidad">{{ producto.cantidad }}</h6>
+                                    <a href="/carro/?add={{ producto.producto.id }}">
+                                        <button>+</button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="producto_precio_contenedor">
-                        <h4 class="producto_precio">$ {{ producto.producto.precio }}</h4>
-                        <a href="/carro/?eliminar={{producto.producto.id}}"">Eliminar</a>
+                        <div class="producto_precio_contenedor">
+                            <h4 class="producto_precio">$
+                                {{ producto.producto.precio }}</h4>
+                            <a href="/carro/?eliminar={{ producto.producto.id }}" ">Eliminar</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
         </div>
         <div class="comprar">
             <h3 id="items"></h3>
             <h3 class="total" id="total-precio"></h3>
             <div>
-                <a class="proceder_conteiner" href="/checkout/"><button class="proceder">Proceder a Comprar</button></a>
+                <a class="proceder_conteiner" href="/checkout/">
+                    <button class="proceder">Proceder a Comprar</button>
+                </a>
             </div>
             <script src="{% static 'javascript/datos_compra.js' %}"></script>
         </div>

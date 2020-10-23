@@ -12,41 +12,49 @@
     <body>
 
         {% if estilo == 1 %}
-        <div class="aprobado">
-            <i class="fas fa-check-circle aprobado_icono"></i>
-            <h3 id="aprobado_titulo">Tu transacción a sido aprobada con exito</h3>
-            <h5 id="aprobado_subtitulo">Pronto llegará tu producto</h5>
-        </div>
+            <div class="aprobado">
+                <i class="fas fa-check-circle aprobado_icono"></i>
+                <h3 id="aprobado_titulo">Tu transacción a sido aprobada con exito</h3>
+                <h5 id="aprobado_subtitulo">Pronto llegará tu producto</h5>
+            </div>
         {% elif estilo == 2 %}
-        <div class="pendiende">
-            <i class="fas fa-clock" id="pendiende_icono"></i>
-            <h3 id="pendiende_titulo">Tu transacción esta pendiente</h3>
-            <h5 id="pendiende_subtitulo">Por favor, no cierres esta página y refrescala cada cierto tiempo</h5>
-        </div>
+            <div class="pendiende">
+                <i class="fas fa-clock" id="pendiende_icono"></i>
+                <h3 id="pendiende_titulo">Tu transacción esta pendiente</h3>
+                <h5 id="pendiende_subtitulo">Por favor, no cierres esta página y refrescala cada cierto tiempo</h5>
+            </div>
         {% else %}
-        <div class="denegado">
-            <i class="fas fa-times-circle" id="denegado_icono"></i>
-            <h3 id="denegado_titulo">Tu transacción fue rechazada</h3>
-            <h5 id="denegado_subtitulo">Te pedimos que intentes de nuevo.</h5>
-        </div>
+            <div class="denegado">
+                <i class="fas fa-times-circle" id="denegado_icono"></i>
+                <h3 id="denegado_titulo">Tu transacción fue rechazada</h3>
+                <h5 id="denegado_subtitulo">Te pedimos que intentes de nuevo.</h5>
+            </div>
         {% endif %}
-        
+
         <div class="compra">
             <h2 id="compra_titulo">Resumen de compra:</h2>
             <div class="valor">
-                <h4 id="valor_compra">Compra #{{numero_compra}} - {{envio.fecha_pedido|date:"D d M Y" }}</h4>
-                <h4 id="valor_valor">{{envio.valor_total}}</h4>
+                <h4 id="valor_compra">Compra #{{ numero_compra }}
+                    -
+                    {{ envio.fecha_pedido|date:"D d M Y" }}</h4>
+                <h4 id="valor_valor">{{ envio.valor_total }}</h4>
             </div>
             <div class="credito">
                 <i class="fas fa-credit-card icono"></i>
-                <span id="credito_tarjeta">Tarjeta {{tarjeta}} terminada en {{termina_en}}</span>
-                <h6 id="credito_compra">Compra #{{numero_compra}} - {{envio.fecha_pedido|date:"D d M Y" }}</h6>
+                <span id="credito_tarjeta">Tarjeta
+                    {{ tarjeta }}
+                    terminada en
+                    {{ termina_en }}</span>
+                <h6 id="credito_compra">Compra #{{ numero_compra }}
+                    -
+                    {{ envio.fecha_pedido|date:"D d M Y" }}</h6>
             </div>
             <div class="credito" id="envio">
                 <i class="fas fa-compass icono"></i>
-                <span id="envio_direccion">{{envio.direccion}}</span>
-                <h6 class="envio_secundario">{{envio.datos_adicionales}}</h6>
-                <h6 class="envio_secundario">{{envio.ciudad}}, {{envio.departamento}}</h6>
+                <span id="envio_direccion">{{ envio.direccion }}</span>
+                <h6 class="envio_secundario">{{ envio.datos_adicionales }}</h6>
+                <h6 class="envio_secundario">{{ envio.ciudad }},
+                    {{ envio.departamento }}</h6>
             </div>
         </div>
         <div class="opciones">

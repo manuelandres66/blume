@@ -2,152 +2,152 @@
 
 {% load static %}
 <html>
-<head>
-    <title>Ingresa tu tarjeta de credito</title>
-    <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link href="{% static 'css/tarjeta.css' %}" rel="stylesheet" type="text/css">
-    <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
-</head>
+    <head>
+        <title>Ingresa tu tarjeta de credito</title>
+        <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/tarjeta.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+    </head>
 
-<body>
-    <h1 class="titulo">Ingresa la información de tu trajeta de credito</h1>
-    <div class="informacion">
-        <form method="POST" id="pay" name="pay" >{% csrf_token %}
-            <fieldset>       
-                <input type="hidden" name="description" id="description" value="Ítem seleccionado"/>                      
-                <input type="hidden" "transaction_amount" id="transaction_amount" value="{{total}}"/>
-                <h6 id="error"></h6>
-                <div>
-                    <label for="cardNumber">Número de la tarjeta</label>
-                    <input type="text" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                </div>
-                <div>
-                    <label for="cardholderName">Nombre y apellido</label>
-                    <input type="text" id="cardholderName" data-checkout="cardholderName" />
-                </div>                                    
-                <div class="fecha_vencimiento">
-                    <label for="cardExpirationMonth">Fecha de vencimiento</label>
+    <body>
+        <h1 class="titulo">Ingresa la información de tu trajeta de credito</h1>
+        <div class="informacion">
+            <form method="POST" id="pay" name="pay">{% csrf_token %}
+                <fieldset>
+                    <input type="hidden" name="description" id="description" value="Ítem seleccionado"/>
+                    <input type="hidden" "transaction_amount" id="transaction_amount" value="{{ total }}"/>
+                    <h6 id="error"></h6>
                     <div>
-                        <input type="text" id="cardExpirationMonth" placeholder="Mes" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                        <input type="text" id="cardExpirationYear" placeholder="Año" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
+                        <label for="cardNumber">Número de la tarjeta</label>
+                        <input type="text" id="cardNumber" data-checkout="cardNumber" onselectstart="return false" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false" autocomplete="off"/>
                     </div>
-                </div>
-                <div class="fecha_vencimiento">
-                    <label for="securityCode">Código de seguridad</label>
-                    <div id="codigo_seguridad">
-                        <input type="text" id="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off />
-                        <i id="icono_seguridad" class="far fa-question-circle"></i>
+                    <div>
+                        <label for="cardholderName">Nombre y apellido</label>
+                        <input type="text" id="cardholderName" data-checkout="cardholderName"/>
                     </div>
-                </div>
-                <div class="fecha_vencimiento">
-                   <label for="installments">Cuotas</label>
-                   <select id="installments" class="form-control" name="installments"></select>
-                </div>
-                <div class="fecha_vencimiento">
-                    <label for="docType">Tipo de documento</label>
-                    <select id="docType" data-checkout="docType"></select>
-                </div>
-                <div>
-                    <label for="docNumber">Número de documento</label>
-                    <input type="text" id="docNumber" data-checkout="docNumber"/>
-                </div>
-                <div>
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email"/>
-                </div>  
-                
-                <input type="hidden" name="payment_method_id" id="payment_method_id"/>
-                
-                <input id="pagar" type="submit" value="Pagar"/>
-            </fieldset>
-        </form>
-    </div>
-</body>
-</html>        
+                    <div class="fecha_vencimiento">
+                        <label for="cardExpirationMonth">Fecha de vencimiento</label>
+                        <div>
+                            <input type="text" id="cardExpirationMonth" placeholder="Mes" data-checkout="cardExpirationMonth" onselectstart="return false" onpaste="return false" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false" autocomplete="off"/>
+                            <input type="text" id="cardExpirationYear" placeholder="Año" data-checkout="cardExpirationYear" onselectstart="return false" onpaste="return false" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false" autocomplete="off"/>
+                        </div>
+                    </div>
+                    <div class="fecha_vencimiento">
+                        <label for="securityCode">Código de seguridad</label>
+                        <div id="codigo_seguridad">
+                            <input type="text" id="securityCode" data-checkout="securityCode" onselectstart="return false" onpaste="return false" oncopy="return false" oncut="return false" ondrag="return false" ondrop="return false" autocomplete="off"/>
+                            <i id="icono_seguridad" class="far fa-question-circle"></i>
+                        </div>
+                    </div>
+                    <div class="fecha_vencimiento">
+                        <label for="installments">Cuotas</label>
+                        <select id="installments" class="form-control" name="installments"></select>
+                    </div>
+                    <div class="fecha_vencimiento">
+                        <label for="docType">Tipo de documento</label>
+                        <select id="docType" data-checkout="docType"></select>
+                    </div>
+                    <div>
+                        <label for="docNumber">Número de documento</label>
+                        <input type="text" id="docNumber" data-checkout="docNumber"/>
+                    </div>
+                    <div>
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email"/>
+                    </div>
+
+                    <input type="hidden" name="payment_method_id" id="payment_method_id"/>
+
+                    <input id="pagar" type="submit" value="Pagar"/>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>
 
 <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
 
 <script>
-window.Mercadopago.setPublishableKey("TEST-c9d61f1c-d921-47ed-9c03-ffe2b7dd8578");
+    window.Mercadopago.setPublishableKey("TEST-c9d61f1c-d921-47ed-9c03-ffe2b7dd8578");
 
-window.Mercadopago.getIdentificationTypes();
+    window.Mercadopago.getIdentificationTypes();
 
-document.getElementById('cardNumber').addEventListener('keyup', guessPaymentMethod);
-document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
+    document.getElementById('cardNumber').addEventListener('keyup', guessPaymentMethod);
+    document.getElementById('cardNumber').addEventListener('change', guessPaymentMethod);
 
-function guessPaymentMethod(event) {
-    let cardnumber = document.getElementById("cardNumber").value;
+    function guessPaymentMethod(event) {
+        let cardnumber = document.getElementById("cardNumber").value;
 
-    if (cardnumber.length >= 6) {
-        let bin = cardnumber.substring(0,6);
-        window.Mercadopago.getPaymentMethod({
-            "bin": bin
-        }, setPaymentMethod);
-    }
-};
+        if (cardnumber.length >= 6) {
+            let bin = cardnumber.substring(0, 6);
+            window.Mercadopago.getPaymentMethod({
+                "bin": bin
+            }, setPaymentMethod);
+        }
+    };
 
-function setPaymentMethod(status, response) {
-    if (status == 200) {
-        let paymentMethodId = response[0].id;
-        let element = document.getElementById('payment_method_id');
-        element.value = paymentMethodId;
-        getInstallments();
-    } else {
-        var error = document.getElementById('error');
-        error.textContent = `payment method info error: ${response}`;
-    }
-}
-
-function getInstallments(){
-    window.Mercadopago.getInstallments({
-        "payment_method_id": document.getElementById('payment_method_id').value,
-        "amount": parseFloat('{{total}}')
-        
-    }, function (status, response) {
+    function setPaymentMethod(status, response) {
         if (status == 200) {
-            document.getElementById('installments').options.length = 0;
-            response[0].payer_costs.forEach( installment => {
-                let opt = document.createElement('option');
-                opt.text = installment.recommended_message;
-                opt.value = installment.installments;
-                document.getElementById('installments').appendChild(opt);
-            });
+            let paymentMethodId = response[0].id;
+            let element = document.getElementById('payment_method_id');
+            element.value = paymentMethodId;
+            getInstallments();
         } else {
             var error = document.getElementById('error');
-            error.textContent = `installments method info error: ${response}`;
+            error.textContent = `payment method info error: ${response}`;
         }
-    });
-}    
-
-doSubmit = false;
-document.querySelector('#pay').addEventListener('submit', doPay);
-
-function doPay(event){
-    event.preventDefault();
-    if(!doSubmit){
-        var $form = document.querySelector('#pay');
-
-        window.Mercadopago.createToken($form, sdkResponseHandler);
-
-        return false;
     }
-};
 
-function sdkResponseHandler(status, response) {
-    if (status != 200 && status != 201) {
-        var error = document.getElementById('error');
-        error.textContent = "verifica los datos ingresados";
-    } else{
-        var form = document.querySelector('#pay');
-        var card = document.createElement('input');
-        card.setAttribute('name', 'token');
-        card.setAttribute('type', 'hidden');
-        card.setAttribute('value', response.id);
-        form.appendChild(card);
-        doSubmit=true;
-        form.submit();
+    function getInstallments() {
+        window.Mercadopago.getInstallments({
+            "payment_method_id": document.getElementById('payment_method_id').value,
+            "amount": parseFloat('{{ total }}')
+
+        }, function (status, response) {
+            if (status == 200) {
+                document.getElementById('installments').options.length = 0;
+                response[0].payer_costs.forEach(installment => {
+                    let opt = document.createElement('option');
+                    opt.text = installment.recommended_message;
+                    opt.value = installment.installments;
+                    document.getElementById('installments').appendChild(opt);
+                });
+            } else {
+                var error = document.getElementById('error');
+                error.textContent = `installments method info error: ${response}`;
+            }
+        });
     }
-};    
-</script>            
+
+    doSubmit = false;
+    document.querySelector('#pay').addEventListener('submit', doPay);
+
+    function doPay(event) {
+        event.preventDefault();
+        if (!doSubmit) {
+            var $form = document.querySelector('#pay');
+
+            window.Mercadopago.createToken($form, sdkResponseHandler);
+
+            return false;
+        }
+    };
+
+    function sdkResponseHandler(status, response) {
+        if (status != 200 && status != 201) {
+            var error = document.getElementById('error');
+            error.textContent = "verifica los datos ingresados";
+        } else {
+            var form = document.querySelector('#pay');
+            var card = document.createElement('input');
+            card.setAttribute('name', 'token');
+            card.setAttribute('type', 'hidden');
+            card.setAttribute('value', response.id);
+            form.appendChild(card);
+            doSubmit = true;
+            form.submit();
+        }
+    };
+</script>

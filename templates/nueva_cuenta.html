@@ -11,26 +11,27 @@
     {% include 'barra.html' %}
     <body>
         <h1>Crear cuenta nueva</h1>
-        <form method="POST"> {% csrf_token %}
+        <form method="POST">
+            {% csrf_token %}
             <div class="derecha">
                 <label>Nombre de usuario:</label>
-                {{form.username}}
-                {{form.username.errors}}
+                {{ form.username }}
+                {{ form.username.errors }}
             </div>
             <div class="izquierda">
                 <label>Correo electronico:</label>
-                {{form.email}}
-                {{form.email.errors}}
+                {{ form.email }}
+                {{ form.email.errors }}
             </div>
             <div id="contrasena" class="derecha">
                 <label>Contraseña:</label>
-                {{form.password1}}
-                {{form.password1.errors}}
+                {{ form.password1 }}
+                {{ form.password1.errors }}
             </div>
             <div class="izquierda">
                 <label>Repetir contraseña:</label>
-                {{form.password2}}
-                {{form.password2.errors}}
+                {{ form.password2 }}
+                {{ form.password2.errors }}
             </div>
             <input type="submit" id="crear_cuenta">
         </form>

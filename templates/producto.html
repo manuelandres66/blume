@@ -2,7 +2,7 @@
 {% load static %}
 <html>
     <head>
-        <title>{{joya.nombre}}</title>
+        <title>{{ joya.nombre }}</title>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/producto.css' %}" rel="stylesheet" type="text/css">
@@ -10,37 +10,37 @@
     {% include 'barra.html' %}
     <body>
         <div class="imagen">
-            <img id="imagen-imagen" src="/{{joya.imagen}}">
+            <img id="imagen-imagen" src="/{{ joya.imagen }}">
         </div>
         <div class="informacion">
-            <h1 id="titulo_informacion">{{joya.nombre}}</h1>
+            <h1 id="titulo_informacion">{{ joya.nombre }}</h1>
             <div class="precio">
-                <h3 id="precio_precio">${{precio}}</h3>
-                <h6 id="stock">{{stock}}</h6>
+                <h3 id="precio_precio">${{ precio }}</h3>
+                <h6 id="stock">{{ stock }}</h6>
             </div>
             <div class="botones">
                 <button id="boton_comprar">Compar Ahora</button>
                 <button id="boton_carrito">Al Carrito</button>
-                <i id="existente">{{mensaje}}</i>
+                <i id="existente">{{ mensaje }}</i>
             </div>
             <div class="especificaciones">
                 <div class="material">
                     <h6>Material:</h6>
-                    <h5>{{joya.material}}</h5>
+                    <h5>{{ joya.material }}</h5>
                 </div>
                 <div id="piedra" class="material">
                     <h6>Piedra(s):</h6>
-                    <h5>{{joya.piedra}}</h5>
+                    <h5>{{ joya.piedra }}</h5>
                 </div>
             </div>
         </div>
         <div class="descripcion">
             <h3>Descripción</h3>
-            <p>{{joya.descripcion}}</p>
+            <p>{{ joya.descripcion }}</p>
         </div>
-        <h6 id="id_joya" style="display: none;">{{joya.id}}</h6>
-        
+        <h6 id="id_joya" style="display: none;">{{ joya.id }}</h6>
+
         <script defer type="text/javascript" src="{% static 'javascript/producto.js' %}"></script>
-        
+
     </body>
 </html>

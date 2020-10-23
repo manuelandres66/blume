@@ -11,24 +11,26 @@
     {% include 'barra.html' %}
     <body>
         <h1 class="titulo-login">Por Favor, Inicie Sesión</h1>
-        <p id="error">{{error}}</p>
+        <p id="error">{{ error }}</p>
         <form method="POST">{% csrf_token %}
             <div class="entrada">
                 <label>Usuario:</label>
-                {{form.usuario}}
+                {{ form.usuario }}
             </div>
             <div class="entrada">
                 <label>Contraseña:</label>
-                {{form.password}}
+                {{ form.password }}
             </div>
             {% if request.GET.next %}
-                <input type="hidden" name="next" value="{{request.GET.next}}">
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
             {% endif %}
             <div class="entrada">
                 <input type="submit" value="Ingresar" id="enviar">
             </div>
         </form>
-        <p id="crearcuenta">¿No tienes una cuenta? <a href="/login/cuenta_nueva">Crea Una</a></p>
+        <p id="crearcuenta">¿No tienes una cuenta?
+            <a href="/login/cuenta_nueva">Crea Una</a>
+        </p>
     </body>
 
 </html>

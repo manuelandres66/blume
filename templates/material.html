@@ -11,42 +11,49 @@
     </head>
     <body>
         <div id="titulo_div" class="titulo">
-            <h1 id="titulo_general">Productos de {{material}}</h1>
+            <h1 id="titulo_general">Productos de
+                {{ material }}</h1>
         </div>
         <div id="all_products">
             <div class="mas_vendidos">
                 <h3>Más Vendidos</h3>
                 <div class="mas_vendidos_div">
-                {% for vendido in mas_vendidos %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
-                {% endfor %}
+                    {% for vendido in mas_vendidos %}
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="mas_vendidos">
                 <h3>Aretes</h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in aretes %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
-            </div> 
+            </div>
             <div class="mas_vendidos">
                 <h3>Collares</h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in collares %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
@@ -54,11 +61,13 @@
                 <h3>Pulseras</h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in pulseras %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
@@ -66,11 +75,13 @@
                 <h3>Anillos</h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in anillos %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
@@ -78,11 +89,13 @@
                 <h3>Otros</h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in otros %}
-                    <div class="vendido"><a href="/joya/{{vendido.material}}/{{vendido.tipo}}/{{vendido.id}}">
-                        <img class="vendido_imagen" src="/{{vendido.imagen}}">
-                        <h4 class="vendido_precio precios">{{vendido.precio}}</h4>
-                        <h5 class="vendido_nombre">{{vendido.nombre}}</h5>
-                    </a></div>
+                        <div class="vendido">
+                            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </a>
+                        </div>
                     {% endfor %}
                 </div>
             </div>

@@ -23,5 +23,6 @@ urlpatterns  = [
     path('checkout/check/', views.check),
 
     path('tusenvios/', views.pagina_envios),
-    path('terminos_condiciones/', views.condiciones)
+    path('terminos_condiciones/', views.condiciones),
+    path('sobre_nosotros/', views.nostros)
 ]

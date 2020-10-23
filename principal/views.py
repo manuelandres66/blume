@@ -36,6 +36,11 @@ def productos(request):
 def condiciones(request):
     return render(request, 'terminos_condiciones.html')
 
+def nostros(request):
+    mas_vendidos = Joya.objects.all().order_by('-vistas')[:4]
+    ctx = {'productos' : mas_vendidos}
+    return render(request, 'sobre_nosotros.html', ctx)
+
 
 #Logica
 def pagina_envios(request):

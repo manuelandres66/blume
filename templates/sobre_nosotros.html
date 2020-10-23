@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Sobre Nostros</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/sobre_nosotros.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+    </head>
+    {% include 'barra.html' %}
+    <body>
+        <div>
+            <div>
+                <h3>¿Quién soy?</h3>
+                <img src="{% static 'images/tia.jpg' %}" alt="Diseñadora">
+                <div>
+                    <div>
+                        <h3>Veronica Moncayo</h3>
+                        <h5>Diseñadora de Joyas</h5>
+                    </div>
+                    <div>
+                        <p>Nace en la ciudad de pasto, Nariño. Inicialmente estudia diseño industrial, realiza los 3 niveles Joyería en la escuela Macorlyn Joyeros en la ciudad de Bogotá. En el año 94 viaja a Florencia Italia, para formarse en diseño de joyas, engaste de piedras y modelado en cera. En la escuela Fuji Studio y Scuola Arrais.</p>
+                        <p>En el año de 1996 empieza a trabajar como docente de la facultad de Artes Universidad de Nariño hasta el año 2004. En el 2005 viaja a España dónde estudia Gemología en la facultad de minas de la universidad de Oviedo. En el 2009 constituye Blume diseño, hasta la actualidad.</p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3>¿Comó Contactarnos?</h3>
+                <div>
+                    <div>
+                        <h5>Telefono:</h5>
+                        <h4>3006535061</h4>
+                    </div>
+                    <i class="fab fa-whatsapp-square"></i>
+                </div>
+                <div>
+                    <div>
+                        <h5>Facebook:</h5>
+                        <h4>Blume Diseño</h4>
+                    </div>
+                    <i class="fab fa-facebook-square"></i>
+                </div>
+                <div>
+                    <div>
+                        <h5>Instagram:</h5>
+                        <h4>@blumejoyeria</h4>
+                    </div>
+                    <i class="fab fa-instagram-square"></i>
+                </div>
+                <div>
+                    <div>
+                        <h5>Email:</h5>
+                        <h4>blumeoroplata</h4>
+                    </div>
+                    <i class="fas fa-envelope-square"></i>
+                </div>
+            </div>
+            <div>
+                {% for vendido in productos %}
+                <div>
+                    <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                        <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                        <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                        <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Misión de la empresa</h3>
+                <img src="{% static 'images/logo_principal.png' %}">
+                <p>Blume diseño, es una pequeña empresa dedicada al diseño y Fabricación de joyas en oro o plata con Piedras naturales certificadas. Llevamos 25 años  trabajando, nuestras joyas son de autor, creadas por la diseñadora y gemóloga Verónica Moncayo. Nos encontramos en la ciudad de Pasto, ubicada al sur occidente colombiano, al pie del volcán Galeras.</p>
+            </div>
+        </div>
+    </body>
+</html>
