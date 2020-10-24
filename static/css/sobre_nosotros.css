@@ -1,0 +1,120 @@
+.all {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 42vh);
+    font-family: 'Sora', sans-serif;
+}
+
+.quien_soy {
+    grid-row: 1;
+    grid-column: 1;
+}
+
+.contactos {
+    background-color: #447ab6;
+    grid-row: 1;
+    grid-column: 2;
+    color: #fff;
+}
+
+.productos {
+    background-color: #447ab6;
+    grid-row: 2;
+    grid-column: 1;
+}
+
+.empresa {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.quien_titulo {
+    font-size: 35px;
+    font-weight: 300;
+    margin-top: 2vh;
+    margin-left: 2.5vw;
+}
+
+#quien_imagen {
+    width: 10vw;
+    border-radius: 200px;
+    border: solid 4px #1d3754;
+    margin-left: 2vw;
+    display: inline-block;
+    position: relative;
+    bottom: 3vh;
+}
+
+.quien_informacion {
+    display: inline-block;
+    width: 65%;
+    margin-left: 2vw;
+}
+
+.quien_diseñadora {
+    margin-top: 3vh;
+}
+
+.quien_diseñadora h3 {
+    font-size: 35px;
+    font-weight: 300;
+}
+
+.quien_diseñadora h5 {
+    font-size: 20px;
+    font-weight: 300;
+    padding-left: 0.2vw;
+}
+
+.quien_parrafos {
+    margin-top: 2vh;
+    margin-left: 0.2vw;
+}
+
+.quien_parrafos p {
+    margin-bottom: 1vh;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: justify;
+}
+
+.contactos_contenedor {
+    margin-left: 2.5vw;
+    margin-top: 5vh;
+}
+
+.contactos_contenedor div {
+    display: inline-block;
+    color: #fff;
+}
+
+.contactos h5 {
+    font-size: 25px;
+    font-weight: 200;
+}
+
+.contactos h4 {
+    font-size: 35px;
+    font-weight: 300; 
+}
+
+.contactos i {
+    font-size: 65px;
+}
+
+#contactos_telefonos i {
+    margin-left: 2.9vw;
+}
+
+#contactos_facebook i{
+    margin-left: 1.55vw;
+}
+
+#contactos_instagram i, #contactos_email i{
+    margin-left: 0.7vw;
+}
+
+#contactos_facebook, #contactos_email {
+    margin-left: 4vw;
+}
+

@@ -43,6 +43,7 @@ def nostros(request):
 
 
 #Logica
+@login_required(login_url="/login/")
 def pagina_envios(request):
     usuario = User.objects.get(username=request.user)
     tus_envios = Envios.objects.filter(propietario=usuario).order_by('-fecha_pedido')
