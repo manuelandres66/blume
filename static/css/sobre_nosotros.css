@@ -21,6 +21,7 @@
     background-color: #447ab6;
     grid-row: 2;
     grid-column: 1;
+    color: #fff;
 }
 
 .empresa {
@@ -118,3 +119,72 @@
     margin-left: 4vw;
 }
 
+.vendidos {
+    margin-top: 3.5vh;
+    margin-left: 2.5vw;
+}
+
+.vendido {
+    color: #000;
+    background-color: #fff;
+    border-radius: 10px;
+    border: solid 1.5px #afafaf;
+    width: 8.5vw;
+    min-height: 20vh;
+    display: inline-block;
+    margin-right: 2.5vw;
+}
+
+.vendido_imagen {
+    width: 4.5vw;
+    height: 8vh;
+    object-fit: contain;
+    margin: auto;
+    display: block;
+    margin-top: 1.5vh;
+}
+
+.vendido_precio {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: right;
+    margin-top: 1.5vh;
+    margin-right: 1vw;
+}
+
+.vendido_nombre {
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 1vw;
+    margin-top: 0.8vh;
+}
+
+.empresa img {
+    height: 12.5vh;
+    margin-left: 1.9vw;
+    margin-top: 2vh;
+}
+
+.empresa p {
+    font-size: 20px;
+    font-weight: 300;
+    margin-left: 2.5vw;
+    width: 45vw;
+    text-align: justify;
+    margin-top: 2vh;
+}
+
+.terminos {
+    background-color: #1d3754;
+    height: 5.9vh;
+}
+
+.terminos a {
+    font-size: 25px;
+    font-weight: 300;
+    font-family: 'Sora', sans-serif;
+    color: #fff;
+    display: block;
+    text-align: center;
+    padding-top: 1.4vh;
+}

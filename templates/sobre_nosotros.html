@@ -61,15 +61,24 @@
                 </div>
             </div>
             <div class="productos">
-                {% for vendido in productos %}
-                <div>
+                <h3 class="quien_titulo">Continua tu compra</h3>
+                <div class="vendidos">
+                    {% for vendido in productos %}
                     <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
-                        <img class="vendido_imagen" src="/{{ vendido.imagen }}">
-                        <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
-                        <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                        <div class="vendido">
+                            <img class="vendido_imagen" src="/{{ vendido.imagen }}" alt="joya_imagen">
+                            <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                            <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                        </div>
                     </a>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+                <script>
+                    var precios = document.getElementsByClassName('precios');
+                    for (let i = 0; i < precios.length; i++) {
+                        precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                    };
+                </script>
             </div>
             <div class="empresa">
                 <h3 class="quien_titulo">Misión de la empresa</h3>
@@ -77,7 +86,7 @@
                 <p>Blume diseño, es una pequeña empresa dedicada al diseño y Fabricación de joyas en oro o plata con Piedras naturales certificadas. Llevamos 25 años  trabajando, nuestras joyas son de autor, creadas por la diseñadora y gemóloga Verónica Moncayo. Nos encontramos en la ciudad de Pasto, ubicada al sur occidente colombiano, al pie del volcán Galeras.</p>
             </div>
         </div>
-        <div>
+        <div class="terminos">
             <a href="/terminos_condiciones">Ver Terminos y Condiciones y Politica de privacidad</a>
         </div>
     </body>
