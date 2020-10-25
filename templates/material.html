@@ -4,15 +4,14 @@
 <html>
     {% include 'barra.html' %}
     <head>
-        <title>Productos de Oro</title>
+        <title>Productos de {{material}}</title>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
     </head>
     <body>
         <div id="titulo_div" class="titulo">
-            <h1 id="titulo_general">Productos de
-                {{ material }}</h1>
+            <h1 id="titulo_general">Productos de {{ material }}</h1>
         </div>
         <div id="all_products">
             <div class="mas_vendidos">
@@ -30,7 +29,7 @@
                 </div>
             </div>
             <div class="mas_vendidos">
-                <h3>Aretes</h3>
+                <h3><a href="/joya/{{material}}/aretes/">Aretes</a></h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in aretes %}
                         <div class="vendido">
@@ -44,7 +43,7 @@
                 </div>
             </div>
             <div class="mas_vendidos">
-                <h3>Collares</h3>
+                <h3><a href="/joya/{{material}}/collares/">Collares</a></h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in collares %}
                         <div class="vendido">
@@ -58,7 +57,7 @@
                 </div>
             </div>
             <div class="mas_vendidos">
-                <h3>Pulseras</h3>
+                <h3><a href="/joya/{{material}}/pulseras/">Pulseras</a></h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in pulseras %}
                         <div class="vendido">
@@ -72,7 +71,7 @@
                 </div>
             </div>
             <div class="mas_vendidos">
-                <h3>Anillos</h3>
+                <h3><a href="/joya/{{material}}/anillos/">Anillos</a></h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in anillos %}
                         <div class="vendido">
@@ -86,7 +85,7 @@
                 </div>
             </div>
             <div class="mas_vendidos">
-                <h3>Otros</h3>
+                <h3><a href="/joya/{{material}}/otros/">Otros</a></h3>
                 <div class="mas_vendidos_div">
                     {% for vendido in otros %}
                         <div class="vendido">
@@ -109,7 +108,7 @@
 
         var titulo = document.getElementById('titulo_general');
         var divimg = document.getElementById('titulo_div');
-        if (titulo.textContent == "Productos de oro") {
+        if (titulo.textContent.slice(-1)== "o") {
             divimg.style.backgroundImage = "url('/static/images/o.jpeg')";
             divimg.style.backgroundPosition = "center";
             titulo.style.color = "#fff";

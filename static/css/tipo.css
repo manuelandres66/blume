@@ -1,0 +1,109 @@
+body {
+    background-color: #cacaca;
+}
+
+.titulo {
+    height: 20vh;
+    width: 100%;
+}
+
+#titulo_general {
+    font-family: 'Sora', sans-serif;
+    font-size: 50px;
+    padding-top: 5vh;
+    text-align: center;
+}
+
+.productos {
+    margin-top: 10vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vendido {
+    background-color: #fff;
+    display: inline-block;
+    width: 12vw;
+    border-radius: 10px;
+    border: solid 1.5px #868686;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-bottom: 3vh;
+    transition: box-shadow 0.5s;
+}
+
+.vendido:hover {
+    box-shadow: 1px 4px 3px gray;
+}
+
+.vendido_imagen {
+    height: 15vh;
+    width: 8vw;
+    object-fit: contain;
+    margin: auto;
+    margin-top: 1.5vh;
+    margin-left: 2vw;
+}
+
+.vendido_precio {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    font-weight: 300;
+    color: black;
+    margin-top: 1.5vh;
+    text-align: right;
+    padding-right: 1.5vw;
+}
+
+.vendido_nombre {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: black;
+    margin-top: 1vh;
+    margin-bottom: 3vh;
+    text-align: right;
+    padding-right: 1.5vw;
+    padding-left: 1.5vw;
+}
+
+@media screen and (max-width: 1112px) {
+    .vendido {
+        width: 34vw;
+        height: 23vh;
+    }
+    .vendido_precio {
+        font-size: 18px;
+    }
+    .vendido_nombre {
+        font-size: 12px;
+    }
+    .vendido_imagen {
+        width: 20vw;
+        height: 11vh;
+    }
+    #titulo_general {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 781px) {
+    .titulo {
+        position: relative;
+        bottom: 11vh;
+        width: 84vw;
+        height: 11vh;
+        float: right;
+    }
+
+    #titulo_general {
+        font-size: 30px;
+        position: relative;
+        bottom: 2vh;
+    }
+
+    .productos {
+        margin-top: 15vh;
+    }
+}

@@ -34,6 +34,10 @@ body {
     color: #1d3754;
 }
 
+.mas_vendidos h3 a {
+    color: #1d3754;
+}
+
 .mas_vendidos_div {
     margin-left: 10vw;
     margin-top: 2vh;
@@ -88,11 +92,8 @@ body {
 
 @media screen and (max-width: 1083px) {
     .titulo {
-        position: relative;
-        bottom: 11vh;
-        width: 84vw;
-        height: 11vh;
-        float: right;
+        width: 100%;
+        position: static;
     }
 
     .titulo h1 {
@@ -102,8 +103,7 @@ body {
     }
 
     #all_products {
-        margin-left: 3vw;
-        width: 94vw;
+        margin-top: 15vh;
     }
 
     .mas_vendidos h3{
@@ -186,13 +186,18 @@ body {
     }
 }
 
-@media screen and (min-width: 780px) and (max-width: 1083px) {
+@media screen and (max-width: 780px) {
     .titulo {
-        width: 100%;
-        position: static;
+        position: relative;
+        bottom: 11vh;
+        width: 84vw;
+        height: 11vh;
+        float: right;
     }
 
     #all_products {
-        margin-top: 15vh;
+        margin-left: 3vw;
+        width: 94vw;
     }
+    
 }

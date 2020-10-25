@@ -41,6 +41,10 @@ def nostros(request):
     ctx = {'productos' : mas_vendidos}
     return render(request, 'sobre_nosotros.html', ctx)
 
+def tipo(request, material, tipo):
+    productos = Joya.objects.filter(material=material, tipo=tipo).order_by('-vistas')
+    ctx = {'productos' : productos, 'material' : material, 'tipo' : tipo}
+    return render(request, 'tipo.html', ctx)
 
 #Logica
 @login_required(login_url="/login/")

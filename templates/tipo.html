@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>{{tipo}} de {{material}}</title>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/tipo.css' %}" rel="stylesheet" type="text/css">
+    </head>
+    {% include 'barra.html' %}
+    <body>
+        <div id="titulo_div" class="titulo" style="background-image: url('/static/images/{{material}}_{{tipo}}.jpeg');">
+            <h1 id="titulo_general">{{tipo}} de {{ material }}</h1>
+            <script>
+                var titulo = document.getElementById('titulo_general');
+                var primera = titulo.textContent[0].toUpperCase();
+                titulo.textContent = primera + titulo.textContent.slice(1);
+            </script>
+        </div>
+        <div class="productos">
+            {% for vendido in productos %}
+            <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                <div class="vendido">
+                    <img class="vendido_imagen" src="/{{ vendido.imagen }}">
+                    <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                    <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <script>
+            var precios = document.getElementsByClassName('precios');
+            for (let i = 0; i < precios.length; i++) {
+                precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+            };
+        </script>
+    </body>
+</html>
