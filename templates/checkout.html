@@ -35,21 +35,19 @@
                         <input type="submit" value="Continuar">
                     </div>
                 {% else %}
-                    <div>
+                    <div class="pays">
                         <a href="/checkout/tarjeta/?envio={{ id }}">
-                            <div>Pagar con Tarjeta</div>
+                            <div class="pay">Pagar con Tarjeta</div>
                         </a>
                         <a href="/checkout/ticket/efecty/?envio={{ id }}">
-                            <div>Pagar con Efecty</div>
+                            <div class="pay" id="efecty_pay">Pagar con Efecty</div>
                         </a>
                         <a href="/checkout/ticket/baloto/?envio={{ id }}">
-                            <div>Pagar con baloto</div>
+                            <div class="pay" id="baloto_pay">Pagar con Baloto</div>
                         </a>
-                        <a>
-                            <div>Pagar con Nequi</div>
-                        </a>
+                    </div>
                     {% endif %}
-                </div>
+            </div>
             </form>
 
             <div class="articulos">

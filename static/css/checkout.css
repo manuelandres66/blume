@@ -239,6 +239,34 @@ body {
     font-size: 40px;
 }
 
+.pays {
+    margin-top: 4.5vh;
+    margin-left: 5%;
+    width: 90%;
+}
+
+.pay {
+    background-color: #447ab6;
+    margin-bottom: 2vh;
+    height: 3vh;
+    border-radius: 50px;
+    font-family: 'Sora', sans-serif;
+    text-align: center;
+    color: #fff;
+    padding-top: 0.5vh;
+    font-size: 20px;
+}
+
+#efecty_pay {
+    background-color: #1d3754;
+}
+
+#baloto_pay {
+    background-color: #fff;
+    border: 3px solid #447ab6;
+    color: #000;
+}
+
 @media only screen and (max-width: 1242px) {
     .info, .pagar {
         margin-left: 5vw;
@@ -314,5 +342,10 @@ body {
 
     #total_titulo, #total_precio{
         font-size: 30px;
+    }
+
+    .pay {
+        font-size: 15px;
+        padding-top: 0.2vh;
     }
 }
