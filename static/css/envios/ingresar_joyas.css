@@ -1,0 +1,66 @@
+.titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 45px;
+    text-align: center;
+    margin-top: 10vh;
+    margin-bottom: 7vh;
+    color: #1d3754;
+}
+
+form {
+    margin-left: 30vw;
+}
+
+label {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    display: block;
+    margin-bottom: 1vh;
+}
+
+input, select {
+    width: 40vw;
+    height: 2.5vh;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    border-radius: 15px;
+    border: 1px solid #1d3754;
+    outline: none;
+    padding-left: 1vw;
+    margin-bottom: 5vh;
+}
+
+input[name="imagen"] {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    width: auto;
+    height: auto;
+}
+
+textarea {
+    width: 40vw;
+    height: 15vh;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    border-radius: 15px;
+    border: 1px solid #1d3754;
+    resize: none;
+    margin-bottom: 5vh;
+    outline: none;
+}
+
+input[type="submit"] {
+    display: block;
+    background-color: #1d3754;
+    color: #fff;
+    height: 4vh;
+    font-size: 25px;
+    -moz-appearance:textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
