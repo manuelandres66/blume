@@ -57,6 +57,8 @@ input[type="submit"] {
     height: 4vh;
     font-size: 25px;
     -moz-appearance:textfield;
+    cursor: pointer;
+    width: 41vw;
 }
 
 input[type=number]::-webkit-inner-spin-button,
