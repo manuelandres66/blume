@@ -47,7 +47,7 @@
                                 {% if subitem.envio == envio %}
                                     <a href="/joya/{{ subitem.producto.material }}/{{ subitem.producto.tipo }}/{{ subitem.producto.id }}">
                                         <div class="producto">
-                                            <img src="/{{ subitem.producto.imagen }}">
+                                            <img src="/{{ subitem.producto.imagen }}" alt="producto">
                                             <h3 class="producto_nombre">{{ subitem.producto.nombre }}</h3>
                                             <div class="precio_cantidad">
                                                 <h3 class="producto_precio">{{ subitem.producto.precio }}</h3>
