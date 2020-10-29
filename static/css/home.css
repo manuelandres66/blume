@@ -3,10 +3,11 @@
 }
 
 .imagen img {
-    width: 1389px;
-    height: 277px;
-    object-fit: contain;
+    width: 72.344vw;
+    height: 25.648vh;
+    object-fit: cover;
     margin-left: 13.83vw;
+    object-position: top;
 }
 
 .imagen i {
