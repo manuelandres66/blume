@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 
 {% load static %}
-<html>
+<html lang="es">
     {% include 'barra.html' %}
     <head>
         <title>Productos de {{material}}</title>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/material.css' %}" rel="stylesheet" type="text/css">
+        <meta name="description" content="Productos de {{material}}. De alta calidad.">
     </head>
     <body>
         <div id="titulo_div" class="titulo">

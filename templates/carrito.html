@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 
 {% load static %}
-<html>
+<html lang="es">
     <head>
         <title>Carrito de
             {{ request.user }}</title>
         <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="{% static 'css/carrito.css' %}" rel="stylesheet" type="text/css">
+
+        <meta name="description" content="Este es tu carro de compras. Disfrutalo !">
     </head>
     {% include 'barra.html' %}
     <body>
