@@ -5,11 +5,29 @@
         <title>Blume Diseño</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="robots" content="index,follow"/>
+        <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link href="{% static 'css/home.css' %}" rel="stylesheet" type="text/css">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
     </head>
     {% include 'barra.html' %}
     <body>
         <div>
-            <img src="{% static 'images/plata.jpeg' %}">
+            <div class="imagen">
+                <i class="fas fa-arrow-circle-left" id="flecha_izquierda" onclick="cambiar(false);"></i>
+                <img src="{% static 'images/banner_1.png' %}" id="imagen_1" alt="banneruno">
+                <img src="{% static 'images/oro.jpeg' %}" id="imagen_2" style="display: none;" alt="bannerdos">
+                <img src="{% static 'images/plata_fondo.jpg' %}" id="imagen_3" style="display: none;" alt="bannertres">
+                <img src="{% static 'images/oro_fondo.jpg' %}" id="imagen_4" style="display: none;" alt="bannercuatro">
+                <i class="fas fa-arrow-circle-right" id="flecha_derecha" onclick="cambiar(true);" ></i>
+            </div>
+            <div class="barra_imagen">
+                <i class="fas fa-circle" id="img_1"></i>
+                <i class="fas fa-circle" id="img_2"></i>
+                <i class="fas fa-circle" id="img_3"></i>
+                <i class="fas fa-circle" id="img_4"></i>
+            </div>
+            <script src="{% static 'javascript/home.js' %}"></script>
         </div>
     </body>
 </html>
