@@ -41,3 +41,30 @@
 #img_1 {
     color: #447ab6;
 }
+
+.apartado {
+    background-color: #447ab6;
+    width: 100%;
+    margin-top: 5vh;
+}
+
+.apartado h1, .apartado h2, .apartado h3 {
+    font-family: 'Sora', sans-serif;
+    font-size: 25px;
+    font-weight: normal;
+    color: #fff;
+    margin-left: 3.5vw;
+    padding: 0.5vh 0;
+}
+
+.productos {
+    margin-left: 3.5vw;
+    width: 93vw;
+    margin-top: 2.5vh;
+}
+
+.producto_titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 35px;
+    color: #1d3754;
+}
