@@ -38,6 +38,45 @@
                 </div>
                 <div class="productos">
                     <h3 class="producto_titulo">Más Vendidos de La Página</h3>
+                    <div class="vendidos">
+                        {% for vendido in mas_joyas %}
+                        <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                            <div class="vendido">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}" alt="vendido">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="productos">
+                    <h3 class="producto_titulo">Más Vendidos de Oro</h3>
+                    <div class="vendidos">
+                        {% for vendido in mas_oro %}
+                        <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                            <div class="vendido">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}" alt="vendido">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="productos">
+                    <h3 class="producto_titulo">Más Vendidos de Plata</h3>
+                    <div class="vendidos">
+                        {% for vendido in mas_plata %}
+                        <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
+                            <div class="vendido">
+                                <img class="vendido_imagen" src="/{{ vendido.imagen }}" alt="vendido">
+                                <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
+                                <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
             <div class="apartado">
@@ -46,6 +85,12 @@
             <div class="apartado">
                 <h3>Productos de Plata</h3>
             </div>
+            <script>
+                var precios = document.getElementsByClassName('precios');
+                for (let i = 0; i < precios.length; i++) {
+                    precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                };
+            </script>
         </div>
     </body>
 </html>

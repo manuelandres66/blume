@@ -16,10 +16,10 @@ import json
 
 #Diseño, No mucha Logica.
 def home(request):
-    joyas = Joya.objects.all().order_by('-vistas')[:5]
+    joyas = Joya.objects.all().order_by('-vistas')[:6]
     oro = Joya.objects.filter(material='oro').order_by('-vistas')[:5]
-    plata = Joya.objects.filter(material='oro').order_by('-vistas')[:5]
-    ctx = {'joyas': joyas, 'oro' : oro, 'plata': plata}
+    plata = Joya.objects.filter(material='plata').order_by('-vistas')[:5]
+    ctx = {'mas_joyas': joyas, 'mas_oro' : oro, 'mas_plata': plata}
     return render(request, 'home.html', ctx)  # En proceso
 
 def oro(request, material):
