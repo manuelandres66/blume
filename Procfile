@@ -1,1 +1,1 @@
-web: gunicorn blume.wsgi --log-file -
+web: gunicorn blume.wsgi --timeout 70 --keep-alive 15 --log-level debug
