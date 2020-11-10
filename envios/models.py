@@ -55,5 +55,5 @@ class Envios(models.Model):
 
 class Item_enviado(models.Model):
     envio = models.ForeignKey(Envios, on_delete=models.CASCADE)
-    producto = models.ForeignKey(Joya, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Joya, on_delete=models.RESTRICT)
     cantidad = models.PositiveIntegerField(default=1)
