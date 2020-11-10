@@ -256,7 +256,7 @@ def checkout(request):
                 Más información del envio: http://www.blume.com.co/envios/envio/?id={id_}
                 (Si no aparece ningun articulo espera 30 minutos, si aun no aparece contactate al celular del cliente)""",
                               from_='whatsapp:+14155238886',
-                              to='whatsapp:+573006535062'
+                              to='whatsapp:+573006535061'
                           )
 
                 print('Mensaje enviado:', message.sid)
