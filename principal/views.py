@@ -242,21 +242,21 @@ def checkout(request):
 
                 message = client.messages.create(
                               body=f"""¡Tienes un nuevo envio!
-                                Usuario: {usuario}
-                                Departamento: {form.cleaned_data['departamento']}
-                                Ciudad: {form.cleaned_data['ciudad']}
-                                Dirección: {form.cleaned_data['datos_adicionales']}
-                                Datos Adicionales: {form.cleaned_data['datos_adicionales']}
-                                Celular: {form.cleaned_data['telefono']}
-                                Total: {con_envio}
+                Usuario: {usuario}
+                Departamento: {form.cleaned_data['departamento']}
+                Ciudad: {form.cleaned_data['ciudad']}
+                Dirección: {form.cleaned_data['datos_adicionales']}
+                Datos Adicionales: {form.cleaned_data['datos_adicionales']}
+                Celular: {form.cleaned_data['telefono']}
+                Total: {con_envio}
                                     
-                                Verifica el estado del pago en: http://www.blume.com.co/envios/check/?envio={id_}
-                                (No envies nada hasta que el pago aparezca aprobado)
+                Verifica el estado del pago en: http://www.blume.com.co/envios/check/?envio={id_}
+                (No envies nada hasta que el pago aparezca aprobado)
                                 
-                                Más información del envio: http://www.blume.com.co/envios/envio/?id={id_}
-                                (Si no aparece ningun articulo espera 30 minutos, si aun no aparece contactate al celular del cliente)""",
+                Más información del envio: http://www.blume.com.co/envios/envio/?id={id_}
+                (Si no aparece ningun articulo espera 30 minutos, si aun no aparece contactate al celular del cliente)""",
                               from_='whatsapp:+14155238886',
-                              to='whatsapp:+573023986488'
+                              to='whatsapp:+573006535062'
                           )
 
                 print('Mensaje enviado:', message.sid)
