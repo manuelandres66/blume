@@ -9,7 +9,9 @@
         <link href="{% static 'css/pagina_envios.css' %}" rel="stylesheet" type="text/css">
         <meta name="description" content="Tus envios! Siempre para ti">
     </head>
-    {% include 'barra.html' %}
+    {% if admin == False %}
+        {% include 'barra.html' %}
+    {% endif %}
     <body>
         <div class="all">
             <h1 id="titulo_envios">Tus Envios</h1>
@@ -30,7 +32,11 @@
                         </div>
                         <div class="numero_pedido">
                             <h5>Pedido N°{{ envio.token }}</h5>
+                            {% if admin == False %}
                             <a href="/checkout/check/?envio={{ envio.id }}">Ver estado del pedido</a>
+                            {% else %}
+                            <a href="/envios/check/?envio={{ envio.id }}">Ver estado del pedido</a>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="productos">

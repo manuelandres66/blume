@@ -12,6 +12,9 @@ from django.contrib.auth.models import User
 import datetime
 import requests as res
 import json
+import os
+from twilio.rest import Client
+
 
 
 #Diseño, No mucha Logica.
@@ -59,7 +62,7 @@ def pagina_envios(request):
             items = Item_enviado.objects.filter(envio=envio)
             todos_items.append(items)
         
-        ctx = {'envios' : tus_envios, 'items' : todos_items}
+        ctx = {'envios' : tus_envios, 'items' : todos_items, 'admin' : False}
         return render(request, 'pagina_envios.html', ctx)
     else:
         return redirect('/')
@@ -191,6 +194,11 @@ def comprar_ahora(request):
     return redirect('/checkout')
 
 
+#Cambiar a variables de entorno
+TWL_SID = 'ACfe29562f1ae4191cf0a76ff84e055dbf'
+
+TWL_TOKEN = '1860048b9cbaf88340946be9e9c888c4'
+
 @login_required(login_url="/login/")
 def checkout(request):
     usuario = User.objects.get(username=request.user)
@@ -224,11 +232,34 @@ def checkout(request):
                     direccion=form.cleaned_data['direccion'],
                     datos_adicionales=form.cleaned_data['datos_adicionales'],
                     celular=form.cleaned_data['telefono'],
-                    llega=datetime.datetime.now() + datetime.timedelta(days=5),
+                    llega=datetime.datetime.now() + datetime.timedelta(days=8),
                     valor_total=con_envio
                 )
                 crear_envio.save()
                 id_ = crear_envio.id
+
+                client = Client(TWL_SID, TWL_TOKEN)
+
+                message = client.messages.create(
+                              body=f"""¡Tienes un nuevo envio!
+                                Usuario: {usuario}
+                                Departamento: {form.cleaned_data['departamento']}
+                                Ciudad: {form.cleaned_data['ciudad']}
+                                Dirección: {form.cleaned_data['datos_adicionales']}
+                                Datos Adicionales: {form.cleaned_data['datos_adicionales']}
+                                Celular: {form.cleaned_data['telefono']}
+                                Total: {con_envio}
+                                    
+                                Verifica el estado del pago en: http://www.blume.com.co/envios/check/?envio={id_}
+                                (No envies nada hasta que el pago aparezca aprobado)
+                                
+                                Más información del envio: http://www.blume.com.co/envios/envio/?id={id_}
+                                (Si no aparece ningun articulo espera 30 minutos, si aun no aparece contactate al celular del cliente)""",
+                              from_='whatsapp:+14155238886',
+                              to='whatsapp:+573023986488'
+                          )
+
+                print('Mensaje enviado:', message.sid)
 
         ctx = {'subtotal': valor_total, 'total': con_envio,
                'productos': productos, 'form': form, 'style': style, 'id': id_}
@@ -377,41 +408,44 @@ def pse(request):
 def check(request):
     usuario = User.objects.get(username=request.user)
     envio = Envios.objects.get(id=request.GET["envio"], propietario=usuario)
+    
+    if envio.token is not None:
+        # Solicitamos estado de un pago por id
+        URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)
+        resp = res.get(URL)
+        resp = json.loads(resp.text)
 
-    # Solicitamos estado de un pago por id
-    URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)
-    resp = res.get(URL)
-    resp = json.loads(resp.text)
+        if resp['results'][0]['status'] == 'approved':
+            estilo = 1
+            envio.completado = True
+            envio.save()
 
-    if resp['results'][0]['status'] == 'approved':
-        estilo = 1
-        envio.completado = True
-        envio.save()
+        elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
+            fecha = envio.fecha_pedido + datetime.timedelta(days=5)
+            if fecha.day < datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
+                URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
+                headers = {
+                    'Content-Type': 'application/json'
+                }
+                conten = {"status": "cancelled"}
+                conten = json.dumps(conten)
+                res.put(URL, headers=headers, data=conten)
 
-    elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
-        fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-        if fecha.day < datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
-            URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
-            headers = {
-                'Content-Type': 'application/json'
-            }
-            conten = {"status": "cancelled"}
-            conten = json.dumps(conten)
-            res.put(URL, headers=headers, data=conten)
+            estilo = 2
+            envio.completado = False
+            envio.save()
 
-        estilo = 2
-        envio.completado = False
-        envio.save()
+        else:
+            estilo = 3
+            envio.completado = False
+            envio.save()
 
+        termina_en = '0000'
+        if bool(resp['results'][0]['card']): #Comprobamos que si es tarjeta de credito mostramos los 4 ultimos digitos
+            termina_en = resp['results'][0]['card']['last_four_digits']
+
+        ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'],
+            'termina_en': termina_en, 'estilo': estilo}
+        return render(request, 'aprobado.html', ctx)
     else:
-        estilo = 3
-        envio.completado = False
-        envio.save()
-
-    termina_en = '0000'
-    if bool(resp['results'][0]['card']): #Comprobamos que si es tarjeta de credito mostramos los 4 ultimos digitos
-        termina_en = resp['results'][0]['card']['last_four_digits']
-
-    ctx = {'envio': envio, 'numero_compra': envio.token, 'tarjeta': resp['results'][0]['payment_method_id'],
-           'termina_en': termina_en, 'estilo': estilo}
-    return render(request, 'aprobado.html', ctx)
+        return redirect('/tusenvios/')

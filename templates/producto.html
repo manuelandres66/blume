@@ -13,7 +13,7 @@
         <div class="imagen">
             <img id="imagen-imagen" src="/{{ joya.imagen }}" alt="joya_imagen">
         </div>
-        <div class="informacion">
+        <div class="informacion" id="infoo">
             <h1 id="titulo_informacion">{{ joya.nombre }}</h1>
             <div class="precio">
                 <h3 id="precio_precio">${{ precio }}</h3>
@@ -27,11 +27,31 @@
             <div class="especificaciones">
                 <div class="material">
                     <h6>Material:</h6> 
-                    <h5>{{ joya.material }}</h5>
+                    <h5 id="material_material">{{ joya.material }}</h5>
                 </div>
                 <div id="piedra" class="material">
                     <h6>Piedra(s):</h6>
-                    <h5>{{ joya.piedra }}</h5>
+                    <h5 id="piedra_piedra">{{ joya.piedra }}</h5>
+                    <script>
+                        function pagina_rota(x) {
+                            var piedra = document.getElementById('piedra_piedra');
+                            var lentt = piedra.textContent.length;
+                            var div_piedra = document.getElementById('piedra');
+                            var todo = document.getElementById('infoo')
+                            if (lentt > 19) {
+                                if (x.matches) {
+                                div_piedra.style.marginTop = "4vh";
+                                div_piedra.style.position = "relative";
+                                div_piedra.style.right = "6vw";
+                                } else {
+                                    div_piedra.style.position = "absolute";
+                                };
+                            };
+                        }
+
+                        var x = window.matchMedia("(max-width: 1100px)")
+                        pagina_rota(x)
+                    </script>
                 </div>
             </div>
         </div>
