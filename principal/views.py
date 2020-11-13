@@ -20,8 +20,8 @@ from twilio.rest import Client
 #Diseño, No mucha Logica.
 def home(request):
     joyas = Joya.objects.all().order_by('-vistas')[:6]
-    oro = Joya.objects.filter(material='oro').order_by('-vistas')[:5]
-    plata = Joya.objects.filter(material='plata').order_by('-vistas')[:5]
+    oro = Joya.objects.filter(material='oro').order_by('-vistas')[:6]
+    plata = Joya.objects.filter(material='plata').order_by('-vistas')[:6]
     ctx = {'mas_joyas': joyas, 'mas_oro' : oro, 'mas_plata': plata}
     return render(request, 'home.html', ctx)  # En proceso
 
