@@ -241,7 +241,7 @@ def checkout(request):
                 client = Client(TWL_SID, TWL_TOKEN)
 
                 message = client.messages.create(
-                              body=f"""¡Tienes un nuevo envio!
+                              body=f"""¡Tienes un nuevo envio! 
                 Usuario: {usuario}
                 Departamento: {form.cleaned_data['departamento']}
                 Ciudad: {form.cleaned_data['ciudad']}

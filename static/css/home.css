@@ -122,3 +122,147 @@
     padding-right: 1.5vw;
     padding-left: 1.5vw;
 }
+
+@media screen and (max-width: 1075px) {
+    .apartado {
+        height: 5vh;
+    }
+
+    .apartado h1 {
+        font-size: 15px;
+        padding-top: 1.2vh;
+    }
+
+    .producto_titulo {
+        font-size: 20px;
+    }
+
+    .vendidos {
+        display: grid;
+        grid-template-rows: repeat(5, 7vh);
+        grid-template-columns: 40vw 59vw;
+    }
+
+    .vendidos a {
+        grid-column: 2;
+    }
+
+    .vendido {
+        margin-left: 0;
+        width: 57vw;
+        height: 5vh;
+    }
+
+    .vendido_imagen {
+        width: 8vw;
+        height: 4vh;
+        margin-top: 0.4vh;
+    }
+
+    .vendido_precio {
+        font-size: 10px;
+        float: right;
+    }
+
+    .vendido_nombre {
+        font-size: 9px;
+        display: inline-block;
+        margin-top: 0;
+        position: relative;
+        bottom: 2.5vh;
+        width: 50%;
+        text-align: left;
+    }
+
+    .vendidos a:last-of-type {
+        grid-column: 1 / 2;
+        grid-row: 5;
+    }
+
+    .vendidos a:last-of-type div {
+        margin-left: 2vw;
+        width: 95vw;
+    }
+
+    .vendidos a:last-of-type div h4{
+        font-size: 15px;
+        margin-top: 1vh;
+    }
+
+    .vendidos a:last-of-type div h5 {
+        font-size: 12px;
+        bottom: 2vh;
+    }
+
+    .vendidos a:first-of-type{
+        grid-column: 1;
+        grid-row: 1 / 4;
+    }
+
+    .vendidos a:first-of-type div {
+        width: 34vw;
+        height: 26vh;
+        margin-left: 2vw;
+    }
+
+    .vendidos a:first-of-type div img {
+        width: 20vw;
+        height: 16vh;
+        margin-left: 7vw;
+    }
+
+    .vendidos a:first-of-type div h4 {
+        font-size: 15px;
+        display: block;
+        position: static;
+        float: none;
+        margin-top: 0;
+
+    }
+
+    .vendidos a:first-of-type div h5 {
+        font-size: 12px;
+        display: block;
+        position: static;
+        float: none;
+        width: 100%;
+        margin-top: 1vh;
+    }
+
+    .imagen {
+        margin-top: 4vh;
+    }
+
+    .imagen img {
+        width: 92.266vw;
+        height: 10.344vh;
+        margin-left: 3.867vw;
+    }
+
+    .imagen i {
+        font-size: 30px;
+    }
+
+    .barra_imagen i {
+        font-size: 11px;
+    }
+
+    #flecha_derecha {
+        right: 2vw;
+        top: 24vh;
+    }
+
+    #flecha_izquierda {
+        left: 2vw;
+        top: 24vh;
+    }
+}
+
+
+@media screen and (max-width: 395px) {
+    .vendido_nombre {
+        width: 40%;
+        height: auto;
+        bottom: 1vh;
+    }
+}
