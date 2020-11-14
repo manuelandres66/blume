@@ -23,7 +23,7 @@ if (precio.textContent === "$0") {
     const nombre_url = nombre.replaceAll(' ', '%20');
 
     boton_carrito.onclick = function() {
-        window.location.href = "https://wa.me/+573006535061?text=Hola%20blume%2C%20me%20interesa%20saber%20sobre%20%3A%20" + nombre_url + "%20N"+ joya_id;
+        window.location.href = "https://wa.me/+573006535061?text=Hola%20blume%2C%20me%20interesa%20saber%20sobre%20%3A%20" + nombre_url + "%20N"+ joya_id.textContent;
     };
 } else {
     boton_carrito.onclick = function() {
