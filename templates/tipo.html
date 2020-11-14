@@ -32,7 +32,11 @@
         <script>
             var precios = document.getElementsByClassName('precios');
             for (let i = 0; i < precios.length; i++) {
-                precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                if (precios[i].textContent == "0") {
+                    precios[i].textContent = "Cotizar";
+                } else {
+                    precios[i].textContent = "$" + precios[i].textContent.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+                };
             };
         </script>
     </body>
