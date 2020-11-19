@@ -49,6 +49,13 @@ class Envios(models.Model):
     celular = models.BigIntegerField()
     fecha_pedido = models.DateTimeField(default=utils.timezone.now)
     llega = models.DateTimeField(default=utils.timezone.now)
+    ESTADOS = [
+        ('Completado', 'Completado'),
+        ('En envio', 'En envio'),
+        ('Para entregar', 'Para entregar'),
+        ('Retrasado', 'Retrasado')
+    ]
+    estado = models.CharField(max_length=500, choices=ESTADOS, default='Para entregar')
     valor_total = models.IntegerField()
     token = models.IntegerField(blank=True, null=True)
     completado = models.BooleanField(default=False)

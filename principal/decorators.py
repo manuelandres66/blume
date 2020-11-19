@@ -21,6 +21,6 @@ def usuarios_validos(rol=[]):
             if grupo in rol:
                 return view_func(request, *args, **kargs)
             else:
-                return redirect('/login/')
+                return redirect('/login/?next=/envios/')
         return comprobador_rol
     return decorador

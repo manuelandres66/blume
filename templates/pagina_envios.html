@@ -45,6 +45,7 @@
                                 {{ envio.llega.day }}
                                 de
                                 {{ envio.llega|date:"M" }}</h3>
+                            <h4 class="estado_productos">Estado: {{envio.estado}}</h4>
                         {% else %}
                             <h3 class="llega_productos" style="color: #f00;">El envio no se ha aprobado</h3>
                         {% endif %}

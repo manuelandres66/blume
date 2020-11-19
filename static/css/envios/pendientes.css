@@ -1,0 +1,121 @@
+#titulo {
+    font-family: 'Sora', sans-serif;
+    font-size: 60px;
+    text-align: center;
+    color: #447ab6;
+    margin-top: 4vh;
+}
+
+#numero_joya {
+    width: 38%;
+    margin-left: 30%;
+    margin-top: 5vh;
+    height: 3vh;
+    border-radius: 20px;
+    border: 1px solid rgb(112, 112, 112);
+    outline: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+#buscador i {
+    font-size: 3vh;
+    padding-left: 1vw;
+    position: relative;
+    top: .4vh;
+    cursor: pointer;
+    color: #1d3754;
+}
+
+#envios {
+    margin-top: 5vh;
+    margin-left: 15vw;
+    width: 80vw;
+}
+
+.envio {
+    width: 47%;
+    display: inline-block;
+    margin-top: 5vh;
+    padding-left: 2vw;
+}
+
+.info div {
+    display: inline-block;
+    width: 40%;
+    margin-bottom: 1vh;
+}
+
+.info h3, .info a {
+    font-family: 'Sora', sans-serif;
+    color: #000;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.info h4, label {
+    font-family: 'Sora', sans-serif;
+    color: #1d3754;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+input, select {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    margin-left: .5vw;
+    outline: none;
+}
+
+label[for="id_llega"] {
+    margin-left: 6.1vw;
+}
+
+input[type="submit"] {
+    display: block;
+    margin: 0;
+    margin-top: 1.5vh;
+    width: 80%;
+    font-family: 'Sora', sans-serif;
+    font-size: 15px;
+    background-color: #447ab6;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0.2vh 0;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+#cancelar {
+    display: block;
+    margin: 0;
+    margin-top: 1.5vh;
+    width: 80%;
+    font-size: 15px;
+    background-color: #f00;
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    padding: 0.2vh 0;
+    text-align: center;
+    cursor: pointer;
+}
+
+#cancelar h5{
+    font-family: 'Sora', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+#error {
+    font-family: 'Sora', sans-serif;
+    font-size: 40px;
+    text-align: center;
+
+}

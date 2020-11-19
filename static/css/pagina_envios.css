@@ -83,12 +83,18 @@
     width: 68vw;
 }
 
-.llega_productos {
+.llega_productos, .estado_productos {
     font-size: 25px;
     font-weight: 300;
     color: #447ab6;
     margin-top: 3vh;
     margin-bottom: 3vh;
+    display: inline-block;
+    width: 49.8%;
+}
+
+.estado_productos {
+    text-align: right;
 }
 
 .producto {
@@ -128,8 +134,6 @@
 .precio_cantidad {
     float: right;
 }
-
-
 
 @media only screen and (max-width: 1540px) {
     #titulo_envios {
@@ -198,8 +202,9 @@
         padding-right: 2vw;
     }
 
-    .llega_productos {
+    .llega_productos, .estado_productos {
         font-size: 12px;
+        width: 48%;
     }
 
     .producto_nombre, .producto_precio {

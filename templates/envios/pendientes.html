@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Envios Pendientes</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/envios/pendientes.css' %}">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+    </head>
+    {% include 'envios/barra_envios.html' %}
+    <body>
+        <h1 id="titulo">Envios</h1>
+        <div>
+            <form id="buscador">
+                <input type="number" name="numero" placeholder="Ingrese el Numero de Envio" id="numero_joya">
+                <i onclick="joyaSubmit()" class="fas fa-search"></i>
+            </form>
+            <script>
+                const joyaSubmit = () => {
+                    document.getElementById('buscador').submit();
+                }
+            </script>
+        </div>
+        <div id="envios">
+            {% for envio in envios %}
+            <div class="envio">
+                <div class="info">
+                    <div>
+                        <h4>Pedido:</h4>
+                        <h3>N°{{envio.token}}</h3>
+                    </div>
+                    <div>
+                        <h4>Fecha de pedido:</h4>
+                        <h3>{{envio.fecha_pedido | date:"d M Y"}}</h3>
+                    </div><br>
+                    <div>
+                        <h4>Valor Total:</h4>
+                        <h3>{{envio.valor_total}}</h3>
+                    </div>
+                    <div>
+                        <h4>Info pedido:</h4>
+                        <a href="/envios/envio/?id={{envio.id}}" target="_blank">Ver Más Acerca del Pedido</a>
+                    </div>
+                </div>
+                <div>
+                    <form method="POST"> {% csrf_token %}
+                        {{form}}
+                        <input type="hidden" name="id" value="{{envio.id}}">
+                        <input type="submit" value="Cambiar">
+                    </form>
+                </div>
+                <a href="/envios/check/?envio={{envio.id}}&cancelar=true"><div id="cancelar">
+                    <h5>Cancelar</h5>
+                </div></a>
+            </div>
+            {% endfor %}
+            <h3 id="error">{{error}}</h3>
+        </div>
+    </body>
+</html>

@@ -6,7 +6,7 @@ import datetime
 import requests as res
 import json
 
-from .forms import Nueva_Joya
+from .forms import Nueva_Joya, Cambiar_Envio
 from .models import Envios, Item_enviado
 
 from principal.views import ACCESS_TOKEN
@@ -48,6 +48,34 @@ def envios(request):
     todos_items = [Item_enviado.objects.filter(envio=envio)]
     ctx = {'envios' : envios, 'items' : todos_items, 'admin' : True}
     return render(request, 'pagina_envios.html', ctx)
+
+@usuarios_validos(rol=['administradores'])
+@login_required(login_url="/login/")
+def pendientes(request):
+    form = Cambiar_Envio()
+    todos_envios = Envios.objects.all().order_by('-fecha_pedido')
+    envios_utiles = []
+    error = ""
+    if 'numero' in request.GET:
+        try:
+            envios_utiles = [Joya.objects.get(token=request.GET['numero'])]
+        except:
+            envios_utiles = []
+            error = "No hay joya que coincida"
+    else:
+        if request.method == "POST":
+            form = Cambiar_Envio(request.POST)
+            if form.is_valid():
+                envio_cambiar = Envios.objects.get(id=request.POST['id'])
+                envio_cambiar.estado = form.cleaned_data['estado']
+                envio_cambiar.llega = form.cleaned_data['llega']
+                envio_cambiar.save()
+
+        for envio in todos_envios:
+            if envio.estado != "Completado":
+                envios_utiles.append(envio)
+    ctx = {'envios' : envios_utiles, 'form' : form, 'error' : error}
+    return render(request, 'envios/pendientes.html', ctx)
     
 
 
@@ -67,9 +95,9 @@ def check(request):
             envio.completado = True
             envio.save()
 
-        elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
+        elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process' or 'cancelar' in request.GET:
             fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-            if fecha.day < datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
+            if fecha.day < datetime.datetime.now().day  or 'cancelar' in request.GET:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
                 URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
                 headers = {
                     'Content-Type': 'application/json'
