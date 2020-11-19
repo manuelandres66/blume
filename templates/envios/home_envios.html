@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <title>Administración</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/envios/home.css' %}">
+        <script src="https://kit.fontawesome.com/7c5129238c.js" crossorigin="anonymous"></script>
+    </head>
+    {% include 'envios/barra_envios.html' %}
+    <body>
+        <div>
+            <form id="buscador">
+                <input type="number" name="numero" placeholder="Ingrese el numero de la joya" id="numero_joya">
+                <i onclick="joyaSubmit()" class="fas fa-search"></i>
+            </form>
+        </div>
+        <a href="/admin/principal/joya/add/"><div id="anadir">
+            <h1>Añadir joya <i class="fas fa-plus"></i></h1>
+        </div></a>
+        <div id="joyas">
+            {% for joya in joyas %}
+                <div class="joya"><a href="/admin/principal/joya/{{joya.id}}/change/">
+                    <div class="joyaInfo">
+                        <img src="/{{joya.imagen}}" alt="joyaImg">
+                        <h3>{{joya.nombre}}</h3>
+                    </div>
+                    <div class="precio">
+                        <h3 class="precios">{{joya.precio}}</h3>
+                    </div>
+                    <div class="joyaNumeros">
+                        <h4>N° {{joya.id}}</h4>
+                        <h5>Vistas: {{joya.vistas}}</h5>
+                    </div>
+                </a></div>
+            {% endfor %}
+            
+        </div>
+        <h3 id="error">{{error}}</h3>
+        <script src="{% static 'javascript/home_envios.js' %}"></script>
+    </body>
+</html>

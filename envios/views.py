@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
@@ -15,14 +15,26 @@ from principal.decorators import usuarios_validos
 
 @usuarios_validos(rol=['administradores'])
 @login_required(login_url="/login/")
+def home(request):
+    joyas = Joya.objects.all().order_by('-vistas')
+    error = ""
+    if 'numero' in request.GET:
+        try:
+            joyas = [Joya.objects.get(id=request.GET['numero'])]
+        except:
+            joyas = []
+            error = "No hay joya que coincida"
+    ctx = {'joyas' : joyas, 'error' : error}
+    return render(request, 'envios/home_envios.html', ctx)
+
+@usuarios_validos(rol=['administradores'])
+@login_required(login_url="/login/")
 def ingresar_joya(request):
     if request.method == 'POST':
         form = Nueva_Joya(request.POST, files=request.FILES)
         if form.is_valid():
             form.save()
-            return HttpResponse("""<h1>Tu joya a sido guardada</h1>
-            <a href="/envios/joya/">Entra a este link para ingresar otra</a>
-            <p>Recuerda avisarle a Manuel para que no pierdas las imagenes</p>""")
+            return redirect('/envios/')
             
     form  = Nueva_Joya()
     ctx = {'formulario' : form}

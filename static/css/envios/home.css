@@ -1,0 +1,93 @@
+#numero_joya {
+    width: 38%;
+    margin-left: 30%;
+    margin-top: 5vh;
+    height: 3vh;
+    border-radius: 20px;
+    border: 1px solid rgb(112, 112, 112);
+    outline: none;
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+form i {
+    font-size: 3vh;
+    padding-left: 1vw;
+    position: relative;
+    top: .4vh;
+    cursor: pointer;
+    color: #1d3754;
+}
+
+#joyas {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10vh;
+}
+
+.joya {
+    border-bottom: 1px solid #fff;
+    font-family: 'Sora', sans-serif;
+    width: 30%;
+    margin-left: 12%;
+    margin-top: 3vh;
+    color: #000;
+}
+
+.joyaInfo img {
+    width: 5vw;
+    height: 10vh;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.joyaInfo h3 {
+    display: inline-block;
+    position: relative;
+    bottom: 7.5vh;
+    margin-left: 1vw;
+    color: #000;
+}
+
+.precio {
+    float: right;
+    position: relative;
+    bottom: 9vh;
+    color: #000;
+}
+
+.joyaNumeros {
+    display: inline-block;
+    width: 100%;
+    text-align: right;
+    position: relative;
+    bottom: 8vh;
+    color: #000;
+}
+
+
+#anadir {
+    border-radius: 100px;
+    background-color: #447ab6;
+    width: 10vw;
+    float: right;
+    margin-right: 16vw;
+    margin-top: 5vh;
+}
+
+#anadir h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: 20px;
+    color: #fff;
+    padding: .3vh .5vw;
+    font-weight: 400;
+    text-align: center;
+}
+
+#error {
+    font-family: 'Sora', sans-serif;
+    font-size: 40px;
+    text-align: center;
+
+}
