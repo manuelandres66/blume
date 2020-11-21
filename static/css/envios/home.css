@@ -24,13 +24,13 @@ form i {
     display: flex;
     flex-wrap: wrap;
     margin-top: 10vh;
+    justify-content: space-around;
 }
 
 .joya {
     border-bottom: 1px solid #fff;
     font-family: 'Sora', sans-serif;
-    width: 30%;
-    margin-left: 12%;
+    width: 40%;
     margin-top: 3vh;
     color: #000;
 }
@@ -89,4 +89,35 @@ form i {
     font-family: 'Sora', sans-serif;
     font-size: 40px;
     text-align: center;
+}
+
+@media screen and (max-width: 1500px) {
+    #joyas {
+        justify-content: center;
+    }
+    .joya {
+        width: 90%;
+    }
+    #numero_joya {
+        width: 80%;
+        margin-left: 7%;
+        height: 5vh;
+    }
+    #anadir {
+        width: 40%;
+        margin-right: 2%;
+    }
+
+    #anadir h1 {
+        font-size: 15px;
+    }
+
+    h3 {
+        font-size: 15px;
+    }
+
+    .joyaInfo img {
+        width: 15%;
+        height: 10vh;
+    }
 }

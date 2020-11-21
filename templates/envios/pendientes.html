@@ -37,8 +37,16 @@
                         <h3>{{envio.valor_total}}</h3>
                     </div>
                     <div>
-                        <h4>Info pedido:</h4>
-                        <a href="/envios/envio/?id={{envio.id}}" target="_blank">Ver Más Acerca del Pedido</a>
+                        <h4>Info pedido:</h4> 
+                        <a href="/admin/envios/envios/{{envio.id}}/change/" target="_blank">Ver Más Acerca del Pedido</a>
+                    </div>
+                    <div>
+                        <h4>Productos:</h4>
+                        <a href="/envios/envio/?id={{envio.id}}" target="_blank">Ver productos</a>
+                    </div>
+                    <div>
+                        <h4>Estado:</h4>
+                        <a href="/envios/check/?envio={{envio.id}}" target="_blank">Ver estado</a>
                     </div>
                 </div>
                 <div>
@@ -67,8 +75,8 @@
                         
                     </script>
                 </div>
-                <!-- <a href="/envios/check/?envio={{envio.id}}&cancelar=true"><div id="cancelar">
-                    <h5>Cancelar</h5>
+                <!-- <a href="/envios/check/?envio={{envio.id}}" target="_blank"><div id="cancelar">
+                    <h5>Ver Estado</h5>
                 </div></a> -->
             </div>
             {% endfor %}

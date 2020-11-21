@@ -32,13 +32,14 @@
     margin-top: 5vh;
     margin-left: 15vw;
     width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .envio {
     width: 47%;
-    display: inline-block;
     margin-top: 5vh;
-    padding-left: 2vw;
 }
 
 .info div {
@@ -55,7 +56,7 @@
     font-weight: 500;
 }
 
-.info h4, label {
+.info h4, label { 
     font-family: 'Sora', sans-serif;
     color: #1d3754;
     font-size: 15px;
@@ -98,7 +99,7 @@ a {
     margin-top: 1.5vh;
     width: 80%;
     font-size: 15px;
-    background-color: #f00;
+    background-color: #1d3754;
     border: 0;
     border-radius: 5px;
     color: #fff;
@@ -117,5 +118,48 @@ a {
     font-family: 'Sora', sans-serif;
     font-size: 40px;
     text-align: center;
+    position: relative;
+    right: 5vw;
+}
 
+@media screen and (max-width: 1221px) {
+    #titulo {
+        font-size: 30px;
+    }
+    #numero_joya {
+        width: 80%;
+        margin-left: 7%;
+        height: 5vh;
+    }
+
+    #envios {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .envio {
+        width: 100%;
+        position: relative;
+        left: 10vw;
+    }
+
+    .envio h4 {
+        font-size: 10px;
+    }
+
+    .envio h3, .envio a {
+        font-size: 15px;
+    }
+
+    label {
+        margin-left: 0;
+        display: block;
+        margin-top: 0.3vh;
+    }
+
+    label[for="id_llega"] {
+        margin-left: 0;
+    }
 }

@@ -2,3 +2,4 @@ User-agent: *
 Disallow: /envios/
 Disallow: /login/
 Disallow: /logout/
+Disallow: /admin/

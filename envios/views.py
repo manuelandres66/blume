@@ -58,10 +58,10 @@ def pendientes(request):
     error = ""
     if 'numero' in request.GET:
         try:
-            envios_utiles = [Joya.objects.get(token=request.GET['numero'])]
+            envios_utiles = [Envios.objects.get(token=request.GET['numero'])]
         except:
             envios_utiles = []
-            error = "No hay joya que coincida"
+            error = "No hay envio que coincida"
     else:
         if request.method == "POST":
             form = Cambiar_Envio(request.POST)
@@ -70,6 +70,7 @@ def pendientes(request):
                 envio_cambiar.estado = form.cleaned_data['estado']
                 envio_cambiar.llega = form.cleaned_data['llega']
                 envio_cambiar.save()
+                return redirect('/envios/pendientes/')
 
         for envio in todos_envios:
             if envio.estado != "Completado":
@@ -96,9 +97,9 @@ def check(request):
             envio.completado = True
             envio.save()
 
-        elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process' or 'cancelar' in request.GET:
+        elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process':
             fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-            if fecha.day < datetime.datetime.now().day  or request.GET['cancelar'] == 'true':  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
+            if fecha.day < datetime.datetime.now().day:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
                 URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
                 headers = {
                     'Content-Type': 'application/json',

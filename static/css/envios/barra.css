@@ -33,3 +33,18 @@
     font-weight: 200;
     padding-right: 1vw;
 }
+
+@media screen and (max-width: 613px) {
+    #barra_titulo h3 {
+        font-size: 30px;
+    }
+
+    #barra_links a {
+        font-size: 10px;
+        position: relative;
+        bottom: 0.2vh;
+    }
+    #barra_links {
+        padding-top: 0;
+    }
+}
