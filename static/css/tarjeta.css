@@ -82,7 +82,8 @@ div {
     padding: 5px;
     width: 100%;
     height: auto;
-    margin-top: 5vh;
+    margin-top: 0;
+    margin-bottom: 5vh;
     cursor: pointer;
     outline: none;
 }

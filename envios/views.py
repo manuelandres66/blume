@@ -53,7 +53,7 @@ def envios(request):
 @login_required(login_url="/login/")
 def pendientes(request):
     form = Cambiar_Envio()
-    todos_envios = Envios.objects.all().order_by('-fecha_pedido')
+    todos_envios = Envios.objects.filter(completado=True).order_by('-fecha_pedido')
     envios_utiles = []
     error = ""
     if 'numero' in request.GET:
@@ -74,6 +74,7 @@ def pendientes(request):
         for envio in todos_envios:
             if envio.estado != "Completado":
                 envios_utiles.append(envio)
+                
     ctx = {'envios' : envios_utiles, 'form' : form, 'error' : error}
     return render(request, 'envios/pendientes.html', ctx)
     
@@ -97,14 +98,14 @@ def check(request):
 
         elif resp['results'][0]['status'] == 'pending' or resp['results'][0]['status'] == 'in_process' or 'cancelar' in request.GET:
             fecha = envio.fecha_pedido + datetime.timedelta(days=5)
-            if fecha.day < datetime.datetime.now().day  or 'cancelar' in request.GET:  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
+            if fecha.day < datetime.datetime.now().day  or request.GET['cancelar'] == 'true':  # Si despues de 5 dias no se ha aprobado, cancelamos el envio
                 URL = "https://api.mercadopago.com/v1/payments/{}?access_token={}".format(envio.token, ACCESS_TOKEN)
                 headers = {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 }
                 conten = {"status": "cancelled"}
                 conten = json.dumps(conten)
-                res.put(URL, headers=headers, data=conten)
+                return redirect(request.path + "?envio=" + envio.id)
 
             estilo = 2
             envio.completado = False
@@ -115,7 +116,7 @@ def check(request):
             envio.completado = False
             envio.save()
 
-        termina_en = '0000'
+        termina_en = '0000' 
         if bool(resp['results'][0]['card']): #Comprobamos que si es tarjeta de credito mostramos los 4 ultimos digitos
             termina_en = resp['results'][0]['card']['last_four_digits']
 

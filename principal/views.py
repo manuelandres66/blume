@@ -271,7 +271,8 @@ def checkout(request):
 
 
 #Cambiar a Variable de entorno
-ACCESS_TOKEN = os.environ['MERCADO_PAGO']
+ACCESS_TOKEN = 'TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757'
+# os.environ['MERCADO_PAGO']
 
 
 @login_required(login_url="/login/")
@@ -284,10 +285,11 @@ def tarjeta(request):
 
     if request.method == "POST":
 
-        URL = "https://api.mercadopago.com/v1/payments?access_token={}".format(ACCESS_TOKEN)
+        URL = "https://api.mercadopago.com/v1/payments"
         headers = {
             'content-type': 'application/json',
             'accept': 'application/json',
+            'Authorization' : 'Bearer {}'.format(ACCESS_TOKEN)
         }
 
         conten = {
@@ -298,9 +300,9 @@ def tarjeta(request):
                 "type": "IVA"
             }],
             'token': request.POST['token'],
-            'description': "Pago total blume",
-            'installments': 1,
-            'payment_method_id': request.POST['payment_method_id'],
+            'description': "Pago total blume, Envio N° {}".format(envio.id),
+            'installments': int(request.POST['installments']),
+            'payment_method_id': request.POST['paymentMethodId'],
             'payer': {
                 "email": request.POST["email"]
             }
@@ -310,11 +312,12 @@ def tarjeta(request):
         resp = res.post(URL, data=conten, headers=headers, auth=False)
         resp = json.loads(resp.text)
 
+        print(resp)
         # agregando token
         envio.token = resp['id']
         envio.save()
 
-        if resp["status"] == "approved":
+        if resp["status"] == "approved" or resp["status"] == "pending":
             for producto in productos:
                 producto.producto.stock -= producto.cantidad
                 producto.producto.save()

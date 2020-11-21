@@ -43,14 +43,33 @@
                 </div>
                 <div>
                     <form method="POST"> {% csrf_token %}
-                        {{form}}
+
+                        <label for="id_estado">Estado:</label>
+                        {{form.estado.errors}}
+                        <select name="estado" id="id_estado">
+                            <option value="Completado" id="Completado {{envio.id}}">Completado</option>
+                            <option value="En envio" id="En envio {{envio.id}}">En envio</option>
+                            <option value="Para entregar" id="Para entregar {{envio.id}}">Para entregar</option>
+                            <option value="Retrasado" id="Retrasado {{envio.id}}">Retrasado</option>
+                          
+                          </select>
+
+                        <label for="id_llega">Llega:</label>
+                        {{form.llega.errors}}
+                        <input type="text" name="llega" required="" id="id_llega" class="llega{{envio.id}}">
+
                         <input type="hidden" name="id" value="{{envio.id}}">
                         <input type="submit" value="Cambiar">
                     </form>
+                    <script>
+                        document.getElementsByClassName('llega{{envio.id}}')[0].setAttribute('value', '{{envio.llega | date:"d"}}/{{envio.llega | date:"m"}}/{{envio.llega | date:"y"}}');
+                        document.getElementById('{{envio.estado}} {{envio.id}}').setAttribute('selected', '');
+                        
+                    </script>
                 </div>
-                <a href="/envios/check/?envio={{envio.id}}&cancelar=true"><div id="cancelar">
+                <!-- <a href="/envios/check/?envio={{envio.id}}&cancelar=true"><div id="cancelar">
                     <h5>Cancelar</h5>
-                </div></a>
+                </div></a> -->
             </div>
             {% endfor %}
             <h3 id="error">{{error}}</h3>
