@@ -271,8 +271,8 @@ def checkout(request):
 
 
 #Cambiar a Variable de entorno
-ACCESS_TOKEN = 'TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757'
-# os.environ['MERCADO_PAGO']
+ACCESS_TOKEN = os.environ['MERCADO_PAGO']
+#'TEST-7015827786312976-082121-23bfc9a07e3866546d30a2b05c67cebb-629488757'
 
 
 @login_required(login_url="/login/")

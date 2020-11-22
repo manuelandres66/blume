@@ -29,6 +29,20 @@ def home(request):
 
 @usuarios_validos(rol=['administradores'])
 @login_required(login_url="/login/")
+def anteriores(request):
+    envios = Envios.objects.filter(estado="Completado").order_by('-llega')
+    error = ""
+    if 'numero' in request.GET:
+        try:
+            envios= [Envios.objects.get(token=request.GET['numero'])]
+        except:
+            envios = []
+            error = "No hay envio que coincida"
+    ctx = {'envios' : envios, 'error' :error}
+    return render(request, 'envios/anteriores.html', ctx)
+
+@usuarios_validos(rol=['administradores'])
+@login_required(login_url="/login/")
 def ingresar_joya(request):
     if request.method == 'POST':
         form = Nueva_Joya(request.POST, files=request.FILES)
@@ -85,7 +99,6 @@ def pendientes(request):
 @login_required(login_url="/login/")
 def check(request):
     envio = Envios.objects.get(id=request.GET["envio"])
-    
     if envio.token is not None:
         # Solicitamos estado de un pago por id
         URL = "https://api.mercadopago.com/v1/payments/search?access_token={}&id={}".format(ACCESS_TOKEN, envio.token)

@@ -132,7 +132,7 @@ a {
         height: 5vh;
     }
 
-    #envios {
+    #envios { 
         margin-left: 0;
         margin-right: 0;
         width: 100%;
@@ -140,9 +140,8 @@ a {
     }
 
     .envio {
-        width: 100%;
-        position: relative;
-        left: 10vw;
+        display: inline-block;
+        width: 80vw;
     }
 
     .envio h4 {
@@ -153,9 +152,15 @@ a {
         font-size: 15px;
     }
 
+    .info {
+        display: inline-block;
+        width: 80vw;
+    }
+
     label {
         margin-left: 0;
-        display: block;
+        display: inline-block;
+        width: 100%;
         margin-top: 0.3vh;
     }
 
