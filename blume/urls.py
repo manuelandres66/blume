@@ -27,5 +27,6 @@ urlpatterns = [
     path('', include('principal.urls')),
     path('envios/', include('envios.urls')),
     path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain")),
+    path(".well-known/pki-validation/15AD525F3931F84DE7B303F71EE00E43.txt", TemplateView.as_view(template_name="15AD525F3931F84DE7B303F71EE00E43.txt", content_type="text/plain")),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
