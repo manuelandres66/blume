@@ -61,7 +61,7 @@
                     <h3 id="productos_titulo">Productos a Comprar</h3>
                     {% for producto in productos %}
                         <div class="producto">
-                            <img src="/{{ producto.producto.imagen }}" alt="producto_imagen">
+                            <img src="{{ producto.producto.imagen.url }}" alt="producto_imagen">
                             <h4>{{ producto.producto.nombre }}</h4>
                             <h5 class="precioss">{{ producto.producto.precio }}</h5>
                             <h3>x{{ producto.cantidad }}</h3>

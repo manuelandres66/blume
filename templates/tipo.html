@@ -22,7 +22,7 @@
             {% for vendido in productos %}
             <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
                 <div class="vendido">
-                    <img class="vendido_imagen" src="/{{ vendido.imagen }}" alt="vendido">
+                    <img class="vendido_imagen" src="{{ vendido.imagen.url }}" alt="vendido">
                     <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
                     <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
                 </div>

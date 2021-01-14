@@ -11,7 +11,7 @@
     {% include 'barra.html' %}
     <body>
         <div class="imagen">
-            <img id="imagen-imagen" src="/{{ joya.imagen }}" alt="joya_imagen">
+            <img id="imagen-imagen" src="{{ joya.imagen.url }}" alt="joya_imagen">
         </div>
         <div class="informacion" id="infoo">
             <h1 id="titulo_informacion">{{ joya.nombre }}</h1>

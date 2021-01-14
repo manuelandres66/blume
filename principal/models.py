@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import os
 # Create your models here.
 
 class Joya(models.Model):
@@ -21,10 +21,13 @@ class Joya(models.Model):
     tipo = models.CharField(max_length=50, choices=TIPO, default='Arete')
     piedra = models.CharField(max_length=100000)
     precio = models.IntegerField()
-    imagen = models.ImageField(upload_to='static/images', null=True, blank=True)
+    imagen = models.ImageField(upload_to='static/images/', null=True, blank=True)
     descripcion = models.TextField()
     stock = models.IntegerField(default=1)
     vistas = models.PositiveIntegerField(default=0)
+
+    def filename(self):
+        return os.path.basename(self.file.name)
 
 class Carrito(models.Model):
     check_out = models.BooleanField(default=False)
