@@ -83,7 +83,7 @@
                             </a>
                         </div>
                     {% endfor %}
-                </div>
+                </div> 
             </div>
             <div class="mas_vendidos">
                 <h3><a href="/joya/{{material}}/otros/">Otros</a></h3>
@@ -91,7 +91,7 @@
                     {% for vendido in otros %}
                         <div class="vendido">
                             <a href="/joya/{{ vendido.material }}/{{ vendido.tipo }}/{{ vendido.id }}">
-                                <img class="vendido_imagen" src="{{ vendido.imagen }}" alt="imagen_vendido">
+                                <img class="vendido_imagen" src="{{ vendido.imagen.url }}" alt="imagen_vendido">
                                 <h4 class="vendido_precio precios">{{ vendido.precio }}</h4>
                                 <h5 class="vendido_nombre">{{ vendido.nombre }}</h5>
                             </a>
